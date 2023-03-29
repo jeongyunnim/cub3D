@@ -62,3 +62,7 @@ My first RayCaster with miniLibX
    <img width="1000" alt="image" src="https://user-images.githubusercontent.com/99523863/228504677-603ca193-29c0-420b-b3b0-11d96d862e6d.png">
     
     유효하지 않은 맵은 `Error\n` 을 출력하고, 종료. 에러메시지를 추가해도 된다.
+
+정윤 노션 깃헙 링크
+
+https://www.notion.so/cub3D-e028c909086b4174a4f7a245eab47fbe
