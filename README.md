@@ -59,6 +59,6 @@ My first RayCaster with miniLibX
     
 - 유효한 맵
     
-    ![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/3d099a05-03d7-42da-a6d7-f921dd5a2f5c/Untitled.png)
+   <img width="1000" alt="image" src="https://user-images.githubusercontent.com/99523863/228504677-603ca193-29c0-420b-b3b0-11d96d862e6d.png">
     
     유효하지 않은 맵은 `Error\n` 을 출력하고, 종료. 에러메시지를 추가해도 된다.
