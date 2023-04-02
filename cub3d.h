@@ -17,20 +17,31 @@
 # include <stdlib.h>
 # include <math.h>
 # include <stdio.h>
+# include "libft/libft.h"
 # include "get_next_line.h"
 
+# define ERROR -1
+
+typedef struct t_type
+{
+	NORTH,
+	SOUTH,
+	WEST,
+	EAST,
+	FLOOR,
+	CEILING
+}				t_type;
 typedef struct s_info
 {
-	char	*no;
-	char	*so;
-	char	*we;
-	char	*ea;
-	int		f[3];
-	int		c[3];
+	char	*north;
+	char	*south;
+	char	*west;
+	char	*east;
+	int		floor[3];
+	int		ceiling[3];
 	int		flag;
-}	t_info;
+}				t_info;
 
-char	**ft_split(const char *s, int (*f)(int));
-int		ft_isspace(int c);
+char	**split_is_function(const char *s, int (*f)(int));
 
 #endif
