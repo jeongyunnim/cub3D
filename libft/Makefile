@@ -37,51 +37,26 @@ SRC		=	./ft_atoi.c			\
 			./ft_putnbr_fd.c	\
 			./ft_putstr_fd.c	\
 			./ft_isspace.c		\
-
-SRC_B	=	./ft_lstnew.c		\
-			./ft_lstadd_front.c	\
-			./ft_lstsize.c		\
-			./ft_lstlast.c		\
-			./ft_lstadd_back.c	\
-			./ft_lstdelone.c	\
-			./ft_lstclear.c		\
-			./ft_lstiter.c		\
-			./ft_lstmap.c		\
-
-SRCS	=	$(SRC)				\
-			$(SRC_B)			\
+			./get_next_line.c	\
 
 OBJ		=	$(SRC:%.c=%.o)
-OBJ_B	=	$(SRC_B:%.c=%.o)
 RM		=	rm -f
 AR		=	ar rc
 
-ifdef		WITH_BONUS
-			OBJECTS = $(OBJ) $(OBJ_B)
-else
-			OBJECTS = $(OBJ)
-endif
-
 all		:	$(NAME)
 
-$(NAME)	:	$(OBJECTS)
-	$(AR) $@ $(OBJECTS)
+$(NAME)	:	$(OBJ)
+	@$(AR) $@ $(OBJ)
 
 $(OBJ)	:	$(SRC)
-	$(CC) $(CFLAGS) -c $^ -I $(INC)
-
-$(OBJ_B):	$(SRC_B)
-	$(CC) $(CFLAGS) -c $^ -I $(INC)
+	@$(CC) $(CFLAGS) -c $^ -I $(INC)
 
 clean	:
-	$(RM) $(OBJ) $(OBJ_B)
+	@$(RM) $(OBJ)
 
 fclean	: clean
-	$(RM) $(NAME)
+	@$(RM) $(NAME)
 
 re : fclean all
 
-bonus	:
-	make WITH_BONUS=1 all
-
-.PHONY : all clean fclean re bonus
+.PHONY : all clean fclean re

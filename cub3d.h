@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 17:02:15 by jeseo             #+#    #+#             */
-/*   Updated: 2023/04/01 21:53:30 by suhkim           ###   ########.fr       */
+/*   Updated: 2023/04/04 18:42:22 by jeseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,19 +18,19 @@
 # include <math.h>
 # include <stdio.h>
 # include "libft/libft.h"
-# include "get_next_line.h"
 
 # define ERROR -1
 
-typedef struct t_type
+typedef enum e_type
 {
-	NORTH,
-	SOUTH,
-	WEST,
-	EAST,
-	FLOOR,
-	CEILING
-}				t_type;
+	NORTH=0x01,
+	SOUTH=0x02,
+	WEST=0x04,
+	EAST=0x08,
+	FLOOR=0x10,
+	CEILING=0x20
+}	t_type;
+
 typedef struct s_info
 {
 	char	*north;

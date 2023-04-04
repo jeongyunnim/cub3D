@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 14:08:50 by jeseo             #+#    #+#             */
-/*   Updated: 2023/02/22 16:01:53 by jeseo            ###   ########.fr       */
+/*   Updated: 2023/04/04 18:44:54 by jeseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,17 @@
 # define LIBFT_H
 # include <stdlib.h>
 # include <unistd.h>
+# define BUFFER_SIZE 1024
 
 typedef struct s_list
 {
-	void			*content;
 	struct s_list	*next;
-}					t_list;
+	struct s_list	*pre;
+	char			*str;
+	int				fd;
+}	t_list;
+
+char	*get_next_line(int fd);
 
 int		ft_atoi(const char *str);
 int		ft_isalnum(int c);
@@ -44,7 +49,7 @@ char	*ft_strdup(const char *str);
 char	*ft_strnstr(const char *dest, const char *src, size_t n);
 char	*ft_strrchr(const char *str, int c);
 char	*ft_substr(const char *s, unsigned int start, size_t len);
-char	*ft_strjoin(char const *s1, char const *s2);
+char	*ft_strjoin(char *s1, char *s2);
 char	*ft_strtrim(char const *s1, char const *set);
 char	*ft_itoa(int n);
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
@@ -57,6 +62,7 @@ void	ft_putchar_fd(char c, int fd);
 void	ft_putendl_fd(char *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
 void	ft_putstr_fd(char *s, int fd);
+void	lst_del(t_list *lst);
 
 void	ft_lstadd_front(t_list **lst, t_list *new);
 void	ft_lstadd_back(t_list **lst, t_list *new);

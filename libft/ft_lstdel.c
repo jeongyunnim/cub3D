@@ -1,28 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_lstdel.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/06 13:23:58 by jeseo             #+#    #+#             */
-/*   Updated: 2023/04/04 18:23:20 by jeseo            ###   ########.fr       */
+/*   Created: 2022/06/22 18:50:33 by suhkim            #+#    #+#             */
+/*   Updated: 2023/04/04 18:41:28 by jeseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strchr(const char *str, int c)
-{
-	if (str == NULL)
-		return (0);
-	while (*str != '\0')
-	{
-		if (*str == (char) c)
-			return ((char *)str);
-		str++;
-	}
-	if (*str == (char) c)
-		return ((char *)str);
-	return (0);
+void	lst_del(t_list	*lst)
+{	
+	lst->pre->next = lst->next;
+	if (lst->next)
+		lst->next->pre = lst->pre;
+	free(lst);
 }
