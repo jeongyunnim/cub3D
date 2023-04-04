@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_split.c                                         :+:      :+:    :+:   */
+/*   split_is_function.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: suhkim <suhkim@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 15:14:36 by suhkim            #+#    #+#             */
-/*   Updated: 2023/04/01 21:48:56 by suhkim           ###   ########.fr       */
+/*   Updated: 2023/04/04 18:56:47 by jeseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,12 +65,12 @@ char	**split_is_function(const char *s, int (*f)(int))
 	if (!s)
 		return (0);
 	cnt = 0;
-	carr = (char **)ft_calloc(sizeof(char *) * (cnt_word(s, f, 0) + 1));
+	carr = (char **)ft_calloc(sizeof(char *), (cnt_word(s, f, 0) + 1));
 	while (*s)
 	{
 		if (!f(*s))
 		{
-			carr[cnt] = ft_calloc(sizeof(char) * (cnt_word(s, f, 1) + 1));
+			carr[cnt] = ft_calloc(sizeof(char), (cnt_word(s, f, 1) + 1));
 			s += set_words(f, carr[cnt++], s);
 		}
 		else

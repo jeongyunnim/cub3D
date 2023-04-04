@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 17:02:15 by jeseo             #+#    #+#             */
-/*   Updated: 2023/04/04 18:42:22 by jeseo            ###   ########.fr       */
+/*   Updated: 2023/04/04 19:03:45 by jeseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,14 @@
 
 typedef enum e_type
 {
-	NORTH=0x01,
-	SOUTH=0x02,
-	WEST=0x04,
-	EAST=0x08,
-	FLOOR=0x10,
-	CEILING=0x20
-}	t_type;
+	NORTH = 0x01,
+	SOUTH = 0x02,
+	WEST = 0x04,
+	EAST = 0x08,
+	FLOOR = 0x10,
+	CEILING = 0x20,
+	TYPE_S = 0x3f
+}			t_type;
 
 typedef struct s_info
 {
@@ -43,5 +44,6 @@ typedef struct s_info
 }				t_info;
 
 char	**split_is_function(const char *s, int (*f)(int));
+int		type_parse(t_info *info, int fd);
 
 #endif
