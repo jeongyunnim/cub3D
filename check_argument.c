@@ -1,35 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   check_argument.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/01 17:00:12 by jeseo             #+#    #+#             */
-/*   Updated: 2023/04/05 19:41:57 by jeseo            ###   ########.fr       */
+/*   Created: 2023/04/05 17:36:00 by jeseo             #+#    #+#             */
+/*   Updated: 2023/04/05 19:44:23 by jeseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	main(int argc, char *argv[])
+int	check_argument(int argc, char *argument)
 {
-	t_info	info;
-	int		fd;
+	int	len;
 
 	if (argc != 2)
-		return (-1);
-	if (check_argument(argc, argv[1]) == ERROR)
-		return (ERROR);
-	fd = open(argv[1], O_RDONLY);
-	if (fd < 0)
 	{
-		ft_putstr_fd("Error\nOpen error\n", 2);
+		ft_putstr_fd("Error\nArgument count error\n", 2);
 		return (ERROR);
 	}
-	type_parse(&info, fd);
-	//3. 맵 그리기
-	//4. mlx_hook
-	//5. 실행
+	len = ft_strlen(argument);
+	if (argument[len - 4] != '.' || argument[len - 3] != 'c' || \
+		argument[len - 2] != 'u' || argument[len - 1] != 'b')
+	{
+		ft_putstr_fd("Error\nInvalid file extension\n", 2);
+		return (ERROR);
+	}
 	return (0);
 }
