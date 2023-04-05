@@ -6,13 +6,13 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 21:33:26 by suhkim            #+#    #+#             */
-/*   Updated: 2023/04/04 19:06:04 by jeseo            ###   ########.fr       */
+/*   Updated: 2023/04/05 17:27:14 by jeseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static void	free_two_dimension_array(void **arr)
+static void	free_two_dimension_array(char **arr)
 {
 	int	i;
 
@@ -27,28 +27,53 @@ static void	free_two_dimension_array(void **arr)
 	free(arr);
 }
 
+static int	rgb_valid_check(t_info *info, char **rgb, int target[3])
+{
+	int	temp;
+	int	i;
+
+	i = 0;
+	while (i < 3)
+	{
+		temp = ft_atoi(rgb[i]);
+		if ((temp < 0 || 255 < temp) || (temp == 0 && *rgb[i] == '-'))
+			return (ERROR);
+		target[i] = temp;
+		i++;
+	}
+	return (0);
+}
+
 static int	init_rgb(t_info *info, char **type)
 {
 	char	**rgb;
 	int		error_flag;
+	int		comma_flag;
+	int		i;
 
 	error_flag = 0;
+	comma_flag = 0;
+	i = 0;
+	while (type[1][i] != '\0')
+	{
+		if (type[1][i] == ',')
+			comma_flag++;
+		i++;
+	}
+	if (comma_flag > 2)
+		return (ERROR);
 	rgb = ft_split(type[1], ',');
 	if (rgb[0] == NULL || rgb[1] == NULL || rgb[2] == NULL || rgb[3] != NULL)
 		error_flag = 1;
 	else if (ft_strncmp(type[0], "F", 2) == 0 && (FLOOR & info->flag) == 0)
 	{
 		info->flag |= FLOOR;
-		info->floor[0] = ft_atoi(rgb[0]);
-		info->floor[1] = ft_atoi(rgb[1]);
-		info->floor[2] = ft_atoi(rgb[2]);
+		error_flag = rgb_valid_check(info, rgb, info->floor);
 	}
 	else if (ft_strncmp(type[0], "C", 2) == 0 && (CEILING & info->flag) == 0)
 	{
 		info->flag |= CEILING;
-		info->ceiling[0] = ft_atoi(rgb[0]);
-		info->ceiling[1] = ft_atoi(rgb[1]);
-		info->ceiling[2] = ft_atoi(rgb[2]);
+		error_flag = rgb_valid_check(info, rgb, info->ceiling);
 	}
 	else
 		error_flag = 1;
@@ -91,7 +116,7 @@ int	type_parse(t_info *info, int fd)
 	while (1)
 	{
 		line = get_next_line(fd);
-		if (line == NULL || TYPE_S & info->flag ) // 이 부분 다시 해야함.
+		if (line == NULL || TYPE_S == info->flag)
 			break ;
 		type_temp = split_is_function(line, ft_isspace);
 		if (type_temp[0] == NULL)
@@ -116,5 +141,6 @@ int	type_parse(t_info *info, int fd)
 		}
 		free_two_dimension_array(type_temp);
 	}
+	printf ("info\n%s\n%s\n%s\n%s\n%d,%d,%d\n%d,%d,%d\n", info->north, info->south, info->west, info->east, info->floor[0],info->floor[1],info->floor[2], info->ceiling[0], info->ceiling[1], info->ceiling[2]);
 	return (1);
 }
