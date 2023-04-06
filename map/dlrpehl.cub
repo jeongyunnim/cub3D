@@ -1,21 +1,12 @@
-NO ./path_to_the_north_texture
-
-
-SO ./path_to_the_south_texture
-
-
-WE ./path_to_the_west_texture
-
-
+SO                                             ./path_to_the_south_texture
+WE                                        ./path_to_the_west_texture
 EA ./path_to_the_east_texture
-
-
+NO ./path_to_the_north_texture
+C +225,000000030,+1
 F 220,100,14
 
-C 225,30,0
               
-                        
-    
+                    
             111111111                                                   1
             1                                                          101
             1                                                           1
@@ -30,5 +21,6 @@ C 225,30,0
                  1                      1 1 1 1 1 1 1 1 1 1 1 1 1 1 
                                          1 1 1 1 1 1 1 1 1 1 1 1 1  
                                         1 1 1 1 1 1 1 1 1 1 1 1 1 1                           
+
 1로 시작한 최소 인덱스
 1으로 끝난 최대 인덱스 (마지막으로 저장한 세로인덱스가 세로 값.)

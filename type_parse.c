@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 21:33:26 by suhkim            #+#    #+#             */
-/*   Updated: 2023/04/05 17:27:14 by jeseo            ###   ########.fr       */
+/*   Updated: 2023/04/06 17:02:19 by jeseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,22 @@ static int	rgb_valid_check(t_info *info, char **rgb, int target[3])
 {
 	int	temp;
 	int	i;
+	int	j;
 
 	i = 0;
 	while (i < 3)
 	{
+		j = 0;
+		while (rgb[i][j] != '\0')
+		{
+			if (j == 0 && (rgb[i][j] == '-' || rgb[i][j] == '+'))
+				j++;
+			if (ft_isdigit(rgb[i][j]) == 0)
+				return (ERROR);
+			j++;
+		}
 		temp = ft_atoi(rgb[i]);
-		if ((temp < 0 || 255 < temp) || (temp == 0 && *rgb[i] == '-'))
+		if ((temp < 0 || 255 < temp))
 			return (ERROR);
 		target[i] = temp;
 		i++;
@@ -56,11 +66,13 @@ static int	init_rgb(t_info *info, char **type)
 	i = 0;
 	while (type[1][i] != '\0')
 	{
+		if (ft_isdigit(type[1][i]) == 0 && type[1][i] != ',' && type[1][i] != '-' && type[1][i] != '+')
+			return (ERROR);
 		if (type[1][i] == ',')
 			comma_flag++;
 		i++;
 	}
-	if (comma_flag > 2)
+	if (comma_flag != 2)
 		return (ERROR);
 	rgb = ft_split(type[1], ',');
 	if (rgb[0] == NULL || rgb[1] == NULL || rgb[2] == NULL || rgb[3] != NULL)
@@ -128,14 +140,12 @@ int	type_parse(t_info *info, int fd)
 		{
 			if (type_init(info, type_temp) == ERROR)
 			{
-				ft_putstr_fd("Error\nInvalid type information form\n", 2);
 				free_two_dimension_array(type_temp);
 				return (ERROR);
 			}
 		}
 		else
 		{
-			ft_putstr_fd("Error\nInvalid type information form\n", 2);
 			free_two_dimension_array(type_temp);
 			return (ERROR);
 		}
