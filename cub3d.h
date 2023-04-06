@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 17:02:15 by jeseo             #+#    #+#             */
-/*   Updated: 2023/04/06 16:12:03 by jeseo            ###   ########.fr       */
+/*   Updated: 2023/04/06 18:26:05 by jeseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,13 @@ typedef struct s_map_list
 	struct s_map_list	*next;
 	char				*one_line;
 }	t_map_list;
+
+typedef struct s_map_info
+{
+	int	min_w;
+	int	max_w;
+	int	height;
+}		t_map_info;
 
 typedef enum e_type
 {
@@ -53,8 +60,8 @@ typedef struct s_info
 /*split_is_function.c */
 char		**split_is_function(const char *s, int (*f)(int));
 
-/* parsing.c */
-int			parsing(t_info *info, int fd);
+/* parse.c */
+int			parse(t_info *info, int fd);
 
 /* type_parse.c */
 int			type_parse(t_info *info, int fd);
@@ -63,7 +70,7 @@ int			type_parse(t_info *info, int fd);
 int			check_argument(int argc, char *argument);
 
 /* map_parse.c */
-int			map_parse(t_info *info, int fd);
+int			map_parse(t_info *info, int fd, char *first_line);
 
 /* map_list_util.c */
 t_map_list	*lstnew_map_line(char *one_line);

@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 17:00:12 by jeseo             #+#    #+#             */
-/*   Updated: 2023/04/06 16:34:21 by jeseo            ###   ########.fr       */
+/*   Updated: 2023/04/06 17:20:00 by jeseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	main(int argc, char *argv[])
 		ft_putstr_fd("Error\nOpen error\n", 2);
 		return (ERROR);
 	}
-	parsing(&info, fd);
+	parse(&info, fd);
 	//3. 맵 그리기
 	//4. mlx_hook
 	//5. 실행

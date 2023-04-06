@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 14:38:04 by jeseo             #+#    #+#             */
-/*   Updated: 2023/04/06 15:22:48 by jeseo            ###   ########.fr       */
+/*   Updated: 2023/04/06 18:25:14 by jeseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ char	*jump_to_map(t_info *info, int fd)
 	return (NULL);
 }
 
-int	parsing(t_info *info, int fd)
+int	parse(t_info *info, int fd)
 {
 	char	*line;
 
@@ -57,7 +57,7 @@ int	parsing(t_info *info, int fd)
 		ft_putstr_fd("Error\nIncompleted map error\n", 2);
 		return (ERROR);
 	}
-	if (map_parse(info, fd) == ERROR)
+	if (map_parse(info, fd, line) == ERROR)
 	{
 		return (ERROR);
 	}
