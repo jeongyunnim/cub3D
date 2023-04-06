@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 20:03:16 by jeseo             #+#    #+#             */
-/*   Updated: 2023/04/06 18:25:48 by jeseo            ###   ########.fr       */
+/*   Updated: 2023/04/06 19:36:16 by jeseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,52 @@ int	check_map_one_line(char *line, t_map_info *map)
 	return (flag);
 }
 
+int	check_all_line(t_map_info *map_info, t_map_list *temp)
+{
+	int	i;
+	int	check_flag;
+
+
+	ft_memset(map_info, 0, sizeof(t_map_info));
+	i = 1;
+	while (temp != NULL)
+	{
+		check_flag = check_map_one_line(temp->one_line, map_info);
+		if (check_flag == ERROR)
+			return (ERROR);
+		if (check_flag == 1)
+		{
+			map_info->height += i;
+			i = 0;
+		}
+		i++;
+		temp = temp->next;
+	}
+	printf("\nmin: %d\nmax: %d\nheight: %d\nwidth: %d\n", map_info->min_w, map_info->max_w, map_info->height, map_info->max_w - map_info->min_w);
+	return (0);
+}
+
+void	define_map_size(t_info *info, t_map_info *map_info, t_map_list *temp)
+{
+	int	i;
+
+	info->map = ft_calloc(sizeof(char *), map_info->height);
+	i = 0;
+	while (i < map_info->height)
+	{
+		info->map[i] = ft_calloc(sizeof(char), map_info->max_w - map_info->min_w + 2);
+		ft_strlcpy(info->map[i], temp->one_line + map_info->min_w, map_info->max_w - map_info->min_w + 2);
+		printf("%s\n", info->map[i]);
+		i++;
+		temp = temp->next;
+	}
+}
+
 int	map_parse(t_info *info, int fd, char *first_line)
 {
 	t_map_list	head;
 	t_map_info	map_info;
 	char		*line;
-	int			i;
-	int			check_flag;
 
 	head.next = NULL;
 	add_map_line_tail(&head, lstnew_map_line(first_line));
@@ -58,37 +97,8 @@ int	map_parse(t_info *info, int fd, char *first_line)
 			break ;
 		add_map_line_tail(&head, lstnew_map_line(line));
 	}
-
-	t_map_list *temp;
-	temp = head.next;
-	ft_memset(&map_info, 0, sizeof(t_map_info));
-	i = 1;
-	while (temp != NULL)
-	{
-		check_flag = check_map_one_line(temp->one_line, &map_info);
-		if (check_flag == ERROR)
-			return (ERROR);
-		if (check_flag == 1)
-		{
-			map_info.height += i;
-			i = 0;
-		}
-		i++;
-		temp = temp->next;
-	}
-	printf("\nmin: %d\nmax: %d\nheight: %d\nwidth: %d\n", map_info.min_w, map_info.max_w, map_info.height, map_info.max_w - map_info.min_w);
-
-	info->map = ft_calloc(sizeof(char *), map_info.height);
-	temp = head.next;
-	i = 0;
-	while (i < map_info.height)
-	{
-		info->map[i] = ft_calloc(sizeof(char), map_info.max_w - map_info.min_w + 2);
-		ft_strlcpy(info->map[i], temp->one_line + map_info.min_w, map_info.max_w - map_info.min_w + 2);
-		printf("%s\n", info->map[i]);
-		i++;
-		temp = temp->next;
-	}
-	//오른손 법칙 알고리즘
+	if (check_all_line(&map_info, head.next) == ERROR)
+		return (ERROR);
+	define_map_size(info, &map_info, head.next);
 	return (0);
 }
