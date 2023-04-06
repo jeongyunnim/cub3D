@@ -3,7 +3,7 @@ NAME		=	./cub3D
 LIBFTDIR	= ./libft
 
 CC			=	cc
-CFLAGS		=	\
+CFLAGS		=	-g3 -fsanitize=address
 #-Wall -Wextra -Werror \
 
 INCLUDES 	=	-I ./libft/ \
@@ -16,6 +16,7 @@ SRCS			=	./main.c\
 					./map_list_util.c\
 					./parse.c\
 					./check_argument.c\
+					./check_closed_map.c\
 					./map_parse.c\
 					./type_parse.c\
 

@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 17:02:15 by jeseo             #+#    #+#             */
-/*   Updated: 2023/04/06 18:26:05 by jeseo            ###   ########.fr       */
+/*   Updated: 2023/04/06 21:12:40 by jeseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ typedef struct s_info
 	int		floor[3];
 	int		ceiling[3];
 	int		flag;
+	int		map_width;
+	int		map_height;
 }				t_info;
 
 /*split_is_function.c */
@@ -68,6 +70,9 @@ int			type_parse(t_info *info, int fd);
 
 /* check_argument.c */
 int			check_argument(int argc, char *argument);
+
+/* check_closed_map.c */
+int			check_closed_map(t_info *info);
 
 /* map_parse.c */
 int			map_parse(t_info *info, int fd, char *first_line);

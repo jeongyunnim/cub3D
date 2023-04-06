@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 20:03:16 by jeseo             #+#    #+#             */
-/*   Updated: 2023/04/06 19:36:16 by jeseo            ###   ########.fr       */
+/*   Updated: 2023/04/06 22:14:13 by jeseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,16 @@ int	check_map_one_line(char *line, t_map_info *map)
 		if (line[i] != '0' && line[i] != '1' && line[i] != ' ' && line[i] != '\n' && \
 		line[i] != 'N' && line[i] != 'S' && line[i] != 'E' && line[i] != 'W')
 			return (ERROR);
-		if (line[i] == '1')
+		else
 		{
-			if (i < map->min_w)
-				map->min_w = i;
-			if (i > map->max_w)
-				map->max_w = i;
-			flag = 1;
+			if (line[i] == 'N' || line[i] == 'W' ||line[i] == 'E' ||line[i] == 'S' || line[i] == '1' || line[i] == '0')
+			{
+				flag = 1;
+				if (i < map->min_w)
+					map->min_w = i;
+				if (i > map->max_w)
+					map->max_w = i;
+			}
 		}
 		if (line[i] == '\n')
 			line[i] = '\0';
@@ -62,21 +65,32 @@ int	check_all_line(t_map_info *map_info, t_map_list *temp)
 		i++;
 		temp = temp->next;
 	}
-	printf("\nmin: %d\nmax: %d\nheight: %d\nwidth: %d\n", map_info->min_w, map_info->max_w, map_info->height, map_info->max_w - map_info->min_w);
+	printf("\nmin: %d\nmax: %d\nheight: %d\nwidth: %d\n", map_info->min_w, map_info->max_w, map_info->height, map_info->max_w - map_info->min_w + 1);
 	return (0);
 }
 
 void	define_map_size(t_info *info, t_map_info *map_info, t_map_list *temp)
 {
 	int	i;
+	int	j;
 
-	info->map = ft_calloc(sizeof(char *), map_info->height);
+	info->map_height = map_info->height;
+	info->map_width = map_info->max_w - map_info->min_w + 1;
+	info->map = ft_calloc(sizeof(char *), info->map_height);
 	i = 0;
 	while (i < map_info->height)
 	{
-		info->map[i] = ft_calloc(sizeof(char), map_info->max_w - map_info->min_w + 2);
-		ft_strlcpy(info->map[i], temp->one_line + map_info->min_w, map_info->max_w - map_info->min_w + 2);
-		printf("%s\n", info->map[i]);
+		j = info->map_width;
+		info->map[i] = ft_calloc(sizeof(char), info->map_width + 1);
+		ft_strlcpy(info->map[i], temp->one_line + map_info->min_w, info->map_width + 1);
+		while (--j)
+		{
+			if (info->map[i][j] == 0)
+				info->map[i][j] = ' ';
+			else
+				break ;
+		}
+		printf("%s||strlen:%d j:%d\n", info->map[i], ft_strlen(info->map[i]), j);
 		i++;
 		temp = temp->next;
 	}
@@ -98,7 +112,15 @@ int	map_parse(t_info *info, int fd, char *first_line)
 		add_map_line_tail(&head, lstnew_map_line(line));
 	}
 	if (check_all_line(&map_info, head.next) == ERROR)
+	{
+		ft_putstr_fd("Error\nInvalid map component\n", 2);
 		return (ERROR);
+	}
 	define_map_size(info, &map_info, head.next);
+	if (check_closed_map(info) == ERROR)
+	{
+		ft_putstr_fd("Error\nMap is not closed\n", 2);
+		return (ERROR);
+	}
 	return (0);
 }
