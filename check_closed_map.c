@@ -14,7 +14,6 @@
 
 int	check_square(t_info *info, char **map, int i, int j)
 {
-	printf("i,j (%d,%d)\n", i, j);
 	if (i != 0 && j != 0 && map[i - 1][j - 1] != '1' && map[i - 1][j - 1] != ' ')
 		return (ERROR);
 	if (j != 0 && map[i][j - 1] != '1' && map[i][j - 1] != ' ')
@@ -48,7 +47,16 @@ int	check_closed_map(t_info *info)
 			if (info->map[i][j] == ' ')
 			{
 				if (check_square(info, info->map, i, j) == ERROR)
+				{
+					printf("=================================================================\n");
+					if (i != 0)
+						printf("%d line:|%s|\n", i - 1, info->map[i - 1]);
+					printf("%d line:|%s|\n", i, info->map[i]);
+					if (i != info->map_height - 1)
+						printf("%d line:|%s|\n", i + 1, info->map[i + 1]);
+					printf("=================================================================\n");
 					return (ERROR);
+				}
 			}
 			j++;
 		}

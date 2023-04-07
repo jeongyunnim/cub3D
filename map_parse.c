@@ -90,7 +90,7 @@ void	define_map_size(t_info *info, t_map_info *map_info, t_map_list *temp)
 			else
 				break ;
 		}
-		printf("%s||strlen:%d j:%d\n", info->map[i], ft_strlen(info->map[i]), j);
+		printf("%s||%d\n", info->map[i], i);
 		i++;
 		temp = temp->next;
 	}
