@@ -37,6 +37,7 @@ SRC		=	./ft_atoi.c			\
 			./ft_putnbr_fd.c	\
 			./ft_putstr_fd.c	\
 			./ft_isspace.c		\
+			./ft_lstdel.c		\
 			./get_next_line.c	\
 
 OBJ		=	$(SRC:%.c=%.o)

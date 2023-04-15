@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 14:51:31 by jeseo             #+#    #+#             */
-/*   Updated: 2022/07/14 17:21:39 by jeseo            ###   ########.fr       */
+/*   Updated: 2023/04/06 17:02:12 by jeseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	ft_atoi(const char *str)
 		if (sign == 1 && num > 2147483647)
 			return (-1);
 		else if (sign == -1 && num > 2147483648)
-			return (0);
+			return (-1);
 	}
 	return (num * sign);
 }
