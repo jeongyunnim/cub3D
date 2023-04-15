@@ -1,39 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_map.c                                         :+:      :+:    :+:   */
+/*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/15 19:44:32 by jeseo             #+#    #+#             */
-/*   Updated: 2023/04/15 21:50:52 by jeseo            ###   ########.fr       */
+/*   Created: 2023/04/15 21:51:09 by jeseo             #+#    #+#             */
+/*   Updated: 2023/04/15 22:08:42 by jeseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	draw_map(t_info *info)
+void	init_map_base(t_info *info, t_mbase *mbase)
 {
-	t_mbase	mbase;
+	int	i;
 
-	t_dpos	ray;
-	t_dpos	side_dist;
-	t_dpos	delta_dist;
-	t_ipos	step;
-
-	int		hit;
-	int		side;
-
-	double	perp_wall_dist;
-	int		i;
-
-	init_map_base(&mbase);
 	i = 0;
-	while (i < info->map_width)
+	while (i < info->map_height * info->map_width)
 	{
-		perp_wall_dist = cal_perp_dist(mbase, 2 * i / (double)info->map_width - 1);
-		//draw_use_mlx
+		if (*(info->map + i) != '0' && *(info->map + i) != '1' && *(info->map + i) != ' ')
+		{
+			mbase->map.x = i / info->map_width;
+			mbase->map.y = i % info->map_width;
+			//mbase 처리해주기.
+		}
 		i++;
 	}
-	return (0);
 }

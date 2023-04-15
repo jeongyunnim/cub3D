@@ -1,39 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_map.c                                         :+:      :+:    :+:   */
+/*   cal_perp_dist.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/15 19:44:32 by jeseo             #+#    #+#             */
-/*   Updated: 2023/04/15 21:50:52 by jeseo            ###   ########.fr       */
+/*   Created: 2023/04/15 21:28:22 by jeseo             #+#    #+#             */
+/*   Updated: 2023/04/15 21:50:14 by jeseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	draw_map(t_info *info)
+double	cal_perp_dist(t_mbase *mbase, double camera)
 {
-	t_mbase	mbase;
-
 	t_dpos	ray;
-	t_dpos	side_dist;
-	t_dpos	delta_dist;
-	t_ipos	step;
 
-	int		hit;
-	int		side;
-
-	double	perp_wall_dist;
-	int		i;
-
-	init_map_base(&mbase);
-	i = 0;
-	while (i < info->map_width)
-	{
-		perp_wall_dist = cal_perp_dist(mbase, 2 * i / (double)info->map_width - 1);
-		//draw_use_mlx
-		i++;
-	}
-	return (0);
+	ray.x = mbase->dir.x + (mbase->plane.x * camera);
+	ray.y = mbase->dir.y + (mbase->plane.y * camera);
 }
