@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 17:02:15 by jeseo             #+#    #+#             */
-/*   Updated: 2023/04/06 21:12:40 by jeseo            ###   ########.fr       */
+/*   Updated: 2023/04/15 20:02:42 by jeseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,18 @@ typedef struct s_map_info
 	int	max_w;
 	int	height;
 }		t_map_info;
+
+typedef struct	s_int_pos
+{
+	int	x;
+	int	y;
+}	t_ipos;
+
+typedef struct	s_double_pos
+{
+	double	x;
+	double	y;
+}	t_dpos;
 
 typedef enum e_type
 {

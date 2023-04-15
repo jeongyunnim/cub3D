@@ -1,39 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   draw_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/01 17:00:12 by jeseo             #+#    #+#             */
-/*   Updated: 2023/04/15 19:44:12 by jeseo            ###   ########.fr       */
+/*   Created: 2023/04/15 19:44:32 by jeseo             #+#    #+#             */
+/*   Updated: 2023/04/15 20:08:19 by jeseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	main(int argc, char *argv[])
+int	draw_map(t_info *info)
 {
-	t_info	info;
-	int		fd;
+	t_ipos	map;
+	t_dpos	pos;
+	t_dpos	dir;
+	t_dpos	plane;
 
-	ft_memset(&info, 0, sizeof(t_info));
-	if (check_argument(argc, argv[1]) == ERROR)
-		return (ERROR);
-	fd = open(argv[1], O_RDONLY);
-	if (fd < 0)
-	{
-		ft_putstr_fd("Error\nOpen error\n", 2);
-		return (ERROR);
-	}
-	if (parse(&info, fd) == ERROR)
-	{
-		close(fd);
-		return (ERROR);
-	}
-	close(fd);
-	draw_map(&info);
-	//4. mlx_hook
-	//5. 실행
+	t_dpos	ray;
+	t_dpos	side_dist;
+	t_dpos	delta_dist;
+	t_ipos	step;
+
+	int		hit;
+	int		side;
+
+	double	perp_wall_dist;
+
 	return (0);
 }
