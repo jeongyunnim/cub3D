@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 17:02:15 by jeseo             #+#    #+#             */
-/*   Updated: 2023/04/17 18:25:53 by jeseo            ###   ########.fr       */
+/*   Updated: 2023/04/17 21:24:15 by jeseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <math.h>
 # include <stdio.h>
 # include "libft/libft.h"
+# include "mlx/mlx.h"
 
 # define ERROR -1
 
@@ -120,7 +121,9 @@ void		init_map_base(t_info *info, t_mbase *mbase);
 double		cal_perp_dist(t_info *info, t_mbase *mbase, double camera);
 
 /* dda.c */
-double		dda(t_info *info, t_mbase *mbase, t_ray *ray);
+double		dda(t_info *info, t_mbase mbase, t_ray ray);
 
+/* valid_map.c */
+int			valid_map(t_info *info);
 
 #endif

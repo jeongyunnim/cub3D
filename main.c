@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 17:00:12 by jeseo             #+#    #+#             */
-/*   Updated: 2023/04/15 19:44:12 by jeseo            ###   ########.fr       */
+/*   Updated: 2023/04/17 21:24:33 by jeseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 int	main(int argc, char *argv[])
 {
 	t_info	info;
+	void	*mlx;
 	int		fd;
 
 	ft_memset(&info, 0, sizeof(t_info));
@@ -26,14 +27,13 @@ int	main(int argc, char *argv[])
 		ft_putstr_fd("Error\nOpen error\n", 2);
 		return (ERROR);
 	}
-	if (parse(&info, fd) == ERROR)
+	if (parse(&info, fd) == ERROR || valid_map(&info) == ERROR)
 	{
 		close(fd);
 		return (ERROR);
 	}
 	close(fd);
 	draw_map(&info);
-	//4. mlx_hook
 	//5. 실행
 	return (0);
 }

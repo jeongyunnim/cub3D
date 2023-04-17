@@ -4,12 +4,15 @@ LIBFTDIR	= ./libft
 
 CC			=	cc
 CFLAGS		=	-g3 -fsanitize=address
-#-Wall -Wextra -Werror \
+#-Wall -Wextra -Werror
+MLX_FLAGS	=	-framework OpenGL -framework Appkit
 
 INCLUDES 	=	-I ./libft/ \
+				-I ./mlx/\
    				-I .
 
-LIBS		=	-L ./libft/ -lft
+LIBS		=	-L ./libft/ -l ft\
+				-L ./mlx/ -l mlx
 
 SRCS			=	./main.c\
 					./init.c\
@@ -23,11 +26,11 @@ SRCS			=	./main.c\
 					./draw_map.c\
 					./cal_perp_dist.c\
 					./dda.c\
+					./valid_map.c\
 
 
 OBJS			=	$(SRCS:%.c=%.o)
 
-AR			=	ar rcs
 RM			=	rm -f
 
 all			:	$(NAME)
@@ -37,7 +40,7 @@ all			:	$(NAME)
 
 $(NAME)	: $(OBJS)
 	make -C $(LIBFTDIR)
-	$(CC) $(CFLAGS) $(INCLUDES) $(LIBS) $^ -o $@
+	$(CC) $(CFLAGS) $(MLX_FLAGS) $(INCLUDES) $(LIBS) $^ -o $@
 
 all : $(NAME)
 
