@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 19:44:32 by jeseo             #+#    #+#             */
-/*   Updated: 2023/04/15 21:50:52 by jeseo            ###   ########.fr       */
+/*   Updated: 2023/04/17 18:18:32 by jeseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,11 @@ int	draw_map(t_info *info)
 	double	perp_wall_dist;
 	int		i;
 
-	init_map_base(&mbase);
+	init_map_base(info, &mbase);
 	i = 0;
 	while (i < info->map_width)
 	{
-		perp_wall_dist = cal_perp_dist(mbase, 2 * i / (double)info->map_width - 1);
+		perp_wall_dist = cal_perp_dist(info, &mbase, 2 * i / (double)info->map_width - 1);
 		//draw_use_mlx
 		i++;
 	}

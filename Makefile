@@ -12,6 +12,7 @@ INCLUDES 	=	-I ./libft/ \
 LIBS		=	-L ./libft/ -lft
 
 SRCS			=	./main.c\
+					./init.c\
 					./split_is_function.c\
 					./map_list_util.c\
 					./parse.c\
@@ -19,6 +20,10 @@ SRCS			=	./main.c\
 					./check_closed_map.c\
 					./map_parse.c\
 					./type_parse.c\
+					./draw_map.c\
+					./cal_perp_dist.c\
+					./dda.c\
+
 
 OBJS			=	$(SRCS:%.c=%.o)
 

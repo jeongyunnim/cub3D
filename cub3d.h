@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 17:02:15 by jeseo             #+#    #+#             */
-/*   Updated: 2023/04/15 21:33:48 by jeseo            ###   ########.fr       */
+/*   Updated: 2023/04/17 18:25:53 by jeseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,13 @@ typedef struct s_map_base
 	t_dpos	plane;
 }	t_mbase;
 
+typedef struct s_ray
+{
+	t_dpos	dir;
+	t_dpos	delta_dist;
+	t_dpos	side_dist;
+	t_ipos	step;
+}	t_ray;
 
 typedef enum e_type
 {
@@ -102,5 +109,18 @@ int			map_parse(t_info *info, int fd, char *first_line);
 t_map_list	*lstnew_map_line(char *one_line);
 t_map_list	*pop_map_line_head(t_map_list **head);
 void		add_map_line_tail(t_map_list *head, t_map_list *new);
+
+/* draw_map.c */
+int			draw_map(t_info *info);
+
+/* init.c */
+void		init_map_base(t_info *info, t_mbase *mbase);
+
+/* cal_perp_dist.c */
+double		cal_perp_dist(t_info *info, t_mbase *mbase, double camera);
+
+/* dda.c */
+double		dda(t_info *info, t_mbase *mbase, t_ray *ray);
+
 
 #endif
