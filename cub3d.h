@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 17:02:15 by jeseo             #+#    #+#             */
-/*   Updated: 2023/04/17 21:24:15 by jeseo            ###   ########.fr       */
+/*   Updated: 2023/04/18 19:40:02 by jeseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@
 # include "mlx/mlx.h"
 
 # define ERROR -1
+# define SCREEN_W 640
+# define SCREEN_H 480
 
 typedef struct s_map_list
 {
