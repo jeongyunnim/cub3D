@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 21:33:26 by suhkim            #+#    #+#             */
-/*   Updated: 2023/04/06 20:14:28 by jeseo            ###   ########.fr       */
+/*   Updated: 2023/04/18 16:25:27 by jeseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,6 +134,7 @@ int	type_parse(t_info *info, int fd)
 		if (type_temp[0] == NULL)
 		{
 			free_two_dimension_array(type_temp);
+			free(line);
 			continue ;
 		}
 		if (type_temp[1] != NULL && type_temp[2] == NULL)
@@ -141,16 +142,21 @@ int	type_parse(t_info *info, int fd)
 			if (type_init(info, type_temp) == ERROR)
 			{
 				free_two_dimension_array(type_temp);
+				free(line);
 				return (ERROR);
 			}
 		}
 		else
 		{
 			free_two_dimension_array(type_temp);
+			free(line);
 			return (ERROR);
 		}
+		free(line);
 		free_two_dimension_array(type_temp);
 	}
+	if (line != NULL && TYPE_S == info->flag)
+		free(line);
 	printf ("info\n%s\n%s\n%s\n%s\n%d,%d,%d\n%d,%d,%d\n", info->north, info->south, info->west, info->east, info->floor[0],info->floor[1],info->floor[2], info->ceiling[0], info->ceiling[1], info->ceiling[2]);
 	return (0);
 }
