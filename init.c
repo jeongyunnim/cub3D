@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 21:51:09 by jeseo             #+#    #+#             */
-/*   Updated: 2023/04/19 20:05:45 by jeseo            ###   ########.fr       */
+/*   Updated: 2023/04/19 22:04:39 by jeseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ void	init_pos(t_mbase *mbase, int i, int j)
 
 void	init_map_base(t_info *info, t_mbase *mbase)
 {
-	int	i;
-	int	j;
+	int		i;
+	int		j;
 
 	i = 0;
 	while (i < info->map_height)
@@ -64,6 +64,8 @@ void	init_map_base(t_info *info, t_mbase *mbase)
 		}
 		i++;
 	}
+	mbase->move_speed = 0.3;
+	mbase->rot_speed = 0.2;
 }
 
 int	init_info(t_info *info)
