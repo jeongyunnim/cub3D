@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 17:02:15 by jeseo             #+#    #+#             */
-/*   Updated: 2023/04/18 19:40:02 by jeseo            ###   ########.fr       */
+/*   Updated: 2023/04/19 20:50:06 by jeseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,36 @@
 # define ERROR -1
 # define SCREEN_W 640
 # define SCREEN_H 480
+
+typedef	enum e_side
+{
+	N_SIDE=0x00ff0000,
+	S_SIDE=0x00ffff00,
+	E_SIDE=0x0000ff00,
+	W_SIDE=0x000000ff,
+	C_SIDE=0x00555555,
+	F_SIDE=0x00ffffff
+}	t_side;
+
+typedef enum e_type
+{
+	NORTH = 0x01,
+	SOUTH = 0x02,
+	WEST = 0x04,
+	EAST = 0x08,
+	FLOOR = 0x10,
+	CEILING = 0x20,
+	TYPE_S = 0x3f
+}			t_type;
+
+typedef enum e_key
+{
+	KEY_LEFT=123,
+	KEY_RIGHT,
+	KEY_DOWN,
+	KEY_UP,
+	KEY_ESC=53,
+}			t_key;
 
 typedef struct s_map_list
 {
@@ -63,21 +93,22 @@ typedef struct s_ray
 	t_dpos	delta_dist;
 	t_dpos	side_dist;
 	t_ipos	step;
+	double	perp_dist;
+	int		side;
 }	t_ray;
 
-typedef enum e_type
+typedef struct s_line
 {
-	NORTH = 0x01,
-	SOUTH = 0x02,
-	WEST = 0x04,
-	EAST = 0x08,
-	FLOOR = 0x10,
-	CEILING = 0x20,
-	TYPE_S = 0x3f
-}			t_type;
+	int	wall_height;
+	int	bottom;
+	int	top;
+}	t_line;
 
 typedef struct s_info
 {
+	t_mbase	mbase;
+	void	*mlx;
+	void	*win_mlx;
 	char	**map;
 	char	*north;
 	char	*south;
@@ -116,14 +147,18 @@ void		add_map_line_tail(t_map_list *head, t_map_list *new);
 /* draw_map.c */
 int			draw_map(t_info *info);
 
+/* draw_one_line.c */
+int			draw_one_line(t_info *info, t_mbase *mbase, t_ray ray, int i);
+
 /* init.c */
 void		init_map_base(t_info *info, t_mbase *mbase);
+int			init_info(t_info *info);
 
 /* cal_perp_dist.c */
-double		cal_perp_dist(t_info *info, t_mbase *mbase, double camera);
+void		cal_perp_dist(t_info *info, t_mbase *mbase, t_ray *ray, double camera);
 
 /* dda.c */
-double		dda(t_info *info, t_mbase mbase, t_ray ray);
+double		dda(t_info *info, t_mbase mbase, t_ray *ray);
 
 /* valid_map.c */
 int			valid_map(t_info *info);
