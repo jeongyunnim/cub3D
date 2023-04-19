@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 21:28:22 by jeseo             #+#    #+#             */
-/*   Updated: 2023/04/18 19:41:40 by jeseo            ###   ########.fr       */
+/*   Updated: 2023/04/19 20:30:40 by jeseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,21 +36,20 @@ static void	init_side_dist(t_mbase *mbase, t_ray *ray)
 	}
 }
 
-double	cal_perp_dist(t_info *info, t_mbase *mbase, double camera)
+void	cal_perp_dist(t_info *info, t_mbase *mbase, t_ray *ray, double camera)
 {
-	t_ray	ray;
-	double	perp_dist;
-
-	printf("camera: %f\n", camera);
-	ray.delta_dist.x = 1e30;
-	ray.delta_dist.y = 1e30;
-	ray.dir.x = mbase->dir.x + (mbase->plane.x * camera);
-	ray.dir.y = mbase->dir.y + (mbase->plane.y * camera);
-	if (ray.dir.x != 0)
-		ray.delta_dist.x = sqrt(1 + pow(ray.dir.y, 2)/pow(ray.dir.x, 2));
-	if (ray.dir.y != 0)
-		ray.delta_dist.y = sqrt(1 + pow(ray.dir.x, 2)/pow(ray.dir.y, 2));
-	init_side_dist(mbase, &ray);
-	perp_dist = dda(info, *mbase, ray);
-	return (perp_dist);
+	ray->delta_dist.x = 1e30;
+	ray->delta_dist.y = 1e30;
+	ray->dir.x = mbase->dir.x + (mbase->plane.x * camera);
+	ray->dir.y = mbase->dir.y + (mbase->plane.y * camera);
+	//if (ray->dir.x != 0)
+	//	ray->delta_dist.x = fabs(1 / ray->dir.x);
+	//if (ray->dir.y != 0)
+	//	ray->delta_dist.y = fabs(1 / ray->dir.y);
+	if (ray->dir.x != 0)
+		ray->delta_dist.x = sqrt(1 + pow(ray->dir.y, 2) / pow(ray->dir.x, 2));
+	if (ray->dir.y != 0)
+		ray->delta_dist.y = sqrt(1 + pow(ray->dir.x, 2) / pow(ray->dir.y, 2));
+	init_side_dist(mbase, ray);
+	ray->perp_dist = dda(info, *mbase, ray);
 }
