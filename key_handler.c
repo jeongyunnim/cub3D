@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 20:43:52 by jeseo             #+#    #+#             */
-/*   Updated: 2023/04/20 17:05:55 by jeseo            ###   ########.fr       */
+/*   Updated: 2023/04/20 21:33:59 by suhkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,14 @@ int	key_handler(int key_code, t_info *info)
 	{
 		if (info->map[(int)info->mbase.pos.y][(int)(info->mbase.pos.x + info->mbase.dir.x * info->mbase.move_speed)] != '1')
 			info->mbase.pos.x += info->mbase.dir.x * info->mbase.move_speed;
-		if (info->map[(int)(info->mbase.pos.y + info->mbase.dir.y)][(int)info->mbase.pos.x] != '1')
+		if (info->map[(int)(info->mbase.pos.y + info->mbase.dir.y * info->mbase.move_speed)][(int)info->mbase.pos.x] != '1')
 			info->mbase.pos.y += info->mbase.dir.y * info->mbase.move_speed;
 	}
 	else if (key_code == KEY_DOWN)
 	{
-		if (info->map[(int)info->mbase.pos.y][(int)(info->mbase.pos.x + info->mbase.dir.x)] != '1')
+		if (info->map[(int)info->mbase.pos.y][(int)(info->mbase.pos.x + info->mbase.dir.x * info->mbase.move_speed)] != '1')
 			info->mbase.pos.x -= info->mbase.dir.x * info->mbase.move_speed;
-		if (info->map[(int)(info->mbase.pos.y + info->mbase.dir.y)][(int)info->mbase.pos.x] != '1')
+		if (info->map[(int)(info->mbase.pos.y + info->mbase.dir.y * info->mbase.move_speed)][(int)info->mbase.pos.x] != '1')
 			info->mbase.pos.y -= info->mbase.dir.y * info->mbase.move_speed;
 	}
 	else if (key_code == KEY_RIGHT)
@@ -54,6 +54,9 @@ int	key_handler(int key_code, t_info *info)
 		info->mbase.plane.x = info->mbase.plane.x * cos(info->mbase.rot_speed) - info->mbase.plane.y * sin(info->mbase.rot_speed);
 		info->mbase.plane.y = old_plane_x * sin(info->mbase.rot_speed) + info->mbase.plane.y * cos(info->mbase.rot_speed);		
 	}
+	info->mbase.map.x = (int)info->mbase.pos.x;
+	info->mbase.map.y = (int)info->mbase.pos.y;
 	draw_map(info);
+	print_image(info);
 	return (0);
 }

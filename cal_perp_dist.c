@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 21:28:22 by jeseo             #+#    #+#             */
-/*   Updated: 2023/04/20 18:30:32 by suhkim           ###   ########.fr       */
+/*   Updated: 2023/04/20 20:30:48 by suhkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,6 @@ void	cal_perp_dist(t_info *info, t_mbase *mbase, t_ray *ray, double camera)
 		ray->delta_dist.x = sqrt(1 + pow(ray->dir.y, 2) / pow(ray->dir.x, 2));
 	if (ray->dir.y != 0)
 		ray->delta_dist.y = sqrt(1 + pow(ray->dir.x, 2) / pow(ray->dir.y, 2));
-//	if (ray->dir.x != 0)
-//		ray->delta_dist.x = 
-//	if (ray->dir.y != 0)
-//		ray->delta_dist.y = sqrt(1 + pow(ray->dir.x, 2) / pow(ray->dir.y, 2));
 	init_side_dist(mbase, ray);
 	ray->perp_dist = dda(info, *mbase, ray);
 }

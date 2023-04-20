@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 18:03:21 by jeseo             #+#    #+#             */
-/*   Updated: 2023/04/20 18:30:32 by suhkim           ###   ########.fr       */
+/*   Updated: 2023/04/20 21:27:21 by suhkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,28 +32,38 @@ double	dda(t_info *info, t_mbase mbase, t_ray *ray)
 			mbase.map.y += ray->step.y;
 			ray->side = 1;
 		}
-		if (info->map[mbase.map.y][mbase.map.x] != '0')
+		if (info->map[mbase.map.y][mbase.map.x] == '1')
 		{
 			hit_flag = 1;
 		}
 	}
 	if (ray->side == 0)
 	{
-		//perp_dist = ray->side_dist.x - ray->delta_dist.x;
+//		perp_dist = ray->side_dist.x - ray->delta_dist.x;
 		//perp_dist = (mbase.map.x - mbase.pos.x + (1 - ray->step.x) / 2) / ray->dir.x;
-		perp_dist = (ray->side_dist.x - ray->delta_dist.x) * ((mbase.dir.x * ray->dir.x)
+		if (ray->side_dist.x > ray->delta_dist.x)
+			perp_dist = (ray->side_dist.x - ray->delta_dist.x) * ((mbase.dir.x * ray->dir.x)
+				+ mbase.dir.y * ray->dir.y) / sqrt((pow(ray->dir.x, 2) + pow(ray->dir.y, 2)));
+		else
+			perp_dist = ray->side_dist.x * ((mbase.dir.x * ray->dir.x)
 				+ mbase.dir.y * ray->dir.y) / sqrt((pow(ray->dir.x, 2) + pow(ray->dir.y, 2)));
 	}
 	else
 	{
-		//perp_dist = ray->side_dist.y - ray->delta_dist.y;
+//		perp_dist = ray->side_dist.y - ray->delta_dist.y;
 		//perp_dist = (mbase.map.y - mbase.pos.y + (1 - ray->step.y) / 2) / ray->dir.y;
-		perp_dist = (ray->side_dist.y - ray->delta_dist.y) * ((mbase.dir.x * ray->dir.x)
+		if (ray->side_dist.y > ray->delta_dist.y)
+			perp_dist = (ray->side_dist.y - ray->delta_dist.y) * ((mbase.dir.x * ray->dir.x)
+				+ mbase.dir.y * ray->dir.y) / sqrt((pow(ray->dir.x, 2) + pow(ray->dir.y, 2)));
+		else
+			perp_dist = ray->side_dist.y * ((mbase.dir.x * ray->dir.x)
 				+ mbase.dir.y * ray->dir.y) / sqrt((pow(ray->dir.x, 2) + pow(ray->dir.y, 2)));
 	}
-	if ((int)perp_dist <= 0.000000)
+	if (perp_dist <= 0.000000)
 	{
-		printf("이상유 map(%d, %d), pos(%f, %f), side %d, ray.dir(%f, %f)\n", mbase.map.x, mbase.map.y, mbase.pos.x, mbase.pos.y, ray->side, ray->dir.x, ray->dir.y);
+		printf("이상유 map(%d, %d), pos(%f, %f), camera_dir(%f, %f), side %d, ray.dir(%f, %f)\nperp: %f", mbase.map.x, mbase.map.y, mbase.pos.x, mbase.pos.y, mbase.dir.x, mbase.dir.y, ray->side, ray->dir.x, ray->dir.y, perp_dist);
 	}
+	else
+		printf("정상 map(%d, %d), pos(%f, %f), camera_dir(%f, %f), side %d, ray.dir(%f, %f)\nperp: %f", mbase.map.x, mbase.map.y, mbase.pos.x, mbase.pos.y, mbase.dir.x, mbase.dir.y, ray->side, ray->dir.x, ray->dir.y, perp_dist);
 	return (perp_dist);
 }
