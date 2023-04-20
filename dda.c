@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 18:03:21 by jeseo             #+#    #+#             */
-/*   Updated: 2023/04/20 17:49:10 by jeseo            ###   ########.fr       */
+/*   Updated: 2023/04/20 18:30:32 by suhkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,17 @@ double	dda(t_info *info, t_mbase mbase, t_ray *ray)
 	}
 	if (ray->side == 0)
 	{
-		perp_dist = ray->side_dist.x - ray->delta_dist.x;
+		//perp_dist = ray->side_dist.x - ray->delta_dist.x;
 		//perp_dist = (mbase.map.x - mbase.pos.x + (1 - ray->step.x) / 2) / ray->dir.x;
+		perp_dist = (ray->side_dist.x - ray->delta_dist.x) * ((mbase.dir.x * ray->dir.x)
+				+ mbase.dir.y * ray->dir.y) / sqrt((pow(ray->dir.x, 2) + pow(ray->dir.y, 2)));
 	}
 	else
 	{
-		perp_dist = ray->side_dist.y - ray->delta_dist.y;
+		//perp_dist = ray->side_dist.y - ray->delta_dist.y;
 		//perp_dist = (mbase.map.y - mbase.pos.y + (1 - ray->step.y) / 2) / ray->dir.y;
+		perp_dist = (ray->side_dist.y - ray->delta_dist.y) * ((mbase.dir.x * ray->dir.x)
+				+ mbase.dir.y * ray->dir.y) / sqrt((pow(ray->dir.x, 2) + pow(ray->dir.y, 2)));
 	}
 	if ((int)perp_dist <= 0.000000)
 	{
