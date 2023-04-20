@@ -28,6 +28,7 @@ SRCS			=	./main.c\
 					./cal_perp_dist.c\
 					./dda.c\
 					./valid_map.c\
+					./key_handler.c\
 
 
 OBJS			=	$(SRCS:%.c=%.o)
