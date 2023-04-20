@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 17:02:15 by jeseo             #+#    #+#             */
-/*   Updated: 2023/04/20 17:08:54 by jeseo            ###   ########.fr       */
+/*   Updated: 2023/04/20 17:42:09 by jeseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@
 # define ERROR -1
 # define SCREEN_W 1920
 # define SCREEN_H 1080
-
+//# define SCREEN_W 200
+//# define SCREEN_H 200
 typedef	enum e_side
 {
 	N_SIDE=0x5c940d,

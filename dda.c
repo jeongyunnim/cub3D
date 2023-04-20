@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 18:03:21 by jeseo             #+#    #+#             */
-/*   Updated: 2023/04/19 20:38:15 by jeseo            ###   ########.fr       */
+/*   Updated: 2023/04/20 17:49:10 by jeseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,17 @@ double	dda(t_info *info, t_mbase mbase, t_ray *ray)
 	}
 	if (ray->side == 0)
 	{
-		//perp_dist = ray->side_dist.x - ray->delta_dist.x;
-		perp_dist = (mbase.map.x - mbase.pos.x + (1 - ray->step.x) / 2) / ray->dir.x;
+		perp_dist = ray->side_dist.x - ray->delta_dist.x;
+		//perp_dist = (mbase.map.x - mbase.pos.x + (1 - ray->step.x) / 2) / ray->dir.x;
 	}
 	else
 	{
-		//perp_dist = ray->side_dist.y - ray->delta_dist.y;
-		perp_dist = (mbase.map.y - mbase.pos.y + (1 - ray->step.y) / 2) / ray->dir.y;
+		perp_dist = ray->side_dist.y - ray->delta_dist.y;
+		//perp_dist = (mbase.map.y - mbase.pos.y + (1 - ray->step.y) / 2) / ray->dir.y;
+	}
+	if ((int)perp_dist <= 0.000000)
+	{
+		printf("이상유 map(%d, %d), pos(%f, %f), side %d, ray.dir(%f, %f)\n", mbase.map.x, mbase.map.y, mbase.pos.x, mbase.pos.y, ray->side, ray->dir.x, ray->dir.y);
 	}
 	return (perp_dist);
 }

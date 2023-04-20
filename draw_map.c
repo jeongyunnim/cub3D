@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 19:44:32 by jeseo             #+#    #+#             */
-/*   Updated: 2023/04/20 17:07:11 by jeseo            ###   ########.fr       */
+/*   Updated: 2023/04/20 17:29:32 by jeseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,15 @@ int	draw_map(t_info *info)
 	int		i;
 	
 	i = 0;
+	printf("===============================================\n");
 	while (i < SCREEN_W)
 	{
+		printf("%d ", i);
 		cal_perp_dist(info, &info->mbase, &ray, 2 * i / (double)SCREEN_W - 1);
 		draw_one_line(info, &info->mbase, ray, i);
 		i++;
 	}
+	printf("===============================================\n");
 	return (0);
 }
 

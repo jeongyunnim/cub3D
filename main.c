@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 17:00:12 by jeseo             #+#    #+#             */
-/*   Updated: 2023/04/20 17:08:26 by jeseo            ###   ########.fr       */
+/*   Updated: 2023/04/20 17:48:48 by jeseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,10 @@ int	main(int argc, char *argv[])
 	}
 	close(fd);
 	init_map_base(&info, &info.mbase);
+
 	draw_map(&info);
 	print_image(&info);
+	
 	mlx_loop_hook(info.mlx, print_image, &info);
 	mlx_hook(info.win_mlx, 02, 0, key_handler, &info);
 	mlx_loop(info.mlx);
