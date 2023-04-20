@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 20:03:16 by jeseo             #+#    #+#             */
-/*   Updated: 2023/04/18 16:25:51 by jeseo            ###   ########.fr       */
+/*   Updated: 2023/04/20 18:11:08 by suhkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,8 @@ void	define_map_size(t_info *info, t_map_info *map_info, t_map_list *temp)
 	info->map_height = map_info->height;
 	info->map_width = map_info->max_w - map_info->min_w + 1;
 	info->map = ft_calloc(sizeof(char *), info->map_height);
-	i = 0;
-	while (i < map_info->height)
+	i = map_info->height - 1;
+	while (i >= 0)
 	{
 		j = info->map_width;
 		info->map[i] = ft_calloc(sizeof(char), info->map_width + 1);
@@ -91,7 +91,7 @@ void	define_map_size(t_info *info, t_map_info *map_info, t_map_list *temp)
 				break ;
 		}
 		printf("%s||%d\n", info->map[i], i);
-		i++;
+		i--;
 		temp = temp->next;
 	}
 }
