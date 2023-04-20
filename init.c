@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 21:51:09 by jeseo             #+#    #+#             */
-/*   Updated: 2023/04/19 22:04:39 by jeseo            ###   ########.fr       */
+/*   Updated: 2023/04/20 16:20:31 by jeseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,8 @@ void	init_map_base(t_info *info, t_mbase *mbase)
 		}
 		i++;
 	}
-	mbase->move_speed = 0.3;
-	mbase->rot_speed = 0.2;
+	mbase->move_speed = 0.1;
+	mbase->rot_speed = 0.1;
 }
 
 int	init_info(t_info *info)
@@ -81,6 +81,18 @@ int	init_info(t_info *info)
 	if (info->win_mlx == NULL)
 	{
 		ft_putstr_fd("Error\nmlx_new_window() error\n", 2);
+		return (ERROR);
+	}
+	info->screen.img = mlx_new_image(info->mlx, SCREEN_W, SCREEN_H);
+	if (info->screen.img == NULL)
+	{
+		ft_putstr_fd("Error\nmlx_new_image() error\n", 2);
+		return (ERROR);
+	}
+	info->screen.addr = mlx_get_data_addr(info->screen.img, &info->screen.bits_per_pixel, &info->screen.line_length, &info->screen.endian);
+	if (info->screen.addr == NULL)
+	{
+		ft_putstr_fd("Error\nmlx_get_data_addr() error\n", 2);
 		return (ERROR);
 	}
 	return (0);

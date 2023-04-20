@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 17:02:15 by jeseo             #+#    #+#             */
-/*   Updated: 2023/04/19 21:35:29 by jeseo            ###   ########.fr       */
+/*   Updated: 2023/04/20 15:56:11 by jeseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@
 # include "mlx/mlx.h"
 
 # define ERROR -1
-# define SCREEN_W 640
-# define SCREEN_H 480
+# define SCREEN_W 1920
+# define SCREEN_H 1080
 
 typedef	enum e_side
 {
@@ -106,11 +106,21 @@ typedef struct s_line
 	int	top;
 }	t_line;
 
+typedef struct s_img
+{
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}			t_img;
+
 typedef struct s_info
 {
 	t_mbase	mbase;
 	void	*mlx;
 	void	*win_mlx;
+	t_img	screen;
 	char	**map;
 	char	*north;
 	char	*south;
