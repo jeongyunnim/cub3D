@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 20:19:34 by jeseo             #+#    #+#             */
-/*   Updated: 2023/04/19 19:59:55 by jeseo            ###   ########.fr       */
+/*   Updated: 2023/04/20 16:27:33 by jeseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@ void	color_one_line(t_info *info, t_line line, t_side color, int i)
 	while (j < SCREEN_H)
 	{
 		if (j < line.bottom)
-			mlx_pixel_put(info->mlx, info->win_mlx, i, j, F_SIDE);
+			draw_in_image(info, i, j, F_SIDE);
 		else if (j < line.top)
-			mlx_pixel_put(info->mlx, info->win_mlx, i, j, color);
+			draw_in_image(info, i, j, color);
 		else
-			mlx_pixel_put(info->mlx, info->win_mlx, i, j, C_SIDE);
+			draw_in_image(info, i, j, C_SIDE);
 		j++;
 	}
 }

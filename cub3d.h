@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 17:02:15 by jeseo             #+#    #+#             */
-/*   Updated: 2023/04/20 15:56:11 by jeseo            ###   ########.fr       */
+/*   Updated: 2023/04/20 17:08:54 by jeseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,10 @@
 
 typedef	enum e_side
 {
-	N_SIDE=0x00ff0000,
-	S_SIDE=0x00ffff00,
-	E_SIDE=0x0000ff00,
-	W_SIDE=0x000000ff,
+	N_SIDE=0x5c940d,
+	S_SIDE=0xe67700,
+	E_SIDE=0x1864ab,
+	W_SIDE=0x0b7285,
 	C_SIDE=0x00555555,
 	F_SIDE=0x00ffffff
 }	t_side;
@@ -177,5 +177,12 @@ int			valid_map(t_info *info);
 
 /* key_handler.c */
 int			key_handler(int key_code, t_info *info);
+
+/* draw_in_image.c */
+void		draw_in_image(t_info *info, int x, int y, int color);
+
+/* print_image.c */
+int			print_image(t_info *info);
+
 
 #endif
