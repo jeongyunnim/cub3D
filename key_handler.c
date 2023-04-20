@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 20:43:52 by jeseo             #+#    #+#             */
-/*   Updated: 2023/04/20 21:33:59 by suhkim           ###   ########.fr       */
+/*   Updated: 2023/04/20 21:53:38 by suhkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,9 @@ int	key_handler(int key_code, t_info *info)
 	}
 	else if (key_code == KEY_DOWN)
 	{
-		if (info->map[(int)info->mbase.pos.y][(int)(info->mbase.pos.x + info->mbase.dir.x * info->mbase.move_speed)] != '1')
+		if (info->map[(int)info->mbase.pos.y][(int)(info->mbase.pos.x - info->mbase.dir.x * info->mbase.move_speed)] != '1')
 			info->mbase.pos.x -= info->mbase.dir.x * info->mbase.move_speed;
-		if (info->map[(int)(info->mbase.pos.y + info->mbase.dir.y * info->mbase.move_speed)][(int)info->mbase.pos.x] != '1')
+		if (info->map[(int)(info->mbase.pos.y - info->mbase.dir.y * info->mbase.move_speed)][(int)info->mbase.pos.x] != '1')
 			info->mbase.pos.y -= info->mbase.dir.y * info->mbase.move_speed;
 	}
 	else if (key_code == KEY_RIGHT)

@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 21:28:22 by jeseo             #+#    #+#             */
-/*   Updated: 2023/04/20 20:30:48 by suhkim           ###   ########.fr       */
+/*   Updated: 2023/04/20 21:48:27 by suhkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void	init_side_dist(t_mbase *mbase, t_ray *ray)
 	else
 	{
 		ray->step.x = 1;
-		ray->side_dist.x = (mbase->pos.x + 1.0 - mbase->map.x) * ray->delta_dist.x;
+		ray->side_dist.x = (mbase->map.x + 1.0 - mbase->pos.x) * ray->delta_dist.x;
 	}
 	if (ray->dir.y < 0)
 	{
@@ -32,7 +32,7 @@ static void	init_side_dist(t_mbase *mbase, t_ray *ray)
 	else
 	{
 		ray->step.y = 1;
-		ray->side_dist.y = (mbase->pos.y + 1.0 - mbase->map.y) * ray->delta_dist.y;
+		ray->side_dist.y = (mbase->map.y + 1.0 - mbase->pos.y) * ray->delta_dist.y;
 	}
 }
 
