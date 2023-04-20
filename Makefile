@@ -25,6 +25,8 @@ SRCS			=	./main.c\
 					./type_parse.c\
 					./draw_map.c\
 					./draw_one_line.c\
+					./draw_in_image.c\
+					./print_image.c\
 					./cal_perp_dist.c\
 					./dda.c\
 					./valid_map.c\
