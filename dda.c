@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 18:03:21 by jeseo             #+#    #+#             */
-/*   Updated: 2023/04/20 21:44:41 by suhkim           ###   ########.fr       */
+/*   Updated: 2023/04/21 17:06:16 by jeseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,9 @@ double	dda(t_info *info, t_mbase mbase, t_ray *ray)
 	}
 	if (perp_dist <= 0.000000)
 	{
-		printf("이상유 map(%d, %d), pos(%f, %f), camera_dir(%f, %f), side %d, ray.dir(%f, %f)\nperp: %f, side_dist(%f, %f), delta_dist(%f, %f)\n\n", mbase.map.x, mbase.map.y, mbase.pos.x, mbase.pos.y, mbase.dir.x, mbase.dir.y, ray->side, ray->dir.x, ray->dir.y, perp_dist, ray->side_dist.x, ray->side_dist.y, ray->delta_dist.x, ray->delta_dist.y);
+		printf("****문제****\nmap(%d, %d), pos(%f, %f), camera_dir(%f, %f), side %d, ray.dir(%f, %f)\nperp: %f, side_dist(%f, %f), delta_dist(%f, %f)\n\n", mbase.map.x, mbase.map.y, mbase.pos.x, mbase.pos.y, mbase.dir.x, mbase.dir.y, ray->side, ray->dir.x, ray->dir.y, perp_dist, ray->side_dist.x, ray->side_dist.y, ray->delta_dist.x, ray->delta_dist.y);
 	}
 	else
-		printf("이상유 map(%d, %d), pos(%f, %f), camera_dir(%f, %f), side %d, ray.dir(%f, %f)\nperp: %f, side_dist(%f, %f), delta_dist(%f, %f)\n\n", mbase.map.x, mbase.map.y, mbase.pos.x, mbase.pos.y, mbase.dir.x, mbase.dir.y, ray->side, ray->dir.x, ray->dir.y, perp_dist, ray->side_dist.x, ray->side_dist.y, ray->delta_dist.x, ray->delta_dist.y);
+		printf("map(%d, %d), pos(%f, %f), camera_dir(%f, %f), side %d, ray.dir(%f, %f)\nperp: %f, side_dist(%f, %f), delta_dist(%f, %f)\n\n", mbase.map.x, mbase.map.y, mbase.pos.x, mbase.pos.y, mbase.dir.x, mbase.dir.y, ray->side, ray->dir.x, ray->dir.y, perp_dist, ray->side_dist.x, ray->side_dist.y, ray->delta_dist.x, ray->delta_dist.y);
 	return (perp_dist);
 }

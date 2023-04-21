@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 20:43:52 by jeseo             #+#    #+#             */
-/*   Updated: 2023/04/20 21:53:38 by suhkim           ###   ########.fr       */
+/*   Updated: 2023/04/21 16:22:31 by jeseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ int	key_handler(int key_code, t_info *info)
 		info->mbase.plane.x = info->mbase.plane.x * cos(info->mbase.rot_speed) - info->mbase.plane.y * sin(info->mbase.rot_speed);
 		info->mbase.plane.y = old_plane_x * sin(info->mbase.rot_speed) + info->mbase.plane.y * cos(info->mbase.rot_speed);		
 	}
+	else
+		return (0);
 	info->mbase.map.x = (int)info->mbase.pos.x;
 	info->mbase.map.y = (int)info->mbase.pos.y;
 	draw_map(info);
