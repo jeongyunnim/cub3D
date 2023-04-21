@@ -1,7 +1,7 @@
-SO                                             ./path_to_the_south_texture
-WE                                        ./path_to_the_west_texture
-EA ./path_to_the_east_texture
-NO ./path_to_the_north_texture
+SO                                             ./asset/wall_brick.xpm
+WE                                        ./asset/wall_dragon.xpm
+EA ./asset/wall_rock.xpm
+NO ./asset/wall_wood.xpm
 C +225,000000030,+1
 F 220,100,14
 
