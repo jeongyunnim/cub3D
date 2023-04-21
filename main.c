@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 17:00:12 by jeseo             #+#    #+#             */
-/*   Updated: 2023/04/20 17:48:48 by jeseo            ###   ########.fr       */
+/*   Updated: 2023/04/21 22:11:40 by jeseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,20 @@ int	main(int argc, char *argv[])
 	close(fd);
 	init_map_base(&info, &info.mbase);
 
+	int temp;
+
+	info.textures[0].img = mlx_xpm_file_to_image(info.mlx, info.north, &temp, &temp);
+	info.textures[1].img = mlx_xpm_file_to_image(info.mlx, info.south, &temp, &temp);
+	info.textures[2].img = mlx_xpm_file_to_image(info.mlx, info.west, &temp, &temp);
+	info.textures[3].img = mlx_xpm_file_to_image(info.mlx, info.east, &temp, &temp);
+	info.textures[0].addr = mlx_get_data_addr(info.textures[0].img, &info.textures[0].bits_per_pixel, &info.textures[0].line_length, &info.textures[0].endian);
+	info.textures[1].addr = mlx_get_data_addr(info.textures[1].img, &info.textures[1].bits_per_pixel, &info.textures[1].line_length, &info.textures[1].endian);
+	info.textures[2].addr = mlx_get_data_addr(info.textures[2].img, &info.textures[2].bits_per_pixel, &info.textures[2].line_length, &info.textures[2].endian);
+	info.textures[3].addr = mlx_get_data_addr(info.textures[3].img, &info.textures[3].bits_per_pixel, &info.textures[3].line_length, &info.textures[3].endian);
+	
+
 	draw_map(&info);
 	print_image(&info);
-	
 	mlx_loop_hook(info.mlx, print_image, &info);
 	mlx_hook(info.win_mlx, 02, 0, key_handler, &info);
 	mlx_loop(info.mlx);

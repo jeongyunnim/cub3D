@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 17:02:15 by jeseo             #+#    #+#             */
-/*   Updated: 2023/04/20 17:42:09 by jeseo            ###   ########.fr       */
+/*   Updated: 2023/04/21 20:38:08 by jeseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,16 +23,14 @@
 # define ERROR -1
 # define SCREEN_W 1920
 # define SCREEN_H 1080
-//# define SCREEN_W 200
-//# define SCREEN_H 200
+# define TEX_W 64
+# define TEX_H 64
 typedef	enum e_side
 {
-	N_SIDE=0x5c940d,
-	S_SIDE=0xe67700,
-	E_SIDE=0x1864ab,
-	W_SIDE=0x0b7285,
-	C_SIDE=0x00555555,
-	F_SIDE=0x00ffffff
+	N_SIDE,
+	S_SIDE,
+	E_SIDE,
+	W_SIDE
 }	t_side;
 
 typedef enum e_type
@@ -119,9 +117,10 @@ typedef struct s_img
 typedef struct s_info
 {
 	t_mbase	mbase;
+	t_img	screen;
+	t_img	textures[4];
 	void	*mlx;
 	void	*win_mlx;
-	t_img	screen;
 	char	**map;
 	char	*north;
 	char	*south;
