@@ -2,8 +2,8 @@ SO                                             ./asset/wall_brick.xpm
 WE                                        ./asset/wall_dragon.xpm
 EA ./asset/wall_rock.xpm
 NO ./asset/wall_wood.xpm
-C +225,000000030,+1
-F 220,100,14
+C +0,000000030,+1
+F 0,100,14
 
           
 

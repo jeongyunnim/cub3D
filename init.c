@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 21:51:09 by jeseo             #+#    #+#             */
-/*   Updated: 2023/04/21 15:52:26 by jeseo            ###   ########.fr       */
+/*   Updated: 2023/04/23 21:44:00 by jeseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	init_map_base(t_info *info, t_mbase *mbase)
 		}
 		i++;
 	}
-	mbase->move_speed = 0.1;
+	mbase->move_speed = 0.12;
 	mbase->rot_speed = 0.1;
 }
 

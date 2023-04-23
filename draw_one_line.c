@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 20:19:34 by jeseo             #+#    #+#             */
-/*   Updated: 2023/04/23 19:36:44 by jeseo            ###   ########.fr       */
+/*   Updated: 2023/04/23 20:10:40 by jeseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ int	draw_one_line(t_info *info, t_mbase *mbase, t_ray ray, int i)
 	while (col < SCREEN_H)
 	{
 		if (col < line.bottom)
-			draw_in_image(info, i, col, 0xeeeeee);
+			draw_in_image(info, i, col, info->ceiling[0] << 16| info->ceiling[1] << 8| info->ceiling[2]);
 		else if (col < line.top)
 		{
 			color = 0;
@@ -96,7 +96,7 @@ int	draw_one_line(t_info *info, t_mbase *mbase, t_ray ray, int i)
 			draw_in_image(info, i, col, color);
 		}
 		else
-			draw_in_image(info, i, col, 0x0);
+			draw_in_image(info, i, col, info->floor[0] << 16| info->floor[1] << 8| info->floor[2]);
 		col++;
 	}
 	return (0);
