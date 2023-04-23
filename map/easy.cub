@@ -1,10 +1,11 @@
-SO                                             ./asset/wall_brick.xpm
-WE                                        ./asset/wall_dragon.xpm
-EA ./asset/wall_rock.xpm
-NO ./asset/wall_wood.xpm
-C +225,000000030,+1
-F 220,100,14
+SO                                             ./asset/Water_1.xpm
+WE                                        ./asset/Water_6.xpm
+EA ./asset/Water_11.xpm
+NO ./asset/Water_10.xpm
+C +134,0000000159,247
+F 24,100,171
 
-111
-1N1
-111
+
+11111
+11N11
+11111

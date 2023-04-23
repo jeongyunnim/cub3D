@@ -6,28 +6,11 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 20:19:34 by jeseo             #+#    #+#             */
-/*   Updated: 2023/04/23 20:10:40 by jeseo            ###   ########.fr       */
+/*   Updated: 2023/04/23 23:40:37 by jeseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-void	texture_one_line(t_info *info, t_line line, int color, int i)
-{
-	int j;
-
-	j = 0;
-	while (j < SCREEN_H)
-	{
-		if (j < line.bottom)
-			draw_in_image(info, i, j, 0xeeeeee);
-		else if (j < line.top)
-			draw_in_image(info, i, j, color);
-		else
-			draw_in_image(info, i, j, 0x0);
-		j++;
-	}
-}
 
 int	draw_one_line(t_info *info, t_mbase *mbase, t_ray ray, int i)
 {

@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 15:14:36 by suhkim            #+#    #+#             */
-/*   Updated: 2023/04/04 18:56:47 by jeseo            ###   ########.fr       */
+/*   Updated: 2023/04/23 23:23:52 by jeseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,6 @@ static int	cnt_word(const char *s, int (*f)(int), int mode)
 		s++;
 	}
 	return (cnt);
-}
-
-static char	**free_all(char **carr, int cnt)
-{
-	while (cnt--)
-		free(carr[cnt]);
-	free(carr);
-	return (0);
 }
 
 static int	set_words(int (*f)(int), char *set, const char *s)

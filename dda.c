@@ -6,15 +6,59 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 18:03:21 by jeseo             #+#    #+#             */
-/*   Updated: 2023/04/23 21:28:47 by jeseo            ###   ########.fr       */
+/*   Updated: 2023/04/23 23:38:41 by jeseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-double	dda(t_info *info, t_mbase mbase, t_ray *ray)
+static double	hit_up_down(t_mbase mbase, t_ray *ray)
 {
 	double	perp_dist;
+
+	if (ray->side_dist.y > ray->delta_dist.y)
+		perp_dist = (ray->side_dist.y - ray->delta_dist.y) \
+			* (mbase.dir.x * ray->dir.x + mbase.dir.y * ray->dir.y) \
+			/ sqrt((pow(ray->dir.x, 2) + pow(ray->dir.y, 2)));
+	else
+		perp_dist = ray->side_dist.y * (mbase.dir.x * ray->dir.x \
+			+ mbase.dir.y * ray->dir.y) \
+			/ sqrt((pow(ray->dir.x, 2) + pow(ray->dir.y, 2)));
+	return (perp_dist);
+}
+
+static double	hit_right_left(t_mbase mbase, t_ray *ray)
+{
+	double	perp_dist;
+
+	if (ray->side_dist.x > ray->delta_dist.x)
+		perp_dist = (ray->side_dist.x - ray->delta_dist.x) \
+			* (mbase.dir.x * ray->dir.x + mbase.dir.y * ray->dir.y) \
+			/ sqrt((pow(ray->dir.x, 2) + pow(ray->dir.y, 2)));
+	else
+		perp_dist = ray->side_dist.x * (mbase.dir.x * ray->dir.x \
+			+ mbase.dir.y * ray->dir.y) \
+			/ sqrt((pow(ray->dir.x, 2) + pow(ray->dir.y, 2)));
+	return (perp_dist);
+}
+
+static double	dda_result(t_mbase mbase, t_ray *ray)
+{
+	double	perp_dist;
+
+	if (ray->side == 0)
+	{
+		perp_dist = hit_right_left(mbase, ray);
+	}
+	else
+	{
+		perp_dist = hit_up_down(mbase, ray);
+	}
+	return (perp_dist);
+}
+
+double	dda(t_info *info, t_mbase mbase, t_ray *ray)
+{
 	int		hit_flag;
 
 	hit_flag = 0;
@@ -37,29 +81,5 @@ double	dda(t_info *info, t_mbase mbase, t_ray *ray)
 			hit_flag = 1;
 		}
 	}
-	if (ray->side == 0)
-	{
-		if (ray->side_dist.x > ray->delta_dist.x)
-			perp_dist = (ray->side_dist.x - ray->delta_dist.x) * (mbase.dir.x * ray->dir.x
-				+ mbase.dir.y * ray->dir.y) / sqrt((pow(ray->dir.x, 2) + pow(ray->dir.y, 2)));
-		else
-			perp_dist = ray->side_dist.x * (mbase.dir.x * ray->dir.x
-				+ mbase.dir.y * ray->dir.y) / sqrt((pow(ray->dir.x, 2) + pow(ray->dir.y, 2)));
-	}
-	else
-	{
-		if (ray->side_dist.y > ray->delta_dist.y)
-			perp_dist = (ray->side_dist.y - ray->delta_dist.y) * (mbase.dir.x * ray->dir.x
-				+ mbase.dir.y * ray->dir.y) / sqrt((pow(ray->dir.x, 2) + pow(ray->dir.y, 2)));
-		else
-			perp_dist = ray->side_dist.y * (mbase.dir.x * ray->dir.x
-				+ mbase.dir.y * ray->dir.y) / sqrt((pow(ray->dir.x, 2) + pow(ray->dir.y, 2)));
-	}
-	if (perp_dist <= 0.000000)
-	{
-		printf("****문제****\nmap(%d, %d), pos(%f, %f), camera_dir(%f, %f), side %d, ray.dir(%f, %f)\nperp: %f, side_dist(%f, %f), delta_dist(%f, %f)\n\n", mbase.map.x, mbase.map.y, mbase.pos.x, mbase.pos.y, mbase.dir.x, mbase.dir.y, ray->side, ray->dir.x, ray->dir.y, perp_dist, ray->side_dist.x, ray->side_dist.y, ray->delta_dist.x, ray->delta_dist.y);
-	}
-	else
-		;//printf("map(%d, %d), pos(%f, %f), camera_dir(%f, %f), side %d, ray.dir(%f, %f)\nperp: %f, side_dist(%f, %f), delta_dist(%f, %f)\n\n", mbase.map.x, mbase.map.y, mbase.pos.x, mbase.pos.y, mbase.dir.x, mbase.dir.y, ray->side, ray->dir.x, ray->dir.y, perp_dist, ray->side_dist.x, ray->side_dist.y, ray->delta_dist.x, ray->delta_dist.y);
-	return (perp_dist);
+	return (dda_result(mbase, ray));
 }

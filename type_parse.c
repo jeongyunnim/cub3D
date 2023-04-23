@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 21:33:26 by suhkim            #+#    #+#             */
-/*   Updated: 2023/04/18 16:25:27 by jeseo            ###   ########.fr       */
+/*   Updated: 2023/04/23 23:24:56 by jeseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static void	free_two_dimension_array(char **arr)
 	free(arr);
 }
 
-static int	rgb_valid_check(t_info *info, char **rgb, int target[3])
+static int	rgb_valid_check(char **rgb, int target[3])
 {
 	int	temp;
 	int	i;
@@ -80,12 +80,12 @@ static int	init_rgb(t_info *info, char **type)
 	else if (ft_strncmp(type[0], "F", 2) == 0 && (FLOOR & info->flag) == 0)
 	{
 		info->flag |= FLOOR;
-		error_flag = rgb_valid_check(info, rgb, info->floor);
+		error_flag = rgb_valid_check(rgb, info->floor);
 	}
 	else if (ft_strncmp(type[0], "C", 2) == 0 && (CEILING & info->flag) == 0)
 	{
 		info->flag |= CEILING;
-		error_flag = rgb_valid_check(info, rgb, info->ceiling);
+		error_flag = rgb_valid_check(rgb, info->ceiling);
 	}
 	else
 		error_flag = 1;
