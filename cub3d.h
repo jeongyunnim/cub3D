@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 17:02:15 by jeseo             #+#    #+#             */
-/*   Updated: 2023/04/24 02:02:16 by suhkim           ###   ########.fr       */
+/*   Updated: 2023/04/24 06:04:17 by jeseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -240,5 +240,9 @@ int			main_loop(t_info *info);
 
 /* put_error.c */
 int	put_error(char *str);
+
+/* init_img */
+int	init_img(t_info *info);
+int	get_img_address(t_info *info);
 
 #endif
