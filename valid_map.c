@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 21:05:30 by jeseo             #+#    #+#             */
-/*   Updated: 2023/04/17 21:11:56 by jeseo            ###   ########.fr       */
+/*   Updated: 2023/04/24 01:11:30 by suhkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ int	valid_map(t_info *info)
 		j = 0;
 		while (j < info->map_width)
 		{
-			if (info->map[i][j] == 'N' || info->map[i][j] == 'S' || info->map[i][j] == 'E' ||info->map[i][j] == 'W')
+			if (info->map[i][j] == 'N' || info->map[i][j] == 'S' \
+					|| info->map[i][j] == 'E' || info->map[i][j] == 'W')
 				flag++;
 			j++;
 		}

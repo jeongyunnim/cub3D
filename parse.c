@@ -6,38 +6,52 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 14:38:04 by jeseo             #+#    #+#             */
-/*   Updated: 2023/04/23 23:24:37 by jeseo            ###   ########.fr       */
+/*   Updated: 2023/04/24 01:39:30 by suhkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+int	check_exit_wall(char *line)
+{
+	int		i;
+
+	i = 0;
+	while (line[i] != '\0')
+	{
+		if (line[i] == ' ' || line[i] == '1' || line[i] == '\n')
+		{
+			if (line[i] == '1')
+				return (1);
+		}
+		else
+		{
+			free(line);
+			return (0);
+		}
+		i++;
+	}
+	free(line);
+	return (2);
+}
+
 char	*jump_to_map(int fd)
 {
 	char	*line;
-	int		i;
+	int		flag;
 
 	while (1)
 	{
 		line = get_next_line(fd);
 		if (line == NULL)
 			break ;
-		i = 0;
-		while (line[i] != '\0')
-		{
-			if (line[i] == ' ' || line[i] == '1' || line[i] == '\n')
-			{
-				if (line[i] == '1')
-					return (line);
-			}
-			else
-			{
-				free(line);
-				return (NULL);
-			}
-			i++;
-		}
-		free(line);
+		flag = check_exit_wall(line);
+		if (flag == 1)
+			return (line);
+		else if (flag == 2)
+			continue ;
+		else
+			return (NULL);
 	}
 	return (NULL);
 }

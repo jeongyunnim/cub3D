@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 17:02:15 by jeseo             #+#    #+#             */
-/*   Updated: 2023/04/23 22:16:37 by jeseo            ###   ########.fr       */
+/*   Updated: 2023/04/24 02:02:16 by suhkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # define SCREEN_H 1080
 # define TEX_W 64
 # define TEX_H 64
+
 typedef	enum e_side
 {
 	N_SIDE,
@@ -128,6 +129,16 @@ typedef struct s_img
 	int		height;
 }			t_img;
 
+typedef struct s_update_data
+{
+	double	old_dir_x;
+	double	old_dir_y;
+	double	old_plane_x;
+	double	old_plane_y;
+	double	side_walk_x;
+	double	side_walk_y;
+}	t_update_data;
+
 typedef struct s_info
 {
 	t_mbase	mbase;
@@ -157,6 +168,13 @@ int			parse(t_info *info, int fd);
 /* type_parse.c */
 int			type_parse(t_info *info, int fd);
 
+/* type_parse_utils.c */
+int			rgb_valid_check(char **rgb, int target[3]);
+int			error_flag_check(t_info *info, char **rgb, char **type);
+void		free_two_dimension_array(char **arr);
+int			init_rgb(t_info *info, char **type);
+int			type_init(t_info *info, char **type);
+
 /* check_argument.c */
 int			check_argument(int argc, char *argument);
 
@@ -165,6 +183,13 @@ int			check_closed_map(t_info *info);
 
 /* map_parse.c */
 int			map_parse(t_info *info, int fd, char *first_line);
+
+/* map_parse_utils.c */
+int	check_valid_value_idx(t_map_info *map, char *line, int i, int *flag);
+int	check_map_one_line(char *line, t_map_info *map);
+int	check_all_line(t_map_info *map_info, t_map_list *temp);
+void	define_map_size(t_info *info, t_map_info *map_info, t_map_list *temp);
+void	free_map_list(t_map_list *target);
 
 /* map_list_util.c */
 t_map_list	*lstnew_map_line(char *one_line);
@@ -196,10 +221,24 @@ int			key_handler_press(int key_code, t_info *info);
 int			key_handler_release(int key_code, t_info *info);
 int			input_update(t_info *info);
 
+/* input_wasd.c */
+void	input_w(t_info *info);
+void	input_s(t_info *info);
+void	input_a(t_info *info, t_update_data data);
+void	input_d(t_info *info, t_update_data data);
+
+/* input_right_left.c */
+void	input_right(t_info *info, t_update_data data);
+void	input_left(t_info *info, t_update_data data);
+
 /* draw_in_image.c */
 void		draw_in_image(t_info *info, int x, int y, int color);
 
 /* print_image.c */
 int			print_image(t_info *info);
 int			main_loop(t_info *info);
+
+/* put_error.c */
+int	put_error(char *str);
+
 #endif
