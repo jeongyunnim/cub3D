@@ -36,6 +36,7 @@ SRCS			=	./main.c\
 					./input_wasd.c\
 					./input_right_left.c\
 					./put_error.c\
+					./init_img.c\
 
 
 OBJS			=	$(SRCS:%.c=%.o)
