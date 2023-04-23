@@ -6,13 +6,13 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 14:38:04 by jeseo             #+#    #+#             */
-/*   Updated: 2023/04/06 20:15:27 by jeseo            ###   ########.fr       */
+/*   Updated: 2023/04/23 23:24:37 by jeseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-char	*jump_to_map(t_info *info, int fd)
+char	*jump_to_map(int fd)
 {
 	char	*line;
 	int		i;
@@ -51,7 +51,7 @@ int	parse(t_info *info, int fd)
 		ft_putstr_fd("Error\nInvalid type information form\n", 2);
 		return (ERROR);
 	}
-	line = jump_to_map(info, fd);
+	line = jump_to_map(fd);
 	if (line == NULL)
 	{
 		ft_putstr_fd("Error\nIncompleted map error\n", 2);

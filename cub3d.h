@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 17:02:15 by jeseo             #+#    #+#             */
-/*   Updated: 2023/04/06 21:12:40 by jeseo            ###   ########.fr       */
+/*   Updated: 2023/04/23 22:16:37 by jeseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,52 @@
 # include <math.h>
 # include <stdio.h>
 # include "libft/libft.h"
+# include "mlx/mlx.h"
 
 # define ERROR -1
+# define SCREEN_W 1920
+# define SCREEN_H 1080
+# define TEX_W 64
+# define TEX_H 64
+typedef	enum e_side
+{
+	N_SIDE,
+	S_SIDE,
+	E_SIDE,
+	W_SIDE
+}	t_side;
+
+typedef enum e_type
+{
+	NORTH = 0x01,
+	SOUTH = 0x02,
+	WEST = 0x04,
+	EAST = 0x08,
+	FLOOR = 0x10,
+	CEILING = 0x20,
+	TYPE_S = 0x3f
+}			t_type;
+
+typedef enum e_key
+{
+	KEY_LEFT=123,
+	KEY_RIGHT,
+	KEY_W=13,
+	KEY_S=1,
+	KEY_A=0,
+	KEY_D=2,
+	KEY_ESC=53,
+}			t_key;
+
+typedef enum e_input
+{
+	INPUT_LEFT,
+	INPUT_RIGHT,
+	INPUT_W,
+	INPUT_S,
+	INPUT_A,
+	INPUT_D,
+}			t_input;
 
 typedef struct s_map_list
 {
@@ -34,19 +78,64 @@ typedef struct s_map_info
 	int	height;
 }		t_map_info;
 
-typedef enum e_type
+typedef struct s_int_pos
 {
-	NORTH = 0x01,
-	SOUTH = 0x02,
-	WEST = 0x04,
-	EAST = 0x08,
-	FLOOR = 0x10,
-	CEILING = 0x20,
-	TYPE_S = 0x3f
-}			t_type;
+	int	x;
+	int	y;
+}	t_ipos;
+
+typedef struct s_double_pos
+{
+	double	x;
+	double	y;
+}	t_dpos;
+
+typedef struct s_map_base
+{
+	t_ipos	map;
+	t_dpos	pos;
+	t_dpos	dir;
+	t_dpos	plane;
+	double	move_speed;
+	double	rot_speed;
+}	t_mbase;
+
+typedef struct s_ray
+{
+	t_dpos	dir;
+	t_dpos	delta_dist;
+	t_dpos	side_dist;
+	t_ipos	step;
+	double	perp_dist;
+	int		side;
+}	t_ray;
+
+typedef struct s_line
+{
+	int	wall_height;
+	int	bottom;
+	int	top;
+}	t_line;
+
+typedef struct s_img
+{
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+	int		width;
+	int		height;
+}			t_img;
 
 typedef struct s_info
 {
+	t_mbase	mbase;
+	t_img	screen;
+	t_img	textures[4];
+	int		input[6];
+	void	*mlx;
+	void	*win_mlx;
 	char	**map;
 	char	*north;
 	char	*south;
@@ -82,4 +171,35 @@ t_map_list	*lstnew_map_line(char *one_line);
 t_map_list	*pop_map_line_head(t_map_list **head);
 void		add_map_line_tail(t_map_list *head, t_map_list *new);
 
+/* draw_map.c */
+int			draw_map(t_info *info);
+
+/* draw_one_line.c */
+int			draw_one_line(t_info *info, t_mbase *mbase, t_ray ray, int i);
+
+/* init.c */
+void		init_map_base(t_info *info, t_mbase *mbase);
+int			init_info(t_info *info);
+
+/* cal_perp_dist.c */
+void		cal_perp_dist(t_info *info, t_mbase *mbase, t_ray *ray, double camera);
+
+/* dda.c */
+double		dda(t_info *info, t_mbase mbase, t_ray *ray);
+
+/* valid_map.c */
+int			valid_map(t_info *info);
+
+/* key_handler.c */
+int			key_handler(int key_code, t_info *info);
+int			key_handler_press(int key_code, t_info *info);
+int			key_handler_release(int key_code, t_info *info);
+int			input_update(t_info *info);
+
+/* draw_in_image.c */
+void		draw_in_image(t_info *info, int x, int y, int color);
+
+/* print_image.c */
+int			print_image(t_info *info);
+int			main_loop(t_info *info);
 #endif

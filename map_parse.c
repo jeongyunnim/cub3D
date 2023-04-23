@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 20:03:16 by jeseo             #+#    #+#             */
-/*   Updated: 2023/04/06 22:14:13 by jeseo            ###   ########.fr       */
+/*   Updated: 2023/04/20 18:11:08 by suhkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,8 @@ void	define_map_size(t_info *info, t_map_info *map_info, t_map_list *temp)
 	info->map_height = map_info->height;
 	info->map_width = map_info->max_w - map_info->min_w + 1;
 	info->map = ft_calloc(sizeof(char *), info->map_height);
-	i = 0;
-	while (i < map_info->height)
+	i = map_info->height - 1;
+	while (i >= 0)
 	{
 		j = info->map_width;
 		info->map[i] = ft_calloc(sizeof(char), info->map_width + 1);
@@ -91,8 +91,25 @@ void	define_map_size(t_info *info, t_map_info *map_info, t_map_list *temp)
 				break ;
 		}
 		printf("%s||%d\n", info->map[i], i);
-		i++;
+		i--;
 		temp = temp->next;
+	}
+}
+
+void	free_map_list(t_map_list *target)
+{
+	t_map_list *move_ptr;
+	t_map_list *temp;
+
+	if (target == NULL)
+		return ;
+	move_ptr = target;
+	while (move_ptr != NULL)
+	{
+		temp = move_ptr->next;
+		free(move_ptr->one_line);
+		free(move_ptr);
+		move_ptr = temp;
 	}
 }
 
@@ -110,13 +127,16 @@ int	map_parse(t_info *info, int fd, char *first_line)
 		if (line == NULL)
 			break ;
 		add_map_line_tail(&head, lstnew_map_line(line));
+		free(line);
 	}
 	if (check_all_line(&map_info, head.next) == ERROR)
 	{
 		ft_putstr_fd("Error\nInvalid map component\n", 2);
+		free_map_list(head.next);
 		return (ERROR);
 	}
 	define_map_size(info, &map_info, head.next);
+	free_map_list(head.next);
 	if (check_closed_map(info) == ERROR)
 	{
 		ft_putstr_fd("Error\nMap is not closed\n", 2);
