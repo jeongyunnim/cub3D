@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 19:32:18 by jeseo             #+#    #+#             */
-/*   Updated: 2023/04/06 22:15:56 by jeseo            ###   ########.fr       */
+/*   Updated: 2023/04/23 22:41:30 by jeseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ int	check_closed_map(t_info *info)
 		j = 0;
 		while (j < info->map_width)
 		{
+			if ((i == 0 || j == 0 || i == info->map_height - 1 || j == info->map_width - 1) && (info->map[i][j] != '1' && info->map[i][j] != ' '))
+				return (ERROR);
 			if (info->map[i][j] == ' ')
 			{
 				if (check_square(info, info->map, i, j) == ERROR)
