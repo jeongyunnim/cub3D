@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 17:02:15 by jeseo             #+#    #+#             */
-/*   Updated: 2023/04/23 21:55:21 by jeseo            ###   ########.fr       */
+/*   Updated: 2023/04/23 22:16:37 by jeseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ typedef enum e_input
 	INPUT_S,
 	INPUT_A,
 	INPUT_D,
-	INPUT_ESC
 }			t_input;
 
 typedef struct s_map_list
@@ -134,7 +133,7 @@ typedef struct s_info
 	t_mbase	mbase;
 	t_img	screen;
 	t_img	textures[4];
-	int		key[7];
+	int		input[6];
 	void	*mlx;
 	void	*win_mlx;
 	char	**map;
@@ -193,11 +192,14 @@ int			valid_map(t_info *info);
 
 /* key_handler.c */
 int			key_handler(int key_code, t_info *info);
+int			key_handler_press(int key_code, t_info *info);
+int			key_handler_release(int key_code, t_info *info);
+int			input_update(t_info *info);
 
 /* draw_in_image.c */
 void		draw_in_image(t_info *info, int x, int y, int color);
 
 /* print_image.c */
 int			print_image(t_info *info);
-
+int			main_loop(t_info *info);
 #endif

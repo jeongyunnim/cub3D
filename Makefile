@@ -3,7 +3,8 @@ NAME		=	./cub3D
 LIBFTDIR	= ./libft
 
 CC			=	cc
-CFLAGS		=	-g3 -fsanitize=address
+CFLAGS		=	
+#-g3 -fsanitize=address
 #-Wall -Wextra -Werror
 MLX_FLAGS	=	-framework OpenGL -framework Appkit
 
