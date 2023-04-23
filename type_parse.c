@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 21:33:26 by suhkim            #+#    #+#             */
-/*   Updated: 2023/04/24 01:37:00 by suhkim           ###   ########.fr       */
+/*   Updated: 2023/04/24 07:04:03 by jeseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ int	type_parse(t_info *info, int fd)
 		if (TYPE_S == info->flag)
 			break ;
 	}
-	printf ("info\n%s\n%s\n%s\n%s\n%d,%d,%d\n%d,%d,%d\n", info->north, info->south, info->west, info->east, info->floor[0],info->floor[1],info->floor[2], info->ceiling[0], info->ceiling[1], info->ceiling[2]);
+	if (info->floor[0] == info->ceiling[0] && \
+	info->floor[1] == info->ceiling[1] && info->floor[2] == info->ceiling[2])
+		return (ERROR);
 	return (0);
 }
