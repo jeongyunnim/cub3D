@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 20:43:52 by jeseo             #+#    #+#             */
-/*   Updated: 2023/04/25 16:47:26 by jeseo            ###   ########.fr       */
+/*   Updated: 2023/04/25 18:49:11 by jeseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ int	input_update(t_info *info)
 		input_left(info, data);
 	info->mbase.map.x = (int)info->mbase.pos.x;
 	info->mbase.map.y = (int)info->mbase.pos.y;
+	printf("dir(%f,%f) plane(%f,%f)\n", info->mbase.dir.x, info->mbase.dir.y, info->mbase.plane.x, info->mbase.plane.y);
 	draw_map(info);
 	print_image(info);
 	return (0);

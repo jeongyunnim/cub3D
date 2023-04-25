@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 17:00:12 by jeseo             #+#    #+#             */
-/*   Updated: 2023/04/23 22:12:49 by jeseo            ###   ########.fr       */
+/*   Updated: 2023/04/25 20:34:05 by jeseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ int	main(int argc, char *argv[])
 	info.textures[S_SIDE].addr = mlx_get_data_addr(info.textures[S_SIDE].img, &info.textures[S_SIDE].bits_per_pixel, &info.textures[S_SIDE].line_length, &info.textures[S_SIDE].endian);
 	info.textures[W_SIDE].addr = mlx_get_data_addr(info.textures[W_SIDE].img, &info.textures[W_SIDE].bits_per_pixel, &info.textures[W_SIDE].line_length, &info.textures[W_SIDE].endian);
 	info.textures[E_SIDE].addr = mlx_get_data_addr(info.textures[E_SIDE].img, &info.textures[E_SIDE].bits_per_pixel, &info.textures[E_SIDE].line_length, &info.textures[E_SIDE].endian);
-
 	draw_map(&info);
 	print_image(&info);
 	mlx_loop_hook(info.mlx, main_loop, &info);
