@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_parse_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: suhkim <suhkim@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 02:00:55 by suhkim            #+#    #+#             */
-/*   Updated: 2023/04/24 02:02:09 by suhkim           ###   ########.fr       */
+/*   Updated: 2023/04/25 22:26:28 by jeseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,6 @@ int	check_all_line(t_map_info *map_info, t_map_list *temp)
 		i++;
 		temp = temp->next;
 	}
-	printf("\nmin: %d\nmax: %d\nheight: %d\nwidth: %d\n", map_info->min_w, map_info->max_w, map_info->height, map_info->max_w - map_info->min_w + 1);
 	return (0);
 }
 
