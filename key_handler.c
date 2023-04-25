@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 20:43:52 by jeseo             #+#    #+#             */
-/*   Updated: 2023/04/24 00:06:54 by suhkim           ###   ########.fr       */
+/*   Updated: 2023/04/25 16:47:26 by jeseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,15 @@ int	key_handler_press(int key_code, t_info *info)
 	else if (key_code == KEY_D)
 		info->input[INPUT_D] = 1;
 	else if (key_code == KEY_RIGHT)
+	{
+		info->input[INPUT_LEFT] = 0;
 		info->input[INPUT_RIGHT] = 1;
+	}
 	else if (key_code == KEY_LEFT)
+	{
+		info->input[INPUT_RIGHT] = 0;
 		info->input[INPUT_LEFT] = 1;
+	}
 	return (0);
 }
 
