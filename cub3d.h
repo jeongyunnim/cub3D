@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 17:02:15 by jeseo             #+#    #+#             */
-/*   Updated: 2023/04/24 02:02:16 by suhkim           ###   ########.fr       */
+/*   Updated: 2023/04/25 22:15:47 by suhkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -200,7 +200,7 @@ void		add_map_line_tail(t_map_list *head, t_map_list *new);
 int			draw_map(t_info *info);
 
 /* draw_one_line.c */
-int			draw_one_line(t_info *info, t_mbase *mbase, t_ray ray, int i);
+int			draw_one_line(t_info *info, t_mbase *mbase, t_ray *ray, int i);
 
 /* init.c */
 void		init_map_base(t_info *info, t_mbase *mbase);
