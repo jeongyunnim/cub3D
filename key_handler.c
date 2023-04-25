@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 20:43:52 by jeseo             #+#    #+#             */
-/*   Updated: 2023/04/23 22:16:48 by jeseo            ###   ########.fr       */
+/*   Updated: 2023/04/24 00:06:54 by suhkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,64 +14,24 @@
 
 int	input_update(t_info *info)
 {
-	double	old_dir_x;
-	double	old_dir_y;
-	double	old_plane_x;
-	double	old_plane_y;
-	double	side_walk_x;
-	double	side_walk_y;
+	t_update_data	data;
 
-
-	old_dir_x = info->mbase.dir.x;
-	old_dir_y = info->mbase.dir.y;
-	old_plane_x = info->mbase.plane.x;
-	old_plane_y = info->mbase.plane.y;
+	data.old_dir_x = info->mbase.dir.x;
+	data.old_dir_y = info->mbase.dir.y;
+	data.old_plane_x = info->mbase.plane.x;
+	data.old_plane_y = info->mbase.plane.y;
 	if (info->input[INPUT_W] == 1)
-	{
-		if (info->map[(int)info->mbase.pos.y][(int)(info->mbase.pos.x + info->mbase.dir.x * info->mbase.move_speed)] != '1')
-			info->mbase.pos.x += info->mbase.dir.x * info->mbase.move_speed;
-		if (info->map[(int)(info->mbase.pos.y + info->mbase.dir.y * info->mbase.move_speed)][(int)info->mbase.pos.x] != '1')
-			info->mbase.pos.y += info->mbase.dir.y * info->mbase.move_speed;
-	}
+		input_w(info);
 	if (info->input[INPUT_S] == 1)
-	{
-		if (info->map[(int)info->mbase.pos.y][(int)(info->mbase.pos.x - info->mbase.dir.x * info->mbase.move_speed)] != '1')
-			info->mbase.pos.x -= info->mbase.dir.x * info->mbase.move_speed;
-		if (info->map[(int)(info->mbase.pos.y - info->mbase.dir.y * info->mbase.move_speed)][(int)info->mbase.pos.x] != '1')
-			info->mbase.pos.y -= info->mbase.dir.y * info->mbase.move_speed;
-	}
+		input_s(info);
 	if (info->input[INPUT_A] == 1)
-	{
-		side_walk_x = info->mbase.dir.x * cos(acos(-1) / 2) - info->mbase.dir.y * sin(acos(-1) / 2);
-		side_walk_y = old_dir_x * sin(acos(-1) / 2) + info->mbase.dir.y * cos(acos(-1) / 2);
-		if (info->map[(int)info->mbase.pos.y][(int)(info->mbase.pos.x + side_walk_x * info->mbase.move_speed)] != '1')
-			info->mbase.pos.x += side_walk_x * info->mbase.move_speed;
-		if (info->map[(int)(info->mbase.pos.y + side_walk_y * info->mbase.move_speed)][(int)info->mbase.pos.x] != '1')
-			info->mbase.pos.y += side_walk_y * info->mbase.move_speed;
-	}
+		input_a(info, data);
 	if (info->input[INPUT_D] == 1)
-	{
-		side_walk_x = info->mbase.dir.x * cos(acos(-1) / 2) - info->mbase.dir.y * sin(acos(-1) / 2);
-		side_walk_y = old_dir_x * sin(acos(-1) / 2) + info->mbase.dir.y * cos(acos(-1) / 2);
-		if (info->map[(int)info->mbase.pos.y][(int)(info->mbase.pos.x - side_walk_x * info->mbase.move_speed)] != '1')
-			info->mbase.pos.x -= side_walk_x * info->mbase.move_speed;
-		if (info->map[(int)(info->mbase.pos.y - side_walk_y * info->mbase.move_speed)][(int)info->mbase.pos.x] != '1')
-			info->mbase.pos.y -= side_walk_y * info->mbase.move_speed;
-	}
+		input_d(info, data);
 	if (info->input[INPUT_RIGHT] == 1)
-	{
-		info->mbase.dir.x = info->mbase.dir.x * cos(-info->mbase.rot_speed) - info->mbase.dir.y * sin(-info->mbase.rot_speed);
-		info->mbase.dir.y = old_dir_x * sin(-info->mbase.rot_speed) + info->mbase.dir.y * cos(-info->mbase.rot_speed);
-		info->mbase.plane.x = info->mbase.plane.x * cos(-info->mbase.rot_speed) - info->mbase.plane.y * sin(-info->mbase.rot_speed);
-		info->mbase.plane.y = old_plane_x * sin(-info->mbase.rot_speed) + info->mbase.plane.y * cos(-info->mbase.rot_speed);
-	}
+		input_right(info, data);
 	if (info->input[INPUT_LEFT] == 1)
-	{
-		info->mbase.dir.x = info->mbase.dir.x * cos(info->mbase.rot_speed) - info->mbase.dir.y * sin(info->mbase.rot_speed);
-		info->mbase.dir.y = old_dir_x * sin(info->mbase.rot_speed) + info->mbase.dir.y * cos(info->mbase.rot_speed);
-		info->mbase.plane.x = info->mbase.plane.x * cos(info->mbase.rot_speed) - info->mbase.plane.y * sin(info->mbase.rot_speed);
-		info->mbase.plane.y = old_plane_x * sin(info->mbase.rot_speed) + info->mbase.plane.y * cos(info->mbase.rot_speed);		
-	}
+		input_left(info, data);
 	info->mbase.map.x = (int)info->mbase.pos.x;
 	info->mbase.map.y = (int)info->mbase.pos.y;
 	draw_map(info);

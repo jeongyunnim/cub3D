@@ -3,7 +3,7 @@ NAME		=	./cub3D
 LIBFTDIR	= ./libft
 
 CC			=	cc
-CFLAGS		=	-Wall -Wextra -Werror
+CFLAGS		=	-Wall -Wextra -Werror 
 #-g3 -fsanitize=address
 MLX_FLAGS	=	-framework OpenGL -framework Appkit
 
@@ -22,7 +22,9 @@ SRCS			=	./main.c\
 					./check_argument.c\
 					./check_closed_map.c\
 					./map_parse.c\
+					./map_parse_utils.c\
 					./type_parse.c\
+					./type_parse_utils.c\
 					./draw_map.c\
 					./draw_one_line.c\
 					./draw_in_image.c\
@@ -31,6 +33,11 @@ SRCS			=	./main.c\
 					./dda.c\
 					./valid_map.c\
 					./key_handler.c\
+					./input_wasd.c\
+					./input_right_left.c\
+					./put_error.c\
+					./init_img.c\
+					./destroy_handler.c\
 
 
 OBJS			=	$(SRCS:%.c=%.o)
