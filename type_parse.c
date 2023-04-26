@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 21:33:26 by suhkim            #+#    #+#             */
-/*   Updated: 2023/04/24 07:04:03 by jeseo            ###   ########.fr       */
+/*   Updated: 2023/04/26 18:50:07 by jeseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,32 @@ static int	enough_arg_check_vaild(t_info *info, char **type_temp, char *line)
 	return (0);
 }
 
+static int	overlap_check(t_info *info)
+{
+	if (ft_strncmp(info->north, info->south, ft_strlen(info->north) + 1) == 0 \
+	|| ft_strncmp(info->north, info->west, ft_strlen(info->north) + 1) == 0 \
+	|| ft_strncmp(info->north, info->east, ft_strlen(info->north) + 1) == 0)
+	{
+		printf("north");
+		return (ERROR);
+	}
+	if (ft_strncmp(info->south, info->west, ft_strlen(info->south) + 1) == 0 \
+	|| ft_strncmp(info->south, info->east, ft_strlen(info->south) + 1) == 0)
+	{
+		printf("south");
+		return (ERROR);
+	}
+	if (ft_strncmp(info->east, info->west, ft_strlen(info->east) + 1) == 0)
+	{
+		printf("east");
+		return (ERROR);
+	}
+	if (info->floor[0] == info->ceiling[0] && \
+	info->floor[1] == info->ceiling[1] && info->floor[2] == info->ceiling[2])
+		return (ERROR);
+	return (0);
+}
+
 int	type_parse(t_info *info, int fd)
 {
 	char	*line;
@@ -56,8 +82,7 @@ int	type_parse(t_info *info, int fd)
 		if (TYPE_S == info->flag)
 			break ;
 	}
-	if (info->floor[0] == info->ceiling[0] && \
-	info->floor[1] == info->ceiling[1] && info->floor[2] == info->ceiling[2])
+	if (overlap_check(info) == ERROR)
 		return (ERROR);
 	return (0);
 }
