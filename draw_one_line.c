@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 20:19:34 by jeseo             #+#    #+#             */
-/*   Updated: 2023/04/25 22:12:55 by suhkim           ###   ########.fr       */
+/*   Updated: 2023/04/26 18:41:24 by suhkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,19 +31,19 @@ double	cal_wall_x(t_mbase *mbase, t_ray *ray)
 	{
 		if (ray->side_dist.x > ray->delta_dist.x)
 			wall_x = (ray->side_dist.x - ray->delta_dist.x) * ray->dir.y \
-				/ sqrt((pow(ray->dir.x, 2) + pow(ray->dir.y, 2))) + mbase->pos.y;
+			/ sqrt((pow(ray->dir.x, 2) + pow(ray->dir.y, 2))) + mbase->pos.y;
 		else
 			wall_x = ray->side_dist.x * ray->dir.y \
-				/ sqrt((pow(ray->dir.x, 2) + pow(ray->dir.y, 2))) + mbase->pos.y;
+			/ sqrt((pow(ray->dir.x, 2) + pow(ray->dir.y, 2))) + mbase->pos.y;
 	}
 	else
 	{
 		if (ray->side_dist.y > ray->delta_dist.y)
 			wall_x = (ray->side_dist.y - ray->delta_dist.y) * ray->dir.x \
-				/ sqrt((pow(ray->dir.x, 2) + pow(ray->dir.y, 2))) + mbase->pos.x;
+			/ sqrt((pow(ray->dir.x, 2) + pow(ray->dir.y, 2))) + mbase->pos.x;
 		else
 			wall_x = ray->side_dist.y * ray->dir.x \
-				/ sqrt((pow(ray->dir.x, 2) + pow(ray->dir.y, 2))) + mbase->pos.x;
+			/ sqrt((pow(ray->dir.x, 2) + pow(ray->dir.y, 2))) + mbase->pos.x;
 	}
 	wall_x -= floor(wall_x);
 	return (wall_x);
@@ -59,7 +59,8 @@ void	init_tex(t_mbase *mbase, t_ray *ray, t_tex *tex, t_line *line)
 	if (ray->side == 1 && ray->dir.y < 0)
 		tex_x = TEX_W - tex_x - 1;
 	tex->step = 1.0 * TEX_H / line->wall_height;
-	tex->pos = (line->bottom - SCREEN_H / 2 + line->wall_height / 2) * tex->step;
+	tex->pos = (line->bottom - SCREEN_H / 2 \
+			+ line->wall_height / 2) * tex->step;
 	tex->x = tex_x;
 }
 
