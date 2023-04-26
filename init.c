@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 21:51:09 by jeseo             #+#    #+#             */
-/*   Updated: 2023/04/24 02:11:12 by suhkim           ###   ########.fr       */
+/*   Updated: 2023/04/25 22:16:46 by suhkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,19 @@ void	init_dir(t_mbase *mbase, double x, double y)
 	mbase->dir.x = x;
 	mbase->dir.y = y;
 	if (x == 1 || y == 1)
-		init_plane(&mbase->plane, 0.66 * (1 - (x * 2)), 0);
+	{
+		if (x == 1)
+			init_plane(&mbase->plane, 0, -0.66);
+		else
+			init_plane(&mbase->plane, 0.66, 0);
+	}
 	else
-		init_plane(&mbase->plane, 0, 0.66 * (1 - (fabs(y) * 2)));
+	{
+		if (x == -1)
+			init_plane(&mbase->plane, 0, 0.66);
+		else
+			init_plane(&mbase->plane, -0.66, 0);
+	}
 	printf("%f %f %f %f\n", mbase->dir.x, mbase->dir.y, \
 			mbase->plane.x, mbase->plane.y);
 }
@@ -67,7 +77,7 @@ void	init_map_base(t_info *info, t_mbase *mbase)
 		i++;
 	}
 	mbase->move_speed = 0.05;
-	mbase->rot_speed = 0.04;
+	mbase->rot_speed = 0.03;
 }
 
 int	init_info(t_info *info)
