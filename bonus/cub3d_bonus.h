@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 17:02:15 by jeseo             #+#    #+#             */
-/*   Updated: 2023/04/26 19:30:35 by jeseo            ###   ########.fr       */
+/*   Updated: 2023/04/26 20:21:10 by jeseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -247,5 +247,8 @@ int			get_img_address(t_info *info);
 
 /* destroy_handler.c */
 int			destroy_handler(void);
+
+/* mouse_handler_bonus.c */
+int 		mouse_handler(int x, int y, t_info *info);
 
 #endif
