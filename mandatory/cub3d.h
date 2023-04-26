@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 17:02:15 by jeseo             #+#    #+#             */
-/*   Updated: 2023/04/25 22:15:47 by suhkim           ###   ########.fr       */
+/*   Updated: 2023/04/26 19:28:36 by jeseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 # include <stdlib.h>
 # include <math.h>
 # include <stdio.h>
-# include "libft/libft.h"
-# include "mlx/mlx.h"
+# include "../libft/libft.h"
+# include "../mlx/mlx.h"
 
 # define ERROR -1
 # define SCREEN_W 1920
@@ -26,7 +26,7 @@
 # define TEX_W 64
 # define TEX_H 64
 
-typedef	enum e_side
+typedef enum e_side
 {
 	N_SIDE,
 	S_SIDE,
@@ -207,7 +207,7 @@ void		init_map_base(t_info *info, t_mbase *mbase);
 int			init_info(t_info *info);
 
 /* cal_perp_dist.c */
-void		cal_perp_dist(t_info *info, t_mbase *mbase, t_ray *ray, double camera);
+void		cal_perp_dist(t_info *info, t_mbase *mbase, t_ray *ray, double c);
 
 /* dda.c */
 double		dda(t_info *info, t_mbase mbase, t_ray *ray);
@@ -222,14 +222,14 @@ int			key_handler_release(int key_code, t_info *info);
 int			input_update(t_info *info);
 
 /* input_wasd.c */
-void	input_w(t_info *info);
-void	input_s(t_info *info);
-void	input_a(t_info *info, t_update_data data);
-void	input_d(t_info *info, t_update_data data);
+void		input_w(t_info *info);
+void		input_s(t_info *info);
+void		input_a(t_info *info, t_update_data data);
+void		input_d(t_info *info, t_update_data data);
 
 /* input_right_left.c */
-void	input_right(t_info *info, t_update_data data);
-void	input_left(t_info *info, t_update_data data);
+void		input_right(t_info *info, t_update_data data);
+void		input_left(t_info *info, t_update_data data);
 
 /* draw_in_image.c */
 void		draw_in_image(t_info *info, int x, int y, int color);
@@ -239,13 +239,13 @@ int			print_image(t_info *info);
 int			main_loop(t_info *info);
 
 /* put_error.c */
-int	put_error(char *str);
+int			put_error(char *str);
 
 /* init_img.c */
-int	init_img(t_info *info);
-int	get_img_address(t_info *info);
+int			init_img(t_info *info);
+int			get_img_address(t_info *info);
 
 /* destroy_handler.c */
-int	destroy_handler(void);
+int			destroy_handler(void);
 
 #endif
