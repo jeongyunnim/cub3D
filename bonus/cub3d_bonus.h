@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 17:02:15 by jeseo             #+#    #+#             */
-/*   Updated: 2023/04/26 20:21:10 by jeseo            ###   ########.fr       */
+/*   Updated: 2023/04/26 21:36:05 by jeseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,6 +143,7 @@ typedef struct s_info
 {
 	t_mbase	mbase;
 	t_img	screen;
+	t_img	mini_map;
 	t_img	textures[4];
 	int		input[6];
 	void	*mlx;
@@ -232,7 +233,7 @@ void		input_right(t_info *info, t_update_data data);
 void		input_left(t_info *info, t_update_data data);
 
 /* draw_in_image.c */
-void		draw_in_image(t_info *info, int x, int y, int color);
+void		draw_in_image(t_img *img, int x, int y, int color);
 
 /* print_image.c */
 int			print_image(t_info *info);

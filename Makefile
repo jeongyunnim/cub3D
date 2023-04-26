@@ -5,8 +5,8 @@ NAME_B		=	./cub3D_bonus
 LIBFTDIR	= ./libft
 
 CC			=	cc
-CFLAGS		=	-Wall -Wextra -Werror 
-#-g3 -fsanitize=address
+CFLAGS		=	-Wall -Wextra -Werror \
+-g3 -fsanitize=address
 MLX_FLAGS	=	-framework OpenGL -framework Appkit
 
 INCLUDES 	=	-I ./libft/ \
