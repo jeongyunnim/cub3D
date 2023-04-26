@@ -241,4 +241,11 @@ int			main_loop(t_info *info);
 /* put_error.c */
 int	put_error(char *str);
 
+/* init_img.c */
+int	init_img(t_info *info);
+int	get_img_address(t_info *info);
+
+/* destroy_handler.c */
+int	destroy_handler(void);
+
 #endif
