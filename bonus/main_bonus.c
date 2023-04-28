@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 17:00:12 by jeseo             #+#    #+#             */
-/*   Updated: 2023/04/26 21:56:14 by jeseo            ###   ########.fr       */
+/*   Updated: 2023/04/28 17:09:24 by jeseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,18 +31,37 @@ int	main(int argc, char *argv[])
 	}
 	close(fd);
 	init_map_base(&info, &info.mbase);
+
 	if (init_img(&info) == ERROR || get_img_address(&info) == ERROR)
 		return (put_error("Error\nTexture file error\n"));
 
-	info.mini_map.img = mlx_new_image(info.mlx, SCREEN_W, SCREEN_H);
+	
+	
+	info.mini_map.img = mlx_new_image(info.mlx, SCREEN_W / 5 - ((SCREEN_W / 5) % (SCREEN_H / 10)), SCREEN_H / 5);
 	if (info.mini_map.img == NULL)
 		return (put_error("Error\nmlx_new_image() error\n"));
 	info.mini_map.addr = mlx_get_data_addr(info.mini_map.img, \
 			&info.mini_map.bits_per_pixel, &info.mini_map.line_length, \
 			&info.mini_map.endian);
-	if (info.mini_map.addr == NULL)
-		return (put_error("Error\nmlx_get_data_addr() error\n"));
 
+	int x;
+	int y;
+
+	y = 0;
+	while (y < SCREEN_H / 5)
+	{
+		
+		x = 0;
+		while (x < SCREEN_W / 5 - ((SCREEN_W / 5) % (SCREEN_H / 10)))
+		{
+			if (y < SCREEN_H / 5 / 10 && x < SCREEN_H / 5 / 10)
+				draw_in_image(&info.mini_map, x, y, 0x0);
+			else
+				draw_in_image(&info.mini_map, x, y, 0xced4daaa);
+			x++;
+		}
+		y++;
+	}
 
 	mlx_loop_hook(info.mlx, main_loop, &info);
 	mlx_hook(info.win_mlx, 02, 0, key_handler_press, &info);
