@@ -16,11 +16,14 @@ int	print_image(t_info *info)
 {
 	mlx_put_image_to_window(info->mlx, info->win_mlx, info->screen.img, 0, 0);
 	mlx_put_image_to_window(info->mlx, info->win_mlx, info->mini_map.img, 0, 0);
+	mlx_put_image_to_window(info->mlx, info->win_mlx, info->current.img, \
+			0 + ((int)info->mbase.pos.y / 9), ((int)info->mbase.pos.y / 16));
 	return (0);
 }
 
 int	main_loop(t_info *info)
 {
+	draw_mini_map(info);
 	print_image(info);
 	input_update(info);
 	return (0);

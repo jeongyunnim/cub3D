@@ -32,30 +32,32 @@ int	main(int argc, char *argv[])
 	close(fd);
 	init_map_base(&info, &info.mbase);
 
+	int	block_size;
+
+	block_size = SCREEN_H / 5 / 10;
 	if (init_textures(&info) == ERROR || get_img_address(&info) == ERROR)
 		return (put_error("Error\nTexture file error\n"));
-	if (init_img(&info.mini_map, info.mlx, SCREEN_W / 5 - ((SCREEN_W / 5) % (SCREEN_H / 10)), SCREEN_H / 5) == ERROR)
+	if (init_img(&info.mini_map, info.mlx, block_size * 16, block_size * 9) == ERROR)
 		return (ERROR);
-
+	if (init_img(&info.current, info.mlx, block_size / 2, block_size / 2) == ERROR)
+		return (ERROR);
+	
 	int x;
 	int y;
 
 	y = 0;
-	while (y < SCREEN_H / 5)
+	while (y < block_size / 2)
 	{
-		
 		x = 0;
-		while (x < SCREEN_W / 5 - ((SCREEN_W / 5) % (SCREEN_H / 10)))
+		while (x < block_size / 2)
 		{
-			if (y < SCREEN_H / 5 / 10 && x < SCREEN_H / 5 / 10)
-				draw_in_image(&info.mini_map, x, y, 0x0);
-			else
-				draw_in_image(&info.mini_map, x, y, 0xced4daaa);
+			draw_in_image(&info.current, x, y, 0xfa5252);
 			x++;
 		}
 		y++;
 	}
 
+	draw_mini_map(&info);
 	mlx_loop_hook(info.mlx, main_loop, &info);
 	mlx_hook(info.win_mlx, 02, 0, key_handler_press, &info);
 	mlx_hook(info.win_mlx, 03, 0, key_handler_release, &info);

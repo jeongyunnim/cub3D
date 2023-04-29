@@ -21,8 +21,8 @@
 # include "../mlx/mlx.h"
 
 # define ERROR -1
-# define SCREEN_W 1920
-# define SCREEN_H 1080
+# define SCREEN_W 800
+# define SCREEN_H 450
 # define TEX_W 64
 # define TEX_H 64
 
@@ -144,6 +144,7 @@ typedef struct s_info
 	t_mbase	mbase;
 	t_img	screen;
 	t_img	mini_map;
+	t_img	current;
 	t_img	textures[4];
 	int		input[6];
 	void	*mlx;
@@ -252,5 +253,8 @@ int			destroy_handler(void);
 
 /* mouse_handler_bonus.c */
 int 		mouse_handler(int x, int y, t_info *info);
+
+/* draw_mini_map.c */
+void	    draw_mini_map(t_info *info);
 
 #endif

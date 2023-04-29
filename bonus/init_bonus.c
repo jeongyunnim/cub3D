@@ -76,7 +76,7 @@ void	init_map_base(t_info *info, t_mbase *mbase)
 		}
 		i++;
 	}
-	mbase->move_speed = 0.8;
+	mbase->move_speed = 0.08;
 	mbase->rot_speed = 0.03;
 }
 
