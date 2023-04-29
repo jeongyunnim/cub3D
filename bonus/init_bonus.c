@@ -89,13 +89,7 @@ int	init_info(t_info *info)
 	info->win_mlx = mlx_new_window(info->mlx, SCREEN_W, SCREEN_H, "cub3d");
 	if (info->win_mlx == NULL)
 		return (put_error("Error\nmlx_new_window() error\n"));
-	info->screen.img = mlx_new_image(info->mlx, SCREEN_W, SCREEN_H);
-	if (info->screen.img == NULL)
-		return (put_error("Error\nmlx_new_image() error\n"));
-	info->screen.addr = mlx_get_data_addr(info->screen.img, \
-			&info->screen.bits_per_pixel, &info->screen.line_length, \
-			&info->screen.endian);
-	if (info->screen.addr == NULL)
-		return (put_error("Error\nmlx_get_data_addr() error\n"));
+	if (init_img(&info->screen, info->mlx, SCREEN_W, SCREEN_H) == ERROR)
+		return (ERROR);
 	return (0);
 }

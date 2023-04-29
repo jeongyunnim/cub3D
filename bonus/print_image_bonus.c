@@ -21,10 +21,6 @@ int	print_image(t_info *info)
 
 int	main_loop(t_info *info)
 {
-	int	x;
-	int	y;
-
-	y = 0;
 	print_image(info);
 	input_update(info);
 	return (0);

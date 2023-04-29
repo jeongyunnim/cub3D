@@ -32,17 +32,10 @@ int	main(int argc, char *argv[])
 	close(fd);
 	init_map_base(&info, &info.mbase);
 
-	if (init_img(&info) == ERROR || get_img_address(&info) == ERROR)
+	if (init_textures(&info) == ERROR || get_img_address(&info) == ERROR)
 		return (put_error("Error\nTexture file error\n"));
-
-	
-	
-	info.mini_map.img = mlx_new_image(info.mlx, SCREEN_W / 5 - ((SCREEN_W / 5) % (SCREEN_H / 10)), SCREEN_H / 5);
-	if (info.mini_map.img == NULL)
-		return (put_error("Error\nmlx_new_image() error\n"));
-	info.mini_map.addr = mlx_get_data_addr(info.mini_map.img, \
-			&info.mini_map.bits_per_pixel, &info.mini_map.line_length, \
-			&info.mini_map.endian);
+	if (init_img(&info.mini_map, info.mlx, SCREEN_W / 5 - ((SCREEN_W / 5) % (SCREEN_H / 10)), SCREEN_H / 5) == ERROR)
+		return (ERROR);
 
 	int x;
 	int y;

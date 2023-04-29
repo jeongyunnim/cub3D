@@ -132,12 +132,12 @@ typedef struct s_img
 typedef struct s_update_data
 {
 	double	old_dir_x;
-	double	old_dir_y;
+	double	old_dir_y;  
 	double	old_plane_x;
 	double	old_plane_y;
 	double	side_walk_x;
 	double	side_walk_y;
-}	t_update_data;
+}	t_update_data; //안 쓰는 함수 빼야 함
 
 typedef struct s_info
 {
@@ -243,7 +243,8 @@ int			main_loop(t_info *info);
 int			put_error(char *str);
 
 /* init_img.c */
-int			init_img(t_info *info);
+int			init_textures(t_info *info);
+int			init_img(t_img *img, void *mlx, int width, int height);
 int			get_img_address(t_info *info);
 
 /* destroy_handler.c */
