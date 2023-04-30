@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 17:02:15 by jeseo             #+#    #+#             */
-/*   Updated: 2023/04/30 20:06:57 by jeseo            ###   ########.fr       */
+/*   Updated: 2023/04/30 21:10:28 by jeseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <stdlib.h>
 # include <math.h>
 # include <stdio.h>
+# include <sys/time.h>
 # include "../libft/libft.h"
 # include "../mlx/mlx.h"
 
@@ -65,6 +66,17 @@ typedef enum e_input
 	INPUT_A,
 	INPUT_D,
 }			t_input;
+
+typedef struct s_texture
+{
+	double			step;
+	double			pos;
+	int				x;
+	int				y;
+	unsigned int	color;
+	int				col;
+	int				camera_x;
+}				t_tex;
 
 typedef struct s_map_list
 {

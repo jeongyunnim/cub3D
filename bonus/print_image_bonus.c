@@ -6,13 +6,11 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 17:04:21 by jeseo             #+#    #+#             */
-/*   Updated: 2023/04/30 20:09:04 by jeseo            ###   ########.fr       */
+/*   Updated: 2023/04/30 21:06:35 by jeseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d_bonus.h"
-
-
 
 void	cal_locate(t_info *info, int *x, int *y)
 {

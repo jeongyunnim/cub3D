@@ -6,22 +6,11 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 20:19:34 by jeseo             #+#    #+#             */
-/*   Updated: 2023/04/26 21:37:04 by jeseo            ###   ########.fr       */
+/*   Updated: 2023/04/30 21:50:42 by jeseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d_bonus.h"
-
-typedef struct s_texture
-{
-	double			step;
-	double			pos;
-	int				x;
-	int				y;
-	unsigned int	color;
-	int				col;
-	int				camera_x;
-}				t_tex;
 
 double	cal_wall_x(t_mbase *mbase, t_ray *ray)
 {
@@ -64,17 +53,20 @@ void	init_tex(t_mbase *mbase, t_ray *ray, t_tex *tex, t_line *line)
 	tex->x = tex_x;
 }
 
-void	get_tex_color(t_info *info, t_tex *tex, t_ray *ray)
+
+
+void	get_tex_color(t_info *info, t_tex *tex, t_ray *ray, long time)
 {
 	tex->y = (int)tex->pos & (TEX_H - 1);
 	tex->pos += tex->step;
-	if (ray->side == 0 && ray->step.x == -1)
+	ray->side += 0;
+	if ((time / SCREEN_W) % 4 == 0)
 		tex->color = *((unsigned int *)(info->textures[W_SIDE].addr) \
 		+ TEX_W * tex->y + tex->x);
-	else if (ray->side == 0 && ray->step.x == 1)
+	else if ((time / SCREEN_W) % 4 == 1)
 		tex->color = *((unsigned int *)(info->textures[E_SIDE].addr) \
 		+ TEX_W * tex->y + tex->x);
-	else if (ray->side == 1 && ray->step.y == -1)
+	else if ((time / SCREEN_W) % 4 == 2)
 		tex->color = *((unsigned int *)(info->textures[S_SIDE].addr) \
 		+ TEX_W * tex->y + tex->x);
 	else
@@ -85,7 +77,9 @@ void	get_tex_color(t_info *info, t_tex *tex, t_ray *ray)
 void	fill_color(t_info *info, t_line *line, t_ray *ray, t_tex *tex)
 {
 	int	col;
+	static long time;
 
+	time++;
 	col = 0;
 	while (col < SCREEN_H)
 	{
@@ -94,7 +88,7 @@ void	fill_color(t_info *info, t_line *line, t_ray *ray, t_tex *tex)
 			tex->color = info->ceiling[0] << 16 \
 			| info->ceiling[1] << 8 | info->ceiling[2];
 		else if (col < line->top)
-			get_tex_color(info, tex, ray);
+			get_tex_color(info, tex, ray, time);
 		else
 			tex->color = info->floor[0] << 16 \
 			| info->floor[1] << 8 | info->floor[2];

@@ -1,7 +1,7 @@
-SO                                             ./asset/Water_1.xpm
-WE                                        ./asset/Water_11.xpm
-EA ./asset/Water_10.xpm
-NO 			./asset/Water_12.xpm
+WE                                             ./asset/Water_11.xpm
+EA                                      ./asset/Water_11_1.xpm
+SO ./asset/Water_11_2.xpm
+NO 			./asset/Water_11_3.xpm
 C +134,0000000159,247       
 F 24,100,171
 
