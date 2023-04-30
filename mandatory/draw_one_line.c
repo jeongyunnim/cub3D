@@ -6,22 +6,11 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 20:19:34 by jeseo             #+#    #+#             */
-/*   Updated: 2023/04/26 18:41:24 by suhkim           ###   ########.fr       */
+/*   Updated: 2023/04/30 22:16:37 by jeseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-typedef struct s_texture
-{
-	double			step;
-	double			pos;
-	int				x;
-	int				y;
-	unsigned int	color;
-	int				col;
-	int				camera_x;
-}				t_tex;
 
 double	cal_wall_x(t_mbase *mbase, t_ray *ray)
 {
