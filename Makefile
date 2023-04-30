@@ -6,7 +6,7 @@ LIBFTDIR	= ./libft
 
 CC			=	cc
 CFLAGS		=	-Wall -Wextra -Werror \
--g3 -fsanitize=address
+# -g3 -fsanitize=address
 MLX_FLAGS	=	-framework OpenGL -framework Appkit
 
 INCLUDES 	=	-I ./libft/ \
@@ -73,6 +73,7 @@ SRCS_B			=	./bonus/main_bonus.c\
 					./bonus/init_img_bonus.c\
 					./bonus/destroy_handler_bonus.c\
 					./bonus/mouse_handler_bonus.c\
+					./bonus/draw_mini_map_bonus.c\
 
 OBJS			=	$(SRCS:%.c=%.o)
 

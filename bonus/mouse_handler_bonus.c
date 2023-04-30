@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 20:14:28 by jeseo             #+#    #+#             */
-/*   Updated: 2023/04/26 20:36:25 by jeseo            ###   ########.fr       */
+/*   Updated: 2023/04/30 18:52:57 by jeseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	mouse_handler(int x, int y, t_info *info)
 {
 	static int	flag;
 
-	printf("(%d,%d)\n", x, y);
+	y += 1;
 	if (x > SCREEN_W / 5 * 4)
 	{
 		info->input[INPUT_LEFT] = 0;

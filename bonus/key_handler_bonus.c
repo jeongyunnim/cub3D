@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 20:43:52 by jeseo             #+#    #+#             */
-/*   Updated: 2023/04/26 19:29:30 by jeseo            ###   ########.fr       */
+/*   Updated: 2023/04/30 18:47:56 by jeseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ int	input_update(t_info *info)
 	info->mbase.map.x = (int)info->mbase.pos.x;
 	info->mbase.map.y = (int)info->mbase.pos.y;
 	draw_map(info);
-	print_image(info);
 	return (0);
 }
 

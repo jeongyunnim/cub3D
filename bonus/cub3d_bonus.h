@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 17:02:15 by jeseo             #+#    #+#             */
-/*   Updated: 2023/04/28 17:00:16 by jeseo            ###   ########.fr       */
+/*   Updated: 2023/04/30 20:06:57 by jeseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@
 # include "../mlx/mlx.h"
 
 # define ERROR -1
-# define SCREEN_W 800
-# define SCREEN_H 450
+# define SCREEN_W 1920 // FULL HD
+# define SCREEN_H 1080
 # define TEX_W 64
 # define TEX_H 64
 
