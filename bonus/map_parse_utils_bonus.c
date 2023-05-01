@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 02:00:55 by suhkim            #+#    #+#             */
-/*   Updated: 2023/04/26 19:29:31 by jeseo            ###   ########.fr       */
+/*   Updated: 2023/05/01 15:52:45 by jeseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 int	check_valid_value_idx(t_map_info *map, char *line, int i, int *flag)
 {
-	if (line[i] != '0' && line[i] != '1' && line[i] != ' ' \
+	if (line[i] != '0' && line[i] != '1' && line[i] != '2' && line[i] != ' ' \
 			&& line[i] != '\n' && line[i] != 'N' && line[i] != 'S' \
-			&& line[i] != 'E' && line[i] != 'W')
+			&& line[i] != 'E' && line[i] != 'W' && line[i] != 'G')
 		return (ERROR);
 	else
 	{
