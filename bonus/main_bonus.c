@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 17:00:12 by jeseo             #+#    #+#             */
-/*   Updated: 2023/04/30 20:06:59 by jeseo            ###   ########.fr       */
+/*   Updated: 2023/05/01 21:58:27 by jeseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,15 @@ int	main(int argc, char *argv[])
 		}
 		y++;
 	}
-
+	
+	int		temp;
+	
+	info.handle[0].img = mlx_xpm_file_to_image(info.mlx, "asset/handle_1.xpm", &temp, &temp);
+	info.handle[1].img = mlx_xpm_file_to_image(info.mlx, "asset/handle_2.xpm", &temp, &temp);
+	info.handle[2].img = mlx_xpm_file_to_image(info.mlx, "asset/handle_3.xpm", &temp, &temp);
+	info.handle[3].img = mlx_xpm_file_to_image(info.mlx, "asset/handle_4.xpm", &temp, &temp);
+	info.handle[4].img = mlx_xpm_file_to_image(info.mlx, "asset/handle_5.xpm", &temp, &temp);
+	
 	mlx_loop_hook(info.mlx, main_loop, &info);
 	mlx_hook(info.win_mlx, 02, 0, key_handler_press, &info);
 	mlx_hook(info.win_mlx, 03, 0, key_handler_release, &info);

@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 17:02:15 by jeseo             #+#    #+#             */
-/*   Updated: 2023/04/30 22:16:20 by jeseo            ###   ########.fr       */
+/*   Updated: 2023/05/01 21:08:49 by jeseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,6 +157,7 @@ typedef struct s_info
 	t_img	mini_map;
 	t_img	current;
 	t_img	textures[4];
+	t_img	handle[5];
 	int		input[6];
 	void	*mlx;
 	void	*win_mlx;
@@ -168,6 +169,7 @@ typedef struct s_info
 	int		floor[3];
 	int		ceiling[3];
 	int		flag;
+	int		handle_flag;
 	int		map_width;
 	int		map_height;
 }				t_info;
