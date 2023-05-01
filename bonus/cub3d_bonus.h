@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 17:02:15 by jeseo             #+#    #+#             */
-/*   Updated: 2023/04/30 22:16:20 by jeseo            ###   ########.fr       */
+/*   Updated: 2023/05/01 22:00:26 by suhkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ typedef enum e_side
 	N_SIDE,
 	S_SIDE,
 	E_SIDE,
-	W_SIDE
+	W_SIDE,
+	D_SIDE
 }	t_side;
 
 typedef enum e_type
@@ -53,6 +54,7 @@ typedef enum e_key
 	KEY_S=1,
 	KEY_A=0,
 	KEY_D=2,
+	KEY_SPACE=49,
 	KEY_ESC=53,
 }			t_key;
 
@@ -120,6 +122,7 @@ typedef struct s_ray
 	t_ipos	step;
 	double	perp_dist;
 	int		side;
+	int		door_hit;
 }	t_ray;
 
 typedef struct s_line
@@ -156,7 +159,7 @@ typedef struct s_info
 	t_img	screen;
 	t_img	mini_map;
 	t_img	current;
-	t_img	textures[4];
+	t_img	textures[5];
 	int		input[6];
 	void	*mlx;
 	void	*win_mlx;
@@ -267,5 +270,12 @@ int 		mouse_handler(int x, int y, t_info *info);
 
 /* draw_mini_map.c */
 void	    draw_mini_map(t_info *info);
+
+/* door.c */
+int			is_around_door(t_info *info);
+int			is_around_D(t_info *info, double x, double y);
+
+/* door_update.c */
+void		door_update(t_info *info, int x, int y);
 
 #endif

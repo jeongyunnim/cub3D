@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 20:19:34 by jeseo             #+#    #+#             */
-/*   Updated: 2023/04/30 22:16:21 by jeseo            ###   ########.fr       */
+/*   Updated: 2023/05/01 21:53:00 by suhkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,18 +57,26 @@ void	get_tex_color(t_info *info, t_tex *tex, t_ray *ray)
 {
 	tex->y = (int)tex->pos & (TEX_H - 1);
 	tex->pos += tex->step;
-	if (ray->side == 0 && ray->step.x == -1)
-		tex->color = *((unsigned int *)(info->textures[W_SIDE].addr) \
-		+ TEX_W * tex->y + tex->x);
-	else if (ray->side == 0 && ray->step.x == 1)
-		tex->color = *((unsigned int *)(info->textures[E_SIDE].addr) \
-		+ TEX_W * tex->y + tex->x);
-	else if (ray->side == 1 && ray->step.y == -1)
-		tex->color = *((unsigned int *)(info->textures[S_SIDE].addr) \
-		+ TEX_W * tex->y + tex->x);
+	if (ray->door_hit)
+	{
+		tex->color = *((unsigned int *)(info->textures[D_SIDE].addr) \
+			+ TEX_W * tex->y + tex->x);
+	}
 	else
-		tex->color = *((unsigned int *)(info->textures[N_SIDE].addr) \
-		+ TEX_W * tex->y + tex->x);
+	{
+		if (ray->side == 0 && ray->step.x == -1)
+			tex->color = *((unsigned int *)(info->textures[W_SIDE].addr) \
+			+ TEX_W * tex->y + tex->x);
+		else if (ray->side == 0 && ray->step.x == 1)
+			tex->color = *((unsigned int *)(info->textures[E_SIDE].addr) \
+			+ TEX_W * tex->y + tex->x);
+		else if (ray->side == 1 && ray->step.y == -1)
+			tex->color = *((unsigned int *)(info->textures[S_SIDE].addr) \
+			+ TEX_W * tex->y + tex->x);
+		else
+			tex->color = *((unsigned int *)(info->textures[N_SIDE].addr) \
+			+ TEX_W * tex->y + tex->x);
+	}
 }
 
 void	fill_color(t_info *info, t_line *line, t_ray *ray, t_tex *tex)

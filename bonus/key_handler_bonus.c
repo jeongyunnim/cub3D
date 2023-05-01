@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 20:43:52 by jeseo             #+#    #+#             */
-/*   Updated: 2023/04/30 18:47:56 by jeseo            ###   ########.fr       */
+/*   Updated: 2023/05/01 22:21:57 by suhkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,21 @@ int	key_handler_press(int key_code, t_info *info)
 	{
 		info->input[INPUT_RIGHT] = 0;
 		info->input[INPUT_LEFT] = 1;
+	}
+	else if (key_code == KEY_SPACE)
+	{
+		printf("is here?\n");
+		if (is_around_door(info))
+		{
+			printf("around door?\n");
+			door_update(info, info->mbase.pos.x, info->mbase.pos.y);
+			for(int i = 0; i < info->map_height; i++)
+			{
+				for (int j = 0; j < info->map_width; j++)
+					printf("%c", info->map[i][j]);
+				printf("\n");
+			}
+		}
 	}
 	return (0);
 }

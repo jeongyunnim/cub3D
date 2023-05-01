@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 18:03:21 by jeseo             #+#    #+#             */
-/*   Updated: 2023/04/26 19:29:27 by jeseo            ###   ########.fr       */
+/*   Updated: 2023/05/01 21:52:21 by suhkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ double	dda(t_info *info, t_mbase mbase, t_ray *ray)
 	int		hit_flag;
 
 	hit_flag = 0;
+	ray->door_hit = 0;
 	while (hit_flag == 0)
 	{
 		if (ray->side_dist.x < ray->side_dist.y)
@@ -76,9 +77,12 @@ double	dda(t_info *info, t_mbase mbase, t_ray *ray)
 			mbase.map.y += ray->step.y;
 			ray->side = 1;
 		}
-		if (info->map[mbase.map.y][mbase.map.x] == '1')
+		if (info->map[mbase.map.y][mbase.map.x] == '1' \
+				|| info->map[mbase.map.y][mbase.map.x] == 'D')
 		{
 			hit_flag = 1;
+			if (info->map[mbase.map.y][mbase.map.x] == 'D')
+				ray->door_hit = 1;
 		}
 	}
 	return (dda_result(mbase, ray));
