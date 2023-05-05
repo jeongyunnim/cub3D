@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 17:02:15 by jeseo             #+#    #+#             */
-/*   Updated: 2023/05/05 15:56:02 by suhkim           ###   ########.fr       */
+/*   Updated: 2023/05/05 20:01:16 by jeseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,7 +159,8 @@ typedef struct s_info
 	t_img	screen;
 	t_img	mini_map;
 	t_img	current;
-	t_img	textures[5];
+	t_img	textures[4];
+	t_img	handle[5];
 	int		input[6];
 	void	*mlx;
 	void	*win_mlx;
@@ -171,6 +172,8 @@ typedef struct s_info
 	int		floor[3];
 	int		ceiling[3];
 	int		flag;
+	int		handle_flag;
+	int		accel_flag;
 	int		map_width;
 	int		map_height;
 }				t_info;
@@ -270,6 +273,9 @@ int 		mouse_handler(int x, int y, t_info *info);
 
 /* draw_mini_map.c */
 void	    draw_mini_map(t_info *info);
+
+/* init_handle_img_bonus.c */
+int 		init_handle_img(t_info *info);
 
 /* door.c */
 int			is_around_door(t_info *info);
