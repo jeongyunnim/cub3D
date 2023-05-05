@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 20:43:52 by jeseo             #+#    #+#             */
-/*   Updated: 2023/05/05 18:59:15 by jeseo            ###   ########.fr       */
+/*   Updated: 2023/05/05 20:08:14 by jeseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,10 @@ int	input_update(t_info *info)
 	data.old_dir_y = info->mbase.dir.y;
 	data.old_plane_x = info->mbase.plane.x;
 	data.old_plane_y = info->mbase.plane.y;
+	if (info->accel_flag == 0 && info->mbase.move_speed > 0.2)
+		info->mbase.move_speed -= 0.02;
+	if (info->accel_flag == 1 && info->mbase.move_speed < 0.5)
+		info->mbase.move_speed += 0.02;
 	if (info->input[INPUT_W] == 1)
 		input_w(info);
 	if (info->input[INPUT_S] == 1)
@@ -43,7 +47,10 @@ int	key_handler_press(int key_code, t_info *info)
 	if (key_code == KEY_ESC)
 		exit(EXIT_SUCCESS);
 	else if (key_code == KEY_W)
+	{
 		info->input[INPUT_W] = 1;
+		info->accel_flag = 1;
+	}
 	else if (key_code == KEY_S)
 		info->input[INPUT_S] = 1;
 	else if (key_code == KEY_A)
@@ -68,7 +75,10 @@ int	key_handler_release(int key_code, t_info *info)
 	if (key_code == KEY_ESC)
 		exit(EXIT_SUCCESS);
 	else if (key_code == KEY_W)
+	{
 		info->input[INPUT_W] = 0;
+		info->accel_flag = 0;
+	}
 	else if (key_code == KEY_S)
 		info->input[INPUT_S] = 0;
 	else if (key_code == KEY_A)

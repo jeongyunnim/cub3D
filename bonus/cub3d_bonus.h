@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 17:02:15 by jeseo             #+#    #+#             */
-/*   Updated: 2023/05/05 16:55:51 by jeseo            ###   ########.fr       */
+/*   Updated: 2023/05/05 20:01:16 by jeseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,6 +170,7 @@ typedef struct s_info
 	int		ceiling[3];
 	int		flag;
 	int		handle_flag;
+	int		accel_flag;
 	int		map_width;
 	int		map_height;
 }				t_info;
