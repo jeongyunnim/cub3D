@@ -43,8 +43,8 @@ void	init_dir(t_mbase *mbase, double x, double y)
 void	init_pos_dir(t_info *info, int i, int j, t_mbase *mbase)
 {
 	if (info->map[i][j] != '0' && info->map[i][j] != '1' \
-		&& info->map[i][j] != '2' && info->map[i][j] != 'G' \
-		&& info->map[i][j] != ' ')
+		&& info->map[i][j] != 'D' && info->map[i][j] != 'G' \
+		&& info->map[i][j] != ' ' && info->map[i][j] != 'd')
 	{
 		mbase->map.x = j;
 		mbase->map.y = i;

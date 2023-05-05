@@ -31,7 +31,8 @@ typedef enum e_side
 	N_SIDE,
 	S_SIDE,
 	E_SIDE,
-	W_SIDE
+	W_SIDE,
+	D_SIDE
 }	t_side;
 
 typedef enum e_type
@@ -53,6 +54,7 @@ typedef enum e_key
 	KEY_S=1,
 	KEY_A=0,
 	KEY_D=2,
+	KEY_SPACE=49,
 	KEY_ESC=53,
 }			t_key;
 
@@ -120,6 +122,7 @@ typedef struct s_ray
 	t_ipos	step;
 	double	perp_dist;
 	int		side;
+	int		door_hit;
 }	t_ray;
 
 typedef struct s_line
@@ -273,5 +276,13 @@ void	    draw_mini_map(t_info *info);
 
 /* init_handle_img_bonus.c */
 int 		init_handle_img(t_info *info);
+
+/* door.c */
+int			is_around_door(t_info *info);
+int			is_around_locked_d(t_info *info, double x, double y, \
+		double margin);
+
+/* door_update.c */
+void		door_update(t_info *info, double x, double y);
 
 #endif

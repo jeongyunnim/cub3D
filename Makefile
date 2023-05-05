@@ -75,6 +75,8 @@ SRCS_B			=	./bonus/main_bonus.c\
 					./bonus/destroy_handler_bonus.c\
 					./bonus/mouse_handler_bonus.c\
 					./bonus/draw_mini_map_bonus.c\
+					./bonus/door.c\
+					./bonus/door_update.c\
 
 OBJS			=	$(SRCS:%.c=%.o)
 

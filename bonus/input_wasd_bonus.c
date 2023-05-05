@@ -45,20 +45,29 @@ void	input_w(t_info *info)
 	if (info->accel_flag == 1 && info->mbase.move_speed < 0.5)
 		info->mbase.move_speed += 0.02;
 	if (is_available_move(info, info->mbase.pos.x + info->mbase.dir.x \
-		* info->mbase.move_speed, info->mbase.pos.y))
+		* info->mbase.move_speed, info->mbase.pos.y) && !is_around_locked_d(\
+			info, info->mbase.pos.x + info->mbase.dir.x \
+		* info->mbase.move_speed, info->mbase.pos.y, 0.05))
 		info->mbase.pos.x += info->mbase.dir.x * info->mbase.move_speed;
 	if (is_available_move(info, info->mbase.pos.x, info->mbase.pos.y \
-		+ info->mbase.dir.y * info->mbase.move_speed))
+		+ info->mbase.dir.y * info->mbase.move_speed) && !is_around_locked_d(\
+			info, info->mbase.pos.x, info->mbase.pos.y \
+		+ info->mbase.dir.y * info->mbase.move_speed, 0.05))
 		info->mbase.pos.y += info->mbase.dir.y * info->mbase.move_speed;
 }
 
 void	input_s(t_info *info)
 {
 	if (is_available_move(info, info->mbase.pos.x \
-			- info->mbase.dir.x * info->mbase.move_speed, info->mbase.pos.y))
+			- info->mbase.dir.x * info->mbase.move_speed, info->mbase.pos.y) \
+			&& !is_around_locked_d(info, info->mbase.pos.x \
+			- info->mbase.dir.x * info->mbase.move_speed, info->mbase.pos.y, \
+			0.05))
 		info->mbase.pos.x -= info->mbase.dir.x * info->mbase.move_speed;
 	if (is_available_move(info, info->mbase.pos.x, info->mbase.pos.y \
-	- info->mbase.dir.y * info->mbase.move_speed))
+	- info->mbase.dir.y * info->mbase.move_speed) && !is_around_locked_d(\
+		info, info->mbase.pos.x, info->mbase.pos.y - info->mbase.dir.y * \
+		info->mbase.move_speed, 0.05))
 		info->mbase.pos.y -= info->mbase.dir.y * info->mbase.move_speed;
 }
 
@@ -69,10 +78,15 @@ void	input_a(t_info *info, t_update_data data)
 	data.side_walk_y = data.old_dir_x * sin(acos(-1) / 2) \
 					+ info->mbase.dir.y * cos(acos(-1) / 2);
 	if (is_available_move(info, info->mbase.pos.x \
-			+ data.side_walk_x * info->mbase.move_speed, info->mbase.pos.y))
+			+ data.side_walk_x * info->mbase.move_speed, info->mbase.pos.y) \
+			&& !is_around_locked_d(info, info->mbase.pos.x \
+			+ data.side_walk_x * info->mbase.move_speed, info->mbase.pos.y, \
+			0.05))
 		info->mbase.pos.x += data.side_walk_x * info->mbase.move_speed;
 	if (is_available_move(info, info->mbase.pos.x, info->mbase.pos.y \
-	+ data.side_walk_y * info->mbase.move_speed))
+	+ data.side_walk_y * info->mbase.move_speed) && !is_around_locked_d(info, \
+		info->mbase.pos.x, info->mbase.pos.y + data.side_walk_y * \
+		info->mbase.move_speed, 0.05))
 		info->mbase.pos.y += data.side_walk_y * info->mbase.move_speed;
 }
 
@@ -83,9 +97,14 @@ void	input_d(t_info *info, t_update_data data)
 	data.side_walk_y = data.old_dir_x * sin(acos(-1) / 2) \
 					+ info->mbase.dir.y * cos(acos(-1) / 2);
 	if (is_available_move(info, info->mbase.pos.x \
-			- data.side_walk_x * info->mbase.move_speed, info->mbase.pos.y))
+			- data.side_walk_x * info->mbase.move_speed, info->mbase.pos.y) \
+		&& !is_around_locked_d(info, info->mbase.pos.x \
+			- data.side_walk_x * info->mbase.move_speed, info->mbase.pos.y, \
+			0.05))
 		info->mbase.pos.x -= data.side_walk_x * info->mbase.move_speed;
 	if (is_available_move(info, info->mbase.pos.x, info->mbase.pos.y \
-	- data.side_walk_y * info->mbase.move_speed))
+	- data.side_walk_y * info->mbase.move_speed) && !is_around_locked_d(info, \
+		info->mbase.pos.x, info->mbase.pos.y - data.side_walk_y * \
+		info->mbase.move_speed, 0.05))
 		info->mbase.pos.y -= data.side_walk_y * info->mbase.move_speed;
 }
