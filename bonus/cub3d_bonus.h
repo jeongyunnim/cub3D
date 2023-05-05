@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 17:02:15 by jeseo             #+#    #+#             */
-/*   Updated: 2023/05/01 22:00:26 by suhkim           ###   ########.fr       */
+/*   Updated: 2023/05/05 15:56:02 by suhkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -273,9 +273,10 @@ void	    draw_mini_map(t_info *info);
 
 /* door.c */
 int			is_around_door(t_info *info);
-int			is_around_D(t_info *info, double x, double y);
+int			is_around_locked_d(t_info *info, double x, double y, \
+		double margin);
 
 /* door_update.c */
-void		door_update(t_info *info, int x, int y);
+void		door_update(t_info *info, double x, double y);
 
 #endif
