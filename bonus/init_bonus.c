@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 21:51:09 by jeseo             #+#    #+#             */
-/*   Updated: 2023/04/26 21:58:23 by jeseo            ###   ########.fr       */
+/*   Updated: 2023/05/01 22:01:39 by suhkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,8 @@ void	init_dir(t_mbase *mbase, double x, double y)
 void	init_pos_dir(t_info *info, int i, int j, t_mbase *mbase)
 {
 	if (info->map[i][j] != '0' && info->map[i][j] != '1' \
-			&& info->map[i][j] != ' ')
+		&& info->map[i][j] != 'D' && info->map[i][j] != 'G' \
+		&& info->map[i][j] != ' ' && info->map[i][j] != 'd')
 	{
 		mbase->map.x = j;
 		mbase->map.y = i;
@@ -55,7 +56,7 @@ void	init_pos_dir(t_info *info, int i, int j, t_mbase *mbase)
 			init_dir(mbase, 1, 0);
 		else if (info->map[i][j] == 'S')
 			init_dir(mbase, 0, -1);
-		else
+		else if (info->map[i][j] == 'W')
 			init_dir(mbase, -1, 0);
 	}
 }
@@ -76,7 +77,7 @@ void	init_map_base(t_info *info, t_mbase *mbase)
 		}
 		i++;
 	}
-	mbase->move_speed = 0.8;
+	mbase->move_speed = 0.05;
 	mbase->rot_speed = 0.03;
 }
 
@@ -89,13 +90,7 @@ int	init_info(t_info *info)
 	info->win_mlx = mlx_new_window(info->mlx, SCREEN_W, SCREEN_H, "cub3d");
 	if (info->win_mlx == NULL)
 		return (put_error("Error\nmlx_new_window() error\n"));
-	info->screen.img = mlx_new_image(info->mlx, SCREEN_W, SCREEN_H);
-	if (info->screen.img == NULL)
-		return (put_error("Error\nmlx_new_image() error\n"));
-	info->screen.addr = mlx_get_data_addr(info->screen.img, \
-			&info->screen.bits_per_pixel, &info->screen.line_length, \
-			&info->screen.endian);
-	if (info->screen.addr == NULL)
-		return (put_error("Error\nmlx_get_data_addr() error\n"));
+	if (init_img(&info->screen, info->mlx, SCREEN_W, SCREEN_H) == ERROR)
+		return (ERROR);
 	return (0);
 }

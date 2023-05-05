@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 17:02:15 by jeseo             #+#    #+#             */
-/*   Updated: 2023/04/26 21:36:05 by jeseo            ###   ########.fr       */
+/*   Updated: 2023/05/05 15:56:02 by suhkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # include "../mlx/mlx.h"
 
 # define ERROR -1
-# define SCREEN_W 1920
+# define SCREEN_W 1920 // FULL HD
 # define SCREEN_H 1080
 # define TEX_W 64
 # define TEX_H 64
@@ -31,7 +31,8 @@ typedef enum e_side
 	N_SIDE,
 	S_SIDE,
 	E_SIDE,
-	W_SIDE
+	W_SIDE,
+	D_SIDE
 }	t_side;
 
 typedef enum e_type
@@ -53,6 +54,7 @@ typedef enum e_key
 	KEY_S=1,
 	KEY_A=0,
 	KEY_D=2,
+	KEY_SPACE=49,
 	KEY_ESC=53,
 }			t_key;
 
@@ -65,6 +67,17 @@ typedef enum e_input
 	INPUT_A,
 	INPUT_D,
 }			t_input;
+
+typedef struct s_texture
+{
+	double			step;
+	double			pos;
+	int				x;
+	int				y;
+	unsigned int	color;
+	int				col;
+	int				camera_x;
+}				t_tex;
 
 typedef struct s_map_list
 {
@@ -109,6 +122,7 @@ typedef struct s_ray
 	t_ipos	step;
 	double	perp_dist;
 	int		side;
+	int		door_hit;
 }	t_ray;
 
 typedef struct s_line
@@ -132,19 +146,20 @@ typedef struct s_img
 typedef struct s_update_data
 {
 	double	old_dir_x;
-	double	old_dir_y;
+	double	old_dir_y;  
 	double	old_plane_x;
 	double	old_plane_y;
 	double	side_walk_x;
 	double	side_walk_y;
-}	t_update_data;
+}	t_update_data; //안 쓰는 함수 빼야 함
 
 typedef struct s_info
 {
 	t_mbase	mbase;
 	t_img	screen;
 	t_img	mini_map;
-	t_img	textures[4];
+	t_img	current;
+	t_img	textures[5];
 	int		input[6];
 	void	*mlx;
 	void	*win_mlx;
@@ -243,7 +258,8 @@ int			main_loop(t_info *info);
 int			put_error(char *str);
 
 /* init_img.c */
-int			init_img(t_info *info);
+int			init_textures(t_info *info);
+int			init_img(t_img *img, void *mlx, int width, int height);
 int			get_img_address(t_info *info);
 
 /* destroy_handler.c */
@@ -251,5 +267,16 @@ int			destroy_handler(void);
 
 /* mouse_handler_bonus.c */
 int 		mouse_handler(int x, int y, t_info *info);
+
+/* draw_mini_map.c */
+void	    draw_mini_map(t_info *info);
+
+/* door.c */
+int			is_around_door(t_info *info);
+int			is_around_locked_d(t_info *info, double x, double y, \
+		double margin);
+
+/* door_update.c */
+void		door_update(t_info *info, double x, double y);
 
 #endif

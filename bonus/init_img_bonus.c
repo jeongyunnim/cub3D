@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 04:35:17 by jeseo             #+#    #+#             */
-/*   Updated: 2023/04/26 19:29:29 by jeseo            ###   ########.fr       */
+/*   Updated: 2023/05/01 19:29:56 by suhkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,15 @@ int	get_img_address(t_info *info)
 	&info->textures[E_SIDE].line_length, &info->textures[E_SIDE].endian);
 	if (info->textures[E_SIDE].addr == NULL)
 		return (ERROR);
+	info->textures[D_SIDE].addr = mlx_get_data_addr \
+	(info->textures[D_SIDE].img, &info->textures[D_SIDE].bits_per_pixel, \
+	&info->textures[D_SIDE].line_length, &info->textures[D_SIDE].endian);
+	if (info->textures[D_SIDE].addr == NULL)
+		return (ERROR);
 	return (0);
 }
 
-int	init_img(t_info *info)
+int	init_textures(t_info *info)
 {
 	int	temp;
 
@@ -57,5 +62,22 @@ int	init_img(t_info *info)
 		mlx_xpm_file_to_image(info->mlx, info->east, &temp, &temp);
 	if (info->textures[E_SIDE].img == NULL)
 		return (ERROR);
+	info->textures[D_SIDE].img = \
+		mlx_xpm_file_to_image(info->mlx, "./asset/door.xpm", &temp, &temp);
+	if (info->textures[D_SIDE].img == NULL)
+		return (ERROR);
+	return (0);
+}
+
+int	init_img(t_img *img, void *mlx, int width, int height)
+{
+	img->img = mlx_new_image(mlx, width, height);
+	if (img->img == NULL)
+		return (put_error("Error\nmlx_new_image() error\n"));
+	img->addr = mlx_get_data_addr(img->img, \
+			&img->bits_per_pixel, &img->line_length, \
+			&img->endian);
+	if (img->addr == NULL)
+		return (put_error("Error\nmlx_get_data_addr() error\n"));
 	return (0);
 }

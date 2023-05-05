@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 20:43:52 by jeseo             #+#    #+#             */
-/*   Updated: 2023/04/26 19:29:30 by jeseo            ###   ########.fr       */
+/*   Updated: 2023/05/05 15:58:12 by suhkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ int	input_update(t_info *info)
 	info->mbase.map.x = (int)info->mbase.pos.x;
 	info->mbase.map.y = (int)info->mbase.pos.y;
 	draw_map(info);
-	print_image(info);
 	return (0);
 }
 
@@ -80,5 +79,10 @@ int	key_handler_release(int key_code, t_info *info)
 		info->input[INPUT_RIGHT] = 0;
 	else if (key_code == KEY_LEFT)
 		info->input[INPUT_LEFT] = 0;
+	else if (key_code == KEY_SPACE)
+	{
+		if (is_around_door(info))
+			door_update(info, info->mbase.pos.x, info->mbase.pos.y);
+	}
 	return (0);
 }
