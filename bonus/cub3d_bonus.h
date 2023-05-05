@@ -174,6 +174,7 @@ typedef struct s_info
 	int		flag;
 	int		handle_flag;
 	int		accel_flag;
+	int		racing_flag;
 	int		map_width;
 	int		map_height;
 }				t_info;

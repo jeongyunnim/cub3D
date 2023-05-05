@@ -32,17 +32,20 @@ int	print_image(t_info *info)
 	mlx_put_image_to_window(info->mlx, info->win_mlx, info->mini_map.img, 0, 0);
 	cal_locate(info, &x, &y);
 	mlx_put_image_to_window(info->mlx, info->win_mlx, info->current.img, x, (SCREEN_H / 50) * 9 - 1 - y);
-	if (info->handle_flag < - 10)
-		handle_index = 0;
-	else if (info->handle_flag < -5)
-		handle_index = 1;
-	else if (info->handle_flag < 5)
-		handle_index = 2;
-	else if (info->handle_flag < 10)
-		handle_index = 3;
-	else
-		handle_index = 4;
-	mlx_put_image_to_window(info->mlx, info->win_mlx, info->handle[handle_index].img, 0, SCREEN_H / 5.5);
+	if (info->racing_flag == 1)
+	{
+		if (info->handle_flag < - 10)
+			handle_index = 0;
+		else if (info->handle_flag < -5)
+			handle_index = 1;
+		else if (info->handle_flag < 5)
+			handle_index = 2;
+		else if (info->handle_flag < 10)
+			handle_index = 3;
+		else
+			handle_index = 4;
+		mlx_put_image_to_window(info->mlx, info->win_mlx, info->handle[handle_index].img, 0, SCREEN_H / 5.5);
+	}
 	return (0);
 }
 
