@@ -71,6 +71,7 @@ SRCS_B			=	./bonus/main_bonus.c\
 					./bonus/input_right_left_bonus.c\
 					./bonus/put_error_bonus.c\
 					./bonus/init_img_bonus.c\
+					./bonus/init_handle_img_bonus.c\
 					./bonus/destroy_handler_bonus.c\
 					./bonus/mouse_handler_bonus.c\
 					./bonus/draw_mini_map_bonus.c\

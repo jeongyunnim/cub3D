@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 17:02:15 by jeseo             #+#    #+#             */
-/*   Updated: 2023/05/01 21:08:49 by jeseo            ###   ########.fr       */
+/*   Updated: 2023/05/05 16:55:51 by jeseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -269,5 +269,8 @@ int 		mouse_handler(int x, int y, t_info *info);
 
 /* draw_mini_map.c */
 void	    draw_mini_map(t_info *info);
+
+/* init_handle_img_bonus.c */
+int 		init_handle_img(t_info *info);
 
 #endif
