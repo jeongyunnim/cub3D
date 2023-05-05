@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 20:43:52 by jeseo             #+#    #+#             */
-/*   Updated: 2023/05/05 15:58:12 by suhkim           ###   ########.fr       */
+/*   Updated: 2023/05/05 20:52:49 by jeseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,7 @@ int	key_handler_release(int key_code, t_info *info)
 	{
 		info->input[INPUT_LEFT] = 0;
 		info->handle_flag = 0;
+	}
 	else if (key_code == KEY_SPACE)
 	{
 		if (is_around_door(info))

@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 17:02:15 by jeseo             #+#    #+#             */
-/*   Updated: 2023/05/05 20:01:16 by jeseo            ###   ########.fr       */
+/*   Updated: 2023/05/05 20:53:06 by jeseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,7 +159,7 @@ typedef struct s_info
 	t_img	screen;
 	t_img	mini_map;
 	t_img	current;
-	t_img	textures[4];
+	t_img	textures[5];
 	t_img	handle[5];
 	int		input[6];
 	void	*mlx;
