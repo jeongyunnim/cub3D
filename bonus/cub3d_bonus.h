@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 17:02:15 by jeseo             #+#    #+#             */
-/*   Updated: 2023/05/06 15:28:46 by jeseo            ###   ########.fr       */
+/*   Updated: 2023/05/06 16:47:50 by jeseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,6 +159,7 @@ typedef struct s_info
 {
 	t_mbase	mbase;
 	t_img	screen;
+	t_img	screen_notice;
 	t_img	mini_map;
 	t_img	current;
 	t_img	textures[6];

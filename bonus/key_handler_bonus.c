@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 20:43:52 by jeseo             #+#    #+#             */
-/*   Updated: 2023/05/06 16:06:04 by jeseo            ###   ########.fr       */
+/*   Updated: 2023/05/06 17:05:01 by jeseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@ int	input_update(t_info *info)
 	if (info->racing_flag == 1)
 	{
 		input_w(info);
-		if (info->accel_flag == 0 && info->mbase.move_speed > 0.1)
+		if (info->accel_flag == 0 && info->mbase.move_speed > 0.01)
 			info->mbase.move_speed -= 0.00005;
 		else if (info->accel_flag == 1 && info->mbase.move_speed < 0.4)
-			info->mbase.move_speed += 0.00005;
+			info->mbase.move_speed += 0.005;
 	}
 	else
 	{
