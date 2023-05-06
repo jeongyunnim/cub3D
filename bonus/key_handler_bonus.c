@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 20:43:52 by jeseo             #+#    #+#             */
-/*   Updated: 2023/05/06 20:43:07 by jeseo            ###   ########.fr       */
+/*   Updated: 2023/05/06 22:03:21 by suhkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ int	input_update(t_info *info)
 	info->mbase.map.y = (int)info->mbase.pos.y;
 	if (info->racing_flag == 0 && info->map[info->mbase.map.y][info->mbase.map.x] == 'B')
 		init_racing_mode(info);
+	if (info->racing_flag && info->map[info->mbase.map.y][info->mbase.map.x] == 'G')
+		info->end_flag = 1;
 	draw_map(info);
 	return (0);
 }
