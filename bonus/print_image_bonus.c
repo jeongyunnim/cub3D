@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 17:04:21 by jeseo             #+#    #+#             */
-/*   Updated: 2023/05/06 16:59:50 by jeseo            ###   ########.fr       */
+/*   Updated: 2023/05/06 17:35:54 by suhkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,13 @@ int	print_image(t_info *info)
   			mlx_string_put(info->mlx, info->win_mlx, SCREEN_W / 2, SCREEN_H / 2, 0xfff, "END: esc\nAccel: W\nrotate: < or >\ngoal: !");
 			return (0);
 		}
-		if (info->handle_flag < - 10)
+		if (info->handle_flag < - 5)
 			handle_index = 0;
-		else if (info->handle_flag < -5)
+		else if (info->handle_flag < 0)
 			handle_index = 1;
-		else if (info->handle_flag < 5)
+		else if (info->handle_flag == 0)
 			handle_index = 2;
-		else if (info->handle_flag < 10)
+		else if (info->handle_flag < 5)
 			handle_index = 3;
 		else
 			handle_index = 4;
