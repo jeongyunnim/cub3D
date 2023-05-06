@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 17:04:21 by jeseo             #+#    #+#             */
-/*   Updated: 2023/05/06 17:35:54 by suhkim           ###   ########.fr       */
+/*   Updated: 2023/05/06 22:03:05 by suhkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,22 @@ int	print_image(t_info *info)
 
 int	main_loop(t_info *info)
 {
+	static int	fuel;
+	
+	if (info->racing_flag)
+		fuel++;
+	if (fuel >= FUEL)
+		info->end_flag = 2;
+	if (info->end_flag)
+	{
+		if (info->end_flag == 1)
+			printf("goal!! dist: %f, remain fule: %d\n", \
+					info->mbase.pos.x - info->racing_start,6000 - fuel);
+		else
+			printf("try again fule is empty dist: %f\n", \
+					info->mbase.pos.x - info->racing_start);
+		exit(0);
+	}
 	input_update(info);
 	draw_mini_map(info);
 	print_image(info);
