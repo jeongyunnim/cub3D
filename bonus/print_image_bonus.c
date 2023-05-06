@@ -27,7 +27,6 @@ int	print_image(t_info *info)
 	int	x;
 	int	y;
 	int			handle_index;
-	static int	racing_notice;
 
 	mlx_put_image_to_window(info->mlx, info->win_mlx, info->screen.img, 0, 0);
 	mlx_put_image_to_window(info->mlx, info->win_mlx, info->mini_map.img, 0, 0);
@@ -35,11 +34,9 @@ int	print_image(t_info *info)
 	mlx_put_image_to_window(info->mlx, info->win_mlx, info->current.img, x, (SCREEN_H / 50) * 9 - 1 - y);
 	if (info->racing_flag == 1)
 	{
-		if (racing_notice < 10)
+		if (info->notice_close_flag == 0)
 		{
-			racing_notice++;
 			mlx_put_image_to_window(info->mlx, info->win_mlx, info->screen_notice.img, 0, 0);
-  			mlx_string_put(info->mlx, info->win_mlx, SCREEN_W / 2, SCREEN_H / 2, 0xfff, "END: esc\nAccel: W\nrotate: < or >\ngoal: !");
 			return (0);
 		}
 		if (info->handle_flag < - 5)

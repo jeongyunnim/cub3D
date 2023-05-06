@@ -24,9 +24,9 @@ int	input_update(t_info *info)
 	{
 		input_w(info);
 		if (info->accel_flag == 0 && info->mbase.move_speed > 0.01)
-			info->mbase.move_speed -= 0.00005;
+			info->mbase.move_speed -= 0.0005;
 		else if (info->accel_flag == 1 && info->mbase.move_speed < 0.4)
-			info->mbase.move_speed += 0.005;
+			info->mbase.move_speed += 0.00005;
 	}
 	else
 	{
@@ -77,6 +77,11 @@ int	key_handler_press(int key_code, t_info *info)
 	{
 		info->input[INPUT_RIGHT] = 0;
 		info->input[INPUT_LEFT] = 1;
+	}
+	else if (key_code == KEY_SPACE)
+	{
+		if (info->racing_flag == 1 && info->notice_close_flag == 0)
+			info->notice_close_flag = 1;
 	}
 	return (0);
 }

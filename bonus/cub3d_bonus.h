@@ -176,10 +176,11 @@ typedef struct s_info
 	char	*east;
 	int		floor[3];
 	int		ceiling[3];
-	int		flag;
+	int		flag; // 플래그 배열 만들까
 	int		handle_flag;
 	int		accel_flag;
 	int		racing_flag;
+	int		notice_close_flag;
 	int		end_flag;
 	double	racing_start;
 	int		map_width;
@@ -298,5 +299,7 @@ void		door_update(t_info *info, double x, double y);
 /* init_racing_mode */
 int 		init_racing_mode(t_info *info);
 
+/* init_notice_img */
+int 		init_notice_img(t_info *info);
 
 #endif
