@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 17:02:15 by jeseo             #+#    #+#             */
-/*   Updated: 2023/05/06 16:47:50 by jeseo            ###   ########.fr       */
+/*   Updated: 2023/05/06 21:51:50 by suhkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # define SCREEN_H 1080
 # define TEX_W 64
 # define TEX_H 64
+# define FUEL 6000
 
 typedef enum e_side
 {
@@ -179,6 +180,8 @@ typedef struct s_info
 	int		handle_flag;
 	int		accel_flag;
 	int		racing_flag;
+	int		end_flag;
+	double	racing_start;
 	int		map_width;
 	int		map_height;
 }				t_info;
