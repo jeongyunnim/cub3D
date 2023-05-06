@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 20:19:34 by jeseo             #+#    #+#             */
-/*   Updated: 2023/05/01 21:53:00 by suhkim           ###   ########.fr       */
+/*   Updated: 2023/05/06 14:54:25 by jeseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,11 @@ void	get_tex_color(t_info *info, t_tex *tex, t_ray *ray)
 	if (ray->door_hit)
 	{
 		tex->color = *((unsigned int *)(info->textures[D_SIDE].addr) \
+			+ TEX_W * tex->y + tex->x);
+	}
+	else if (ray->button_hit)
+	{
+		tex->color = *((unsigned int *)(info->textures[B_SIDE].addr) \
 			+ TEX_W * tex->y + tex->x);
 	}
 	else
