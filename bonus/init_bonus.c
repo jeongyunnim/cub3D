@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 21:51:09 by jeseo             #+#    #+#             */
-/*   Updated: 2023/05/05 19:59:05 by jeseo            ###   ########.fr       */
+/*   Updated: 2023/05/06 15:58:46 by jeseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,8 @@ void	init_dir(t_mbase *mbase, double x, double y)
 
 void	init_pos_dir(t_info *info, int i, int j, t_mbase *mbase)
 {
-	if (info->map[i][j] != '0' && info->map[i][j] != '1' \
-		&& info->map[i][j] != 'D' && info->map[i][j] != 'G' \
-		&& info->map[i][j] != ' ' && info->map[i][j] != 'd' \
-		&& info->map[i][j] != 'I' && info->map[i][j] != 'B')
+	if (info->map[i][j] == 'N' || info->map[i][j] == 'S' \
+		|| info->map[i][j] == 'E' || info->map[i][j] == 'W')
 	{
 		mbase->map.x = j;
 		mbase->map.y = i;
@@ -59,6 +57,11 @@ void	init_pos_dir(t_info *info, int i, int j, t_mbase *mbase)
 			init_dir(mbase, 0, -1);
 		else if (info->map[i][j] == 'W')
 			init_dir(mbase, -1, 0);
+	}
+	else if (info->map[i][j] == 'I')
+	{
+		info->racing_init.x = j;
+		info->racing_init.y = i;
 	}
 }
 

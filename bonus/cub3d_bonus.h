@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 17:02:15 by jeseo             #+#    #+#             */
-/*   Updated: 2023/05/05 20:53:06 by jeseo            ###   ########.fr       */
+/*   Updated: 2023/05/06 15:28:46 by jeseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ typedef enum e_side
 	S_SIDE,
 	E_SIDE,
 	W_SIDE,
-	D_SIDE
+	D_SIDE,
+	B_SIDE
 }	t_side;
 
 typedef enum e_type
@@ -123,6 +124,7 @@ typedef struct s_ray
 	double	perp_dist;
 	int		side;
 	int		door_hit;
+	int		button_hit;
 }	t_ray;
 
 typedef struct s_line
@@ -159,8 +161,9 @@ typedef struct s_info
 	t_img	screen;
 	t_img	mini_map;
 	t_img	current;
-	t_img	textures[5];
+	t_img	textures[6];
 	t_img	handle[5];
+	t_ipos	racing_init;
 	int		input[6];
 	void	*mlx;
 	void	*win_mlx;
@@ -225,6 +228,8 @@ int			draw_one_line(t_info *info, t_mbase *mbase, t_ray *ray, int i);
 /* init.c */
 void		init_map_base(t_info *info, t_mbase *mbase);
 int			init_info(t_info *info);
+void		init_dir(t_mbase *mbase, double x, double y);
+void		init_plane(t_dpos *plane, double x, double y);
 
 /* cal_perp_dist.c */
 void		cal_perp_dist(t_info *info, t_mbase *mbase, t_ray *ray, double c);
@@ -285,5 +290,9 @@ int			is_around_locked_d(t_info *info, double x, double y, \
 
 /* door_update.c */
 void		door_update(t_info *info, double x, double y);
+
+/* init_racing_mode */
+int 		init_racing_mode(t_info *info);
+
 
 #endif
