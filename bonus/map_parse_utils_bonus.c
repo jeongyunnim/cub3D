@@ -17,7 +17,7 @@ int	check_valid_value_idx(t_map_info *map, char *line, int i, int *flag)
 	if (line[i] != '0' && line[i] != '1' && line[i] != 'D' && line[i] != ' ' \
 			&& line[i] != '\n' && line[i] != 'N' && line[i] != 'S' \
 			&& line[i] != 'E' && line[i] != 'W' && line[i] != 'G' \
-			&& line[i] != 'd')
+			&& line[i] != 'd' && line[i] != 'I' && line[i] != 'B')
 		return (ERROR);
 	else
 	{
@@ -92,7 +92,7 @@ void	define_map_size(t_info *info, t_map_info *map_info, t_map_list *temp)
 		info->map[i] = ft_calloc(sizeof(char), info->map_width + 1);
 		ft_strlcpy(info->map[i], temp->one_line + map_info->min_w, \
 				info->map_width + 1);
-		while (--j)
+		while (j--)
 		{
 			if (info->map[i][j] == 0)
 				info->map[i][j] = ' ';

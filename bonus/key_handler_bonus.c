@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 20:43:52 by jeseo             #+#    #+#             */
-/*   Updated: 2023/05/05 20:52:49 by jeseo            ###   ########.fr       */
+/*   Updated: 2023/05/06 17:05:01 by jeseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,24 +20,33 @@ int	input_update(t_info *info)
 	data.old_dir_y = info->mbase.dir.y;
 	data.old_plane_x = info->mbase.plane.x;
 	data.old_plane_y = info->mbase.plane.y;
-	if (info->accel_flag == 0 && info->mbase.move_speed > 0.2)
-		info->mbase.move_speed -= 0.02;
-	if (info->accel_flag == 1 && info->mbase.move_speed < 0.5)
-		info->mbase.move_speed += 0.02;
-	if (info->input[INPUT_W] == 1)
+	if (info->racing_flag == 1)
+	{
 		input_w(info);
-	if (info->input[INPUT_S] == 1)
-		input_s(info);
-	if (info->input[INPUT_A] == 1)
-		input_a(info, data);
-	if (info->input[INPUT_D] == 1)
-		input_d(info, data);
+		if (info->accel_flag == 0 && info->mbase.move_speed > 0.01)
+			info->mbase.move_speed -= 0.00005;
+		else if (info->accel_flag == 1 && info->mbase.move_speed < 0.4)
+			info->mbase.move_speed += 0.005;
+	}
+	else
+	{
+		if (info->input[INPUT_W] == 1)
+			input_w(info);
+		if (info->input[INPUT_S] == 1)
+			input_s(info);
+		if (info->input[INPUT_A] == 1)
+			input_a(info, data);
+		if (info->input[INPUT_D] == 1)
+			input_d(info, data);
+	}
 	if (info->input[INPUT_RIGHT] == 1)
 		input_right(info, data);
 	if (info->input[INPUT_LEFT] == 1)
 		input_left(info, data);
 	info->mbase.map.x = (int)info->mbase.pos.x;
 	info->mbase.map.y = (int)info->mbase.pos.y;
+	if (info->racing_flag == 0 && info->map[info->mbase.map.y][info->mbase.map.x] == 'B')
+		init_racing_mode(info);
 	draw_map(info);
 	return (0);
 }

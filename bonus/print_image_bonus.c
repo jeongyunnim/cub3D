@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 17:04:21 by jeseo             #+#    #+#             */
-/*   Updated: 2023/05/05 20:07:58 by jeseo            ###   ########.fr       */
+/*   Updated: 2023/05/06 17:35:54 by suhkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,22 +27,33 @@ int	print_image(t_info *info)
 	int	x;
 	int	y;
 	int			handle_index;
+	static int	racing_notice;
 
 	mlx_put_image_to_window(info->mlx, info->win_mlx, info->screen.img, 0, 0);
 	mlx_put_image_to_window(info->mlx, info->win_mlx, info->mini_map.img, 0, 0);
 	cal_locate(info, &x, &y);
 	mlx_put_image_to_window(info->mlx, info->win_mlx, info->current.img, x, (SCREEN_H / 50) * 9 - 1 - y);
-	if (info->handle_flag < - 10)
-		handle_index = 0;
-	else if (info->handle_flag < -5)
-		handle_index = 1;
-	else if (info->handle_flag < 5)
-		handle_index = 2;
-	else if (info->handle_flag < 10)
-		handle_index = 3;
-	else
-		handle_index = 4;
-	mlx_put_image_to_window(info->mlx, info->win_mlx, info->handle[handle_index].img, 0, SCREEN_H / 5.5);
+	if (info->racing_flag == 1)
+	{
+		if (racing_notice < 10)
+		{
+			racing_notice++;
+			mlx_put_image_to_window(info->mlx, info->win_mlx, info->screen_notice.img, 0, 0);
+  			mlx_string_put(info->mlx, info->win_mlx, SCREEN_W / 2, SCREEN_H / 2, 0xfff, "END: esc\nAccel: W\nrotate: < or >\ngoal: !");
+			return (0);
+		}
+		if (info->handle_flag < - 5)
+			handle_index = 0;
+		else if (info->handle_flag < 0)
+			handle_index = 1;
+		else if (info->handle_flag == 0)
+			handle_index = 2;
+		else if (info->handle_flag < 5)
+			handle_index = 3;
+		else
+			handle_index = 4;
+		mlx_put_image_to_window(info->mlx, info->win_mlx, info->handle[handle_index].img, 0, SCREEN_H / 5.5);
+	}
 	return (0);
 }
 
