@@ -57,6 +57,22 @@ static double	dda_result(t_mbase mbase, t_ray *ray)
 	return (perp_dist);
 }
 
+void	ray_shooting(t_mbase *mbase, t_ray *ray)
+{
+	if (ray->side_dist.x < ray->side_dist.y)
+	{
+		ray->side_dist.x += ray->delta_dist.x;
+		mbase->map.x += ray->step.x;
+		ray->side = 0;
+	}
+	else
+	{
+		ray->side_dist.y += ray->delta_dist.y;
+		mbase->map.y += ray->step.y;
+		ray->side = 1;
+	}
+}
+
 double	dda(t_info *info, t_mbase mbase, t_ray *ray)
 {
 	int		hit_flag;
@@ -66,18 +82,7 @@ double	dda(t_info *info, t_mbase mbase, t_ray *ray)
 	ray->button_hit = 0;
 	while (hit_flag == 0)
 	{
-		if (ray->side_dist.x < ray->side_dist.y)
-		{
-			ray->side_dist.x += ray->delta_dist.x;
-			mbase.map.x += ray->step.x;
-			ray->side = 0;
-		}
-		else
-		{
-			ray->side_dist.y += ray->delta_dist.y;
-			mbase.map.y += ray->step.y;
-			ray->side = 1;
-		}
+		ray_shooting(&mbase, ray);
 		if (info->map[mbase.map.y][mbase.map.x] == '1' \
 				|| info->map[mbase.map.y][mbase.map.x] == 'D' \
 				|| info->map[mbase.map.y][mbase.map.x] == 'B')

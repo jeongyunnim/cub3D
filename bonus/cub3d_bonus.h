@@ -20,9 +20,11 @@
 # include "../libft/libft.h"
 # include "../mlx/mlx.h"
 
+// 960 540
+
 # define ERROR -1
-# define SCREEN_W 1920 // FULL HD
-# define SCREEN_H 1080
+# define SCREEN_W 960 // FULL HD
+# define SCREEN_H 540
 # define TEX_W 64
 # define TEX_H 64
 # define FUEL 6000
@@ -149,12 +151,10 @@ typedef struct s_img
 typedef struct s_update_data
 {
 	double	old_dir_x;
-	double	old_dir_y;  
 	double	old_plane_x;
-	double	old_plane_y;
 	double	side_walk_x;
 	double	side_walk_y;
-}	t_update_data; //안 쓰는 함수 빼야 함
+}	t_update_data;
 
 typedef struct s_info
 {
@@ -213,10 +213,12 @@ int			check_closed_map(t_info *info);
 int			map_parse(t_info *info, int fd, char *first_line);
 
 /* map_parse_utils.c */
-int			check_valid_value_idx(t_map_info *map, char *line, int i, int *flag);
+int			check_valid_value_idx(t_map_info *map, char *line, \
+									int i, int *flag);
 int			check_map_one_line(char *line, t_map_info *map);
 int			check_all_line(t_map_info *map_info, t_map_list *temp);
-void		define_map_size(t_info *info, t_map_info *map_info, t_map_list *temp);
+void		define_map_size(t_info *info, t_map_info *map_info, \
+							t_map_list *temp);
 void		free_map_list(t_map_list *target);
 
 /* map_list_util.c */
@@ -280,13 +282,13 @@ int			get_img_address(t_info *info);
 int			destroy_handler(void);
 
 /* mouse_handler_bonus.c */
-int 		mouse_handler(int x, int y, t_info *info);
+int			mouse_handler(int x, int y, t_info *info);
 
 /* draw_mini_map.c */
-void	    draw_mini_map(t_info *info);
+void		draw_mini_map(t_info *info);
 
 /* init_handle_img_bonus.c */
-int 		init_handle_img(t_info *info);
+int			init_handle_img(t_info *info);
 
 /* door.c */
 int			is_around_door(t_info *info);
@@ -297,9 +299,9 @@ int			is_around_locked_d(t_info *info, double x, double y, \
 void		door_update(t_info *info, double x, double y);
 
 /* init_racing_mode */
-int 		init_racing_mode(t_info *info);
+int			init_racing_mode(t_info *info);
 
 /* init_notice_img */
-int 		init_notice_img(t_info *info);
+int			init_notice_img(t_info *info);
 
 #endif

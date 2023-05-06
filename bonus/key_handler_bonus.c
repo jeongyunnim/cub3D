@@ -17,10 +17,8 @@ int	input_update(t_info *info)
 	t_update_data	data;
 
 	data.old_dir_x = info->mbase.dir.x;
-	data.old_dir_y = info->mbase.dir.y;
 	data.old_plane_x = info->mbase.plane.x;
-	data.old_plane_y = info->mbase.plane.y;
-	if (info->racing_flag == 1)
+	if (info->racing_flag == 1) // 레이싱 모드 함수로 빼기
 	{
 		input_w(info);
 		if (info->accel_flag == 0 && info->mbase.move_speed > 0.01)
@@ -48,7 +46,7 @@ int	input_update(t_info *info)
 	if (info->racing_flag == 0 && info->map[info->mbase.map.y][info->mbase.map.x] == 'B')
 		init_racing_mode(info);
 	if (info->racing_flag && info->map[info->mbase.map.y][info->mbase.map.x] == 'G')
-		info->end_flag = 1;
+		info->end_flag = 1; // enum 추가하기 clear or failure
 	draw_map(info);
 	return (0);
 }

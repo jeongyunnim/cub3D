@@ -12,15 +12,14 @@
 
 #include "cub3d_bonus.h"
 
-int init_racing_mode(t_info *info)
+int	init_racing_mode(t_info *info)
 {
-    printf("racing_mode_start");
 	info->mbase.map.x = info->racing_init.x;
 	info->mbase.map.y = info->racing_init.y;
 	info->mbase.pos.x = info->mbase.map.x + 0.5;
 	info->racing_start = info->mbase.map.x + 0.5;
 	info->mbase.pos.y = info->mbase.map.y + 0.5;
-    info->racing_flag = 1;
+	info->racing_flag = 1;
 	init_dir(&info->mbase, 1, 0);
-    return (0);
+	return (0);
 }

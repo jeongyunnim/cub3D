@@ -18,7 +18,8 @@ int	mouse_handler(int x, int y, t_info *info)
 
 	if (info->racing_flag == 1)
 		return (0);
-	y += 1;
+	if (y == 0)
+		y += 1;
 	if (x > SCREEN_W / 5 * 4)
 	{
 		info->input[INPUT_LEFT] = 0;

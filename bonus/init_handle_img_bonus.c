@@ -49,7 +49,8 @@ void	draw_handle(t_info *info, t_img *xpm, int size, int i)
 		x = 0;
 		while (x < size)
 		{
-			color = *((unsigned int *)(xpm->addr) + ((int)(y * (300.0 / size))) * 300 + (int)(x * (300.0 / size)));
+			color = *((unsigned int *)(xpm->addr) + \
+			((int)(y * (300.0 / size))) * 300 + (int)(x * (300.0 / size)));
 			draw_in_image(&info->handle[i], x, y, color);
 			x++;
 		}
@@ -57,12 +58,12 @@ void	draw_handle(t_info *info, t_img *xpm, int size, int i)
 	}
 }
 
-int init_handle_img(t_info *info)
+int	init_handle_img(t_info *info)
 {
 	int		i;
 	int		size;
-	t_img   xpm[5];
-	
+	t_img	xpm[5];
+
 	xpm[0].img = mlx_xpm_file_to_image(info->mlx, "asset/handle_1.xpm", &i, &i);
 	xpm[1].img = mlx_xpm_file_to_image(info->mlx, "asset/handle_2.xpm", &i, &i);
 	xpm[2].img = mlx_xpm_file_to_image(info->mlx, "asset/handle_3.xpm", &i, &i);

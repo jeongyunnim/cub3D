@@ -55,33 +55,27 @@ void	init_tex(t_mbase *mbase, t_ray *ray, t_tex *tex, t_line *line)
 
 void	get_tex_color(t_info *info, t_tex *tex, t_ray *ray)
 {
+	int	texture_index;
+
 	tex->y = (int)tex->pos & (TEX_H - 1);
 	tex->pos += tex->step;
 	if (ray->door_hit)
-	{
-		tex->color = *((unsigned int *)(info->textures[D_SIDE].addr) \
-			+ TEX_W * tex->y + tex->x);
-	}
+		texture_index = D_SIDE;
 	else if (ray->button_hit)
-	{
-		tex->color = *((unsigned int *)(info->textures[B_SIDE].addr) \
-			+ TEX_W * tex->y + tex->x);
-	}
+		texture_index = B_SIDE;
 	else
 	{
 		if (ray->side == 0 && ray->step.x == -1)
-			tex->color = *((unsigned int *)(info->textures[W_SIDE].addr) \
-			+ TEX_W * tex->y + tex->x);
+			texture_index = W_SIDE;
 		else if (ray->side == 0 && ray->step.x == 1)
-			tex->color = *((unsigned int *)(info->textures[E_SIDE].addr) \
-			+ TEX_W * tex->y + tex->x);
+			texture_index = E_SIDE;
 		else if (ray->side == 1 && ray->step.y == -1)
-			tex->color = *((unsigned int *)(info->textures[S_SIDE].addr) \
-			+ TEX_W * tex->y + tex->x);
+			texture_index = S_SIDE;
 		else
-			tex->color = *((unsigned int *)(info->textures[N_SIDE].addr) \
-			+ TEX_W * tex->y + tex->x);
+			texture_index = N_SIDE;
 	}
+	tex->color = *((unsigned int *)(info->textures[texture_index].addr) \
+			+ TEX_W * tex->y + tex->x);
 }
 
 void	fill_color(t_info *info, t_line *line, t_ray *ray, t_tex *tex)

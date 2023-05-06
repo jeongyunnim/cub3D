@@ -12,13 +12,13 @@
 
 #include "cub3d_bonus.h"
 
-void    draw_mini_map(t_info *info)
+void	draw_mini_map(t_info *info)
 {
-	int x;
-	int y;
-	int block_size;
+	int	x;
+	int	y;
+	int	block_size;
 
-	block_size = SCREEN_H / 5 / 10;
+	block_size = SCREEN_H / 5 / 10; // block_size를 info에서 들고다니는 건?
 	y = block_size * 9 - 1;
 	while (y >= 0)
 	{	
@@ -28,14 +28,10 @@ void    draw_mini_map(t_info *info)
 			if ((info->mbase.map.y / 9) * 9 + y / block_size >= info->map_height || (info->mbase.map.x / 16) * 16 + x / block_size >= info->map_width)
 				draw_in_image(&info->mini_map, x, block_size * 9 - 1 - y, 0x0);
 			else if (info->map[(info->mbase.map.y / 9) * 9 + y / block_size][(info->mbase.map.x / 16) * 16 + x / block_size] != '1')
-			{
 				draw_in_image(&info->mini_map, x, block_size * 9 - 1 - y, 0xced4daaa);
-			}
 			else
 				draw_in_image(&info->mini_map, x, block_size * 9 - 1 - y, 0x0);
-			if (x % block_size == 0)
-				draw_in_image(&info->mini_map, x, block_size * 9 - 1 - y, 0xffffff);
-			if (y % block_size == 0)
+			if (x % block_size == 0 || (y + 1) % block_size == 0)
 				draw_in_image(&info->mini_map, x, block_size * 9 - 1 - y, 0xffffff);
 			x++;
 		}

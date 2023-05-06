@@ -32,7 +32,7 @@ int	main(int argc, char *argv[])
 	close(fd);
 	init_map_base(&info, &info.mbase);
 
-	int	block_size;
+	int	block_size; // Info에 들고 다닐까 진짜..
 
 	block_size = SCREEN_H / 50;
 	if (init_textures(&info) == ERROR || get_img_address(&info) == ERROR)
@@ -40,12 +40,12 @@ int	main(int argc, char *argv[])
 	if (init_img(&info.mini_map, info.mlx, block_size * 16, block_size * 9) == ERROR)
 		return (ERROR);
 
-	if (init_img(&info.current, info.mlx, block_size / 2, block_size / 2) == ERROR)
-		return (ERROR);
-	
+	/* init_current */
 	int x;
 	int y;
 
+	if (init_img(&info.current, info.mlx, block_size / 2, block_size / 2) == ERROR)
+		return (ERROR);
 	y = 0;
 	while (y < block_size / 2)
 	{
