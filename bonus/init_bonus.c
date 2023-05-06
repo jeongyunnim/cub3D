@@ -36,8 +36,6 @@ void	init_dir(t_mbase *mbase, double x, double y)
 		else
 			init_plane(&mbase->plane, -0.66, 0);
 	}
-	printf("%f %f %f %f\n", mbase->dir.x, mbase->dir.y, \
-			mbase->plane.x, mbase->plane.y);
 }
 
 void	init_pos_dir(t_info *info, int i, int j, t_mbase *mbase)
