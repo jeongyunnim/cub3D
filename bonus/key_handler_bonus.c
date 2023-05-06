@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 20:43:52 by jeseo             #+#    #+#             */
-/*   Updated: 2023/05/06 17:05:01 by jeseo            ###   ########.fr       */
+/*   Updated: 2023/05/06 20:43:07 by jeseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ int	input_update(t_info *info)
 	{
 		input_w(info);
 		if (info->accel_flag == 0 && info->mbase.move_speed > 0.01)
-			info->mbase.move_speed -= 0.00005;
+			info->mbase.move_speed -= 0.0005;
 		else if (info->accel_flag == 1 && info->mbase.move_speed < 0.4)
-			info->mbase.move_speed += 0.005;
+			info->mbase.move_speed += 0.00005;
 	}
 	else
 	{
@@ -75,6 +75,11 @@ int	key_handler_press(int key_code, t_info *info)
 	{
 		info->input[INPUT_RIGHT] = 0;
 		info->input[INPUT_LEFT] = 1;
+	}
+	else if (key_code == KEY_SPACE)
+	{
+		if (info->racing_flag == 1 && info->notice_close_flag == 0)
+			info->notice_close_flag = 1;
 	}
 	return (0);
 }

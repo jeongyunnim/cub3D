@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 17:02:15 by jeseo             #+#    #+#             */
-/*   Updated: 2023/05/06 16:47:50 by jeseo            ###   ########.fr       */
+/*   Updated: 2023/05/06 21:48:06 by jeseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -175,10 +175,11 @@ typedef struct s_info
 	char	*east;
 	int		floor[3];
 	int		ceiling[3];
-	int		flag;
+	int		flag; // 플래그 배열 만들까
 	int		handle_flag;
 	int		accel_flag;
 	int		racing_flag;
+	int		notice_close_flag;
 	int		map_width;
 	int		map_height;
 }				t_info;
@@ -295,5 +296,7 @@ void		door_update(t_info *info, double x, double y);
 /* init_racing_mode */
 int 		init_racing_mode(t_info *info);
 
+/* init_notice_img */
+int 		init_notice_img(t_info *info);
 
 #endif

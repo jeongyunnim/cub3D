@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 17:00:12 by jeseo             #+#    #+#             */
-/*   Updated: 2023/05/06 16:52:24 by jeseo            ###   ########.fr       */
+/*   Updated: 2023/05/06 21:48:11 by jeseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,25 +60,9 @@ int	main(int argc, char *argv[])
 		}
 		y++;
 	}
-	
+
 	init_handle_img(&info);
-	
-	if (init_img(&info.screen_notice, info.mlx, SCREEN_W, SCREEN_H) == ERROR)
-		return (ERROR);
-
-	y = 0;
-	while (y < SCREEN_H)
-	{
-		x = 0;
-		while (x < SCREEN_W)
-		{
-			draw_in_image(&info.screen_notice, x, y, 0x0);
-			x++;
-		}
-		y++;
-	}
-
-
+	init_notice_img(&info);
 	mlx_loop_hook(info.mlx, main_loop, &info);
 	mlx_hook(info.win_mlx, 02, 0, key_handler_press, &info);
 	mlx_hook(info.win_mlx, 03, 0, key_handler_release, &info);
