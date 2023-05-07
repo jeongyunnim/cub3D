@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 20:24:18 by jeseo             #+#    #+#             */
-/*   Updated: 2023/05/07 22:04:18 by jeseo            ###   ########.fr       */
+/*   Updated: 2023/05/07 22:08:19 by jeseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ void	draw_fuel_bar(t_info *info)
 		x = 0;
 		while (x < bar_w * ((FUEL - info->fuel) / FUEL))
 		{
+			//조금 남으면 빨간생 가즈아
 			draw_in_image(&info->screen.fuel_bar, x, y, 0x40c057);
 			x++;
 		}
