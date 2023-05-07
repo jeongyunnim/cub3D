@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 17:02:15 by jeseo             #+#    #+#             */
-/*   Updated: 2023/05/06 21:51:50 by suhkim           ###   ########.fr       */
+/*   Updated: 2023/05/07 15:40:43 by jeseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@
 # include "../libft/libft.h"
 # include "../mlx/mlx.h"
 
-// 960 540
+// 960 540 || 1920 1080
 
 # define ERROR -1
-# define SCREEN_W 960 // FULL HD
-# define SCREEN_H 540
+# define SCREEN_W 1920 // FULL HD
+# define SCREEN_H 1080
 # define TEX_W 64
 # define TEX_H 64
 # define FUEL 6000
@@ -176,6 +176,7 @@ typedef struct s_info
 	char	*east;
 	int		floor[3];
 	int		ceiling[3];
+	int		block_size;
 	int		flag; // 플래그 배열 만들까
 	int		handle_flag;
 	int		accel_flag;
@@ -303,5 +304,8 @@ int			init_racing_mode(t_info *info);
 
 /* init_notice_img */
 int			init_notice_img(t_info *info);
+
+/* init_current_img */
+int			init_current_img(t_info *info);
 
 #endif

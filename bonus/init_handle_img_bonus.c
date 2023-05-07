@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 16:09:03 by jeseo             #+#    #+#             */
-/*   Updated: 2023/05/05 18:48:25 by jeseo            ###   ########.fr       */
+/*   Updated: 2023/05/07 17:33:18 by jeseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,5 @@ int	init_handle_img(t_info *info)
 		mlx_destroy_image(info->mlx, xpm[i].img);
 		i++;
 	}
-	info->handle_flag = 2;
 	return (0);
 }

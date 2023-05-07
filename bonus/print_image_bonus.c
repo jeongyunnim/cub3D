@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 17:04:21 by jeseo             #+#    #+#             */
-/*   Updated: 2023/05/06 22:03:05 by suhkim           ###   ########.fr       */
+/*   Updated: 2023/05/07 17:36:55 by jeseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,17 @@ void	cal_locate(t_info *info, int *x, int *y)
 {
 	t_ipos	pos_in_block;
 
-	pos_in_block.x = round((info->mbase.pos.x - (int)info->mbase.pos.x) * SCREEN_H / 50);
-	pos_in_block.y = round((info->mbase.pos.y - (int)info->mbase.pos.y) * SCREEN_H / 50);
-	*x = ((int)info->mbase.pos.x * (SCREEN_H / 50)) % (SCREEN_H / 50 * 16) + pos_in_block.x - (SCREEN_H / 50) / 4;
-	*y = ((int)info->mbase.pos.y * (SCREEN_H / 50)) % ((SCREEN_H / 50 * 9)) + pos_in_block.y + (SCREEN_H / 50) / 4;
+	pos_in_block.x = round((info->mbase.pos.x - (int)info->mbase.pos.x) * info->block_size);
+	pos_in_block.y = round((info->mbase.pos.y - (int)info->mbase.pos.y) * info->block_size);
+	*x = ((int)info->mbase.pos.x * (info->block_size)) % (info->block_size * 16) + pos_in_block.x - (info->block_size) / 4;
+	*y = ((int)info->mbase.pos.y * (info->block_size)) % ((info->block_size * 9)) + pos_in_block.y + (info->block_size) / 4;
 }
 
 int	print_image(t_info *info)
 {
 	int	x;
 	int	y;
-	int			handle_index;
+	int	handle_index;
 
 	mlx_put_image_to_window(info->mlx, info->win_mlx, info->screen.img, 0, 0);
 	mlx_put_image_to_window(info->mlx, info->win_mlx, info->mini_map.img, 0, 0);
@@ -66,7 +66,7 @@ int	main_loop(t_info *info)
 	{
 		if (info->end_flag == 1)
 			printf("goal!! dist: %f, remain fule: %d\n", \
-					info->mbase.pos.x - info->racing_start,6000 - fuel);
+					info->mbase.pos.x - info->racing_start, 6000 - fuel);
 		else
 			printf("try again fule is empty dist: %f\n", \
 					info->mbase.pos.x - info->racing_start);
