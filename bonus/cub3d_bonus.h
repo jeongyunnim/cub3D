@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 17:02:15 by jeseo             #+#    #+#             */
-/*   Updated: 2023/05/07 18:50:44 by jeseo            ###   ########.fr       */
+/*   Updated: 2023/05/07 22:02:57 by jeseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,9 @@ typedef enum e_side
 
 typedef enum e_end_status
 {
-	SUCCESS = 1,
+	SUCCESS=1,
 	FAILURE
-}	t_end_status
+}	t_end_status;
 
 typedef enum e_type
 {
@@ -178,6 +178,8 @@ typedef struct s_screen
 	t_img	notice;
 	t_img	mini_map;
 	t_img	current;
+	t_img	fuel;
+	t_img	fuel_bar;
 }	t_screen;
 
 typedef struct s_info
@@ -200,6 +202,7 @@ typedef struct s_info
 	char		*east;
 	int			block_size;
 	double		racing_start;
+	double		fuel;
 	int			map_width;
 	int			map_height;
 }				t_info;
@@ -293,7 +296,7 @@ int			put_error(char *str);
 /* init_img.c */
 int			init_textures(t_info *info);
 int			init_img(t_img *img, void *mlx, int width, int height);
-int			get_img_address(t_info *info);
+int			init_xpm_img(t_info *info, t_img *img, char *file);
 
 /* destroy_handler.c */
 int			destroy_handler(void);
@@ -323,5 +326,9 @@ int			init_notice_img(t_info *info);
 
 /* init_current_img */
 int			init_current_img(t_info *info);
+
+/* init_fuel_img */
+int			init_fuel_img(t_info *info);
+void		draw_fuel_bar(t_info *info);
 
 #endif

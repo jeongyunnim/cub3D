@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 17:00:12 by jeseo             #+#    #+#             */
-/*   Updated: 2023/05/07 18:35:43 by jeseo            ###   ########.fr       */
+/*   Updated: 2023/05/07 19:37:20 by jeseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	main(int argc, char *argv[])
 	init_map_base(&info, &info.mbase);
 
 	info.block_size = SCREEN_H / 50;
-	if (init_textures(&info) == ERROR || get_img_address(&info) == ERROR)
+	if (init_textures(&info) == ERROR)
 		return (put_error("Error\nTexture file error\n"));
 	if (init_img(&info.screen.mini_map, info.mlx, info.block_size * 16, info.block_size * 9) == ERROR)
 		return (ERROR);

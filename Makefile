@@ -80,6 +80,7 @@ SRCS_B			=	./bonus/main_bonus.c\
 					./bonus/init_racing_mode_bonus.c\
 					./bonus/init_notice_img_bonus.c\
 					./bonus/init_current_img_bonus.c\
+					./bonus/init_fuel_img_bonus.c\
 
 OBJS			=	$(SRCS:%.c=%.o)
 

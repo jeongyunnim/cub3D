@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/06 21:06:03 by jeseo             #+#    #+#             */
-/*   Updated: 2023/05/07 18:37:51 by jeseo            ###   ########.fr       */
+/*   Updated: 2023/05/07 19:45:09 by jeseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,14 +36,9 @@ void	draw_notice(t_info *info, t_img *xpm)
 
 int	init_notice_img(t_info *info)
 {
-	int		temp;
 	t_img	xpm;
 
-	xpm.img = mlx_xpm_file_to_image(info->mlx, \
-	"asset/notice.xpm", &temp, &temp);
-	xpm.addr = mlx_get_data_addr(xpm.img, \
-	&xpm.bits_per_pixel, &xpm.line_length, &xpm.endian);
-	if (xpm.addr == NULL)
+	if (init_xpm_img(info, &xpm, "asset/notice.xpm") == ERROR)
 		return (ERROR);
 	if (init_img(&info->screen.notice, info->mlx, SCREEN_W, SCREEN_H) == ERROR)
 		return (ERROR);

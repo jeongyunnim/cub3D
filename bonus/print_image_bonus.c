@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 17:04:21 by jeseo             #+#    #+#             */
-/*   Updated: 2023/05/07 18:50:59 by jeseo            ###   ########.fr       */
+/*   Updated: 2023/05/07 22:03:02 by jeseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ int	print_image(t_info *info)
 		else
 			handle_index = 4;
 		mlx_put_image_to_window(info->mlx, info->win_mlx, info->handle[handle_index].img, 0, SCREEN_H / 5.5);
+		mlx_put_image_to_window(info->mlx, info->win_mlx, info->screen.fuel.img, SCREEN_W / 10 * 8, 0);
+		mlx_put_image_to_window(info->mlx, info->win_mlx, info->screen.fuel_bar.img, (SCREEN_W / 10 * 8) + (int)((SCREEN_H / 18)), 10 * (int)(64.0 / (SCREEN_H / 18)));
 	}
 	return (0);
 }
@@ -59,7 +61,10 @@ int	main_loop(t_info *info)
 	static int	fuel;
 	
 	if (info->flag.racing)
+	{
 		fuel++;
+		info->fuel = fuel;
+	}
 	if (fuel >= FUEL)
 		info->flag.end = FAILURE;
 	if (info->flag.end)
@@ -74,6 +79,7 @@ int	main_loop(t_info *info)
 	}
 	input_update(info);
 	draw_mini_map(info);
+	draw_fuel_bar(info);
 	print_image(info);
 	return (0);
 }
