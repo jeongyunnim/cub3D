@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 17:04:21 by jeseo             #+#    #+#             */
-/*   Updated: 2023/05/07 17:36:55 by jeseo            ###   ########.fr       */
+/*   Updated: 2023/05/07 18:33:59 by jeseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,24 +28,24 @@ int	print_image(t_info *info)
 	int	y;
 	int	handle_index;
 
-	mlx_put_image_to_window(info->mlx, info->win_mlx, info->screen.img, 0, 0);
-	mlx_put_image_to_window(info->mlx, info->win_mlx, info->mini_map.img, 0, 0);
+	mlx_put_image_to_window(info->mlx, info->win_mlx, info->screen.full.img, 0, 0);
+	mlx_put_image_to_window(info->mlx, info->win_mlx, info->screen.mini_map.img, 0, 0);
 	cal_locate(info, &x, &y);
-	mlx_put_image_to_window(info->mlx, info->win_mlx, info->current.img, x, (SCREEN_H / 50) * 9 - 1 - y);
-	if (info->racing_flag == 1) // 레이싱 모드 따로 빼기
+	mlx_put_image_to_window(info->mlx, info->win_mlx, info->screen.current.img, x, (SCREEN_H / 50) * 9 - 1 - y);
+	if (info->flag.racing == 1) // 레이싱 모드 따로 빼기
 	{
-		if (info->notice_close_flag == 0)
+		if (info->flag.notice == 0)
 		{
-			mlx_put_image_to_window(info->mlx, info->win_mlx, info->screen_notice.img, 0, 0);
+			mlx_put_image_to_window(info->mlx, info->win_mlx, info->screen.notice.img, 0, 0);
 			return (0);
 		}
-		if (info->handle_flag < - 5)
+		if (info->flag.handle < - 5)
 			handle_index = 0;
-		else if (info->handle_flag < 0)
+		else if (info->flag.handle < 0)
 			handle_index = 1;
-		else if (info->handle_flag == 0)
+		else if (info->flag.handle == 0)
 			handle_index = 2;
-		else if (info->handle_flag < 5)
+		else if (info->flag.handle < 5)
 			handle_index = 3;
 		else
 			handle_index = 4;
@@ -58,13 +58,13 @@ int	main_loop(t_info *info)
 {
 	static int	fuel;
 	
-	if (info->racing_flag)
+	if (info->flag.racing)
 		fuel++;
 	if (fuel >= FUEL)
-		info->end_flag = 2;
-	if (info->end_flag)
+		info->flag.end = 2;
+	if (info->flag.end)
 	{
-		if (info->end_flag == 1)
+		if (info->flag.end == 1)
 			printf("goal!! dist: %f, remain fule: %d\n", \
 					info->mbase.pos.x - info->racing_start, 6000 - fuel);
 		else

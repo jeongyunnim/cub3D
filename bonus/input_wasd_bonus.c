@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 00:04:33 by suhkim            #+#    #+#             */
-/*   Updated: 2023/05/05 20:09:04 by jeseo            ###   ########.fr       */
+/*   Updated: 2023/05/07 18:31:52 by jeseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,9 @@ int	is_available_move(t_info *info, double x, double y)
 
 void	input_w(t_info *info)
 {
-	if (info->accel_flag == 0 && info->mbase.move_speed > 0.2)
+	if (info->flag.accel == 0 && info->mbase.move_speed > 0.2)
 		info->mbase.move_speed -= 0.02;
-	if (info->accel_flag == 1 && info->mbase.move_speed < 0.5)
+	if (info->flag.accel == 1 && info->mbase.move_speed < 0.5)
 		info->mbase.move_speed += 0.02;
 	if (is_available_move(info, info->mbase.pos.x + info->mbase.dir.x \
 		* info->mbase.move_speed, info->mbase.pos.y) && !is_around_locked_d(\

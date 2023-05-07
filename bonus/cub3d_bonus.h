@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 17:02:15 by jeseo             #+#    #+#             */
-/*   Updated: 2023/05/07 15:40:43 by jeseo            ###   ########.fr       */
+/*   Updated: 2023/05/07 18:46:12 by jeseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,36 +156,46 @@ typedef struct s_update_data
 	double	side_walk_y;
 }	t_update_data;
 
-typedef struct s_info
+typedef struct s_flag
 {
-	t_mbase	mbase;
-	t_img	screen;
-	t_img	screen_notice;
+	int	type;
+	int	handle;
+	int	accel;
+	int	racing;
+	int	notice;
+	int	end;
+}	t_flag;
+
+typedef struct s_screen
+{
+	t_img	full;
+	t_img	notice;
 	t_img	mini_map;
 	t_img	current;
-	t_img	textures[6];
-	t_img	handle[5];
-	t_ipos	racing_init;
-	int		input[6];
-	void	*mlx;
-	void	*win_mlx;
-	char	**map;
-	char	*north;
-	char	*south;
-	char	*west;
-	char	*east;
-	int		floor[3];
-	int		ceiling[3];
-	int		block_size;
-	int		flag; // 플래그 배열 만들까
-	int		handle_flag;
-	int		accel_flag;
-	int		racing_flag;
-	int		notice_close_flag;
-	int		end_flag;
-	double	racing_start;
-	int		map_width;
-	int		map_height;
+}	t_screen;
+
+typedef struct s_info
+{
+	t_mbase		mbase;
+	t_screen	screen;
+	t_img		textures[6];
+	t_img		handle[5];
+	t_flag		flag;
+	t_ipos		racing_init;
+	int			input[6];
+	int			floor[3];
+	int			ceiling[3];
+	void		*mlx;
+	void		*win_mlx;
+	char		**map;
+	char		*north;
+	char		*south;
+	char		*west;
+	char		*east;
+	int			block_size;
+	double		racing_start;
+	int			map_width;
+	int			map_height;
 }				t_info;
 
 /*split_is_function.c */

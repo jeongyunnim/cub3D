@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 21:36:35 by jeseo             #+#    #+#             */
-/*   Updated: 2023/05/07 16:35:43 by jeseo            ###   ########.fr       */
+/*   Updated: 2023/05/07 18:36:25 by jeseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	choose_color(t_info *info, t_ipos *pix)
 	else
 		color = 0x88141414;
 	if ((pix->x % info->block_size == 0 || \
-		(pix->y + 1) % info->block_size == 0) && info->racing_flag != 1)
+		(pix->y + 1) % info->block_size == 0) && info->flag.racing != 1)
 		color = 0xffffff;
 	return (color);
 }
@@ -47,7 +47,7 @@ void	draw_mini_map(t_info *info)
 		while (pix.x < info->block_size * 16)
 		{
 			color = choose_color(info, &pix);
-			draw_in_image(&info->mini_map, pix.x, \
+			draw_in_image(&info->screen.mini_map, pix.x, \
 			info->block_size * 9 - 1 - pix.y, color);
 			pix.x++;
 		}

@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 01:02:36 by suhkim            #+#    #+#             */
-/*   Updated: 2023/04/26 19:29:32 by jeseo            ###   ########.fr       */
+/*   Updated: 2023/05/07 18:30:24 by jeseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,14 +46,14 @@ int	error_flag_check(t_info *info, char **rgb, char **type)
 	error_flag = 0;
 	if (rgb[0] == NULL || rgb[1] == NULL || rgb[2] == NULL || rgb[3] != NULL)
 		error_flag = 1;
-	else if (ft_strncmp(type[0], "F", 2) == 0 && (FLOOR & info->flag) == 0)
+	else if (ft_strncmp(type[0], "F", 2) == 0 && (FLOOR & info->flag.type) == 0)
 	{
-		info->flag |= FLOOR;
+		info->flag.type |= FLOOR;
 		error_flag = rgb_valid_check(rgb, info->floor);
 	}
-	else if (ft_strncmp(type[0], "C", 2) == 0 && (CEILING & info->flag) == 0)
+	else if (ft_strncmp(type[0], "C", 2) == 0 && (CEILING & info->flag.type) == 0)
 	{
-		info->flag |= CEILING;
+		info->flag.type |= CEILING;
 		error_flag = rgb_valid_check(rgb, info->ceiling);
 	}
 	else
@@ -105,24 +105,24 @@ int	init_rgb(t_info *info, char **type)
 
 int	type_init(t_info *info, char **type)
 {
-	if (ft_strncmp(type[0], "NO", 3) == 0 && (NORTH & info->flag) == 0)
+	if (ft_strncmp(type[0], "NO", 3) == 0 && (NORTH & info->flag.type) == 0)
 	{
-		info->flag |= NORTH;
+		info->flag.type |= NORTH;
 		info->north = ft_strdup(type[1]);
 	}
-	else if (ft_strncmp(type[0], "SO", 3) == 0 && (SOUTH & info->flag) == 0)
+	else if (ft_strncmp(type[0], "SO", 3) == 0 && (SOUTH & info->flag.type) == 0)
 	{
-		info->flag |= SOUTH;
+		info->flag.type |= SOUTH;
 		info->south = ft_strdup(type[1]);
 	}
-	else if (ft_strncmp(type[0], "WE", 3) == 0 && (WEST & info->flag) == 0)
+	else if (ft_strncmp(type[0], "WE", 3) == 0 && (WEST & info->flag.type) == 0)
 	{
-		info->flag |= WEST;
+		info->flag.type |= WEST;
 		info->west = ft_strdup(type[1]);
 	}
-	else if (ft_strncmp(type[0], "EA", 3) == 0 && (EAST & info->flag) == 0)
+	else if (ft_strncmp(type[0], "EA", 3) == 0 && (EAST & info->flag.type) == 0)
 	{
-		info->flag |= EAST;
+		info->flag.type |= EAST;
 		info->east = ft_strdup(type[1]);
 	}
 	else

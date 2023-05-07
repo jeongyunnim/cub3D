@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 00:04:43 by suhkim            #+#    #+#             */
-/*   Updated: 2023/05/06 21:06:26 by suhkim           ###   ########.fr       */
+/*   Updated: 2023/05/07 18:29:11 by jeseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ int	limit_dir_in_racing_left(t_info *info, t_update_data *data)
 
 void	input_right(t_info *info, t_update_data data)
 {
-	info->handle_flag += 1;
-	if (!info->racing_flag || limit_dir_in_racing_right(info, &data))
+	info->flag.handle += 1;
+	if (!info->flag.racing || limit_dir_in_racing_right(info, &data))
 	{
 		info->mbase.dir.x = info->mbase.dir.x * cos(-info->mbase.rot_speed) \
 						- info->mbase.dir.y * sin(-info->mbase.rot_speed);
@@ -60,8 +60,8 @@ void	input_right(t_info *info, t_update_data data)
 
 void	input_left(t_info *info, t_update_data data)
 {
-	info->handle_flag -= 1;
-	if (!info->racing_flag || limit_dir_in_racing_left(info, &data))
+	info->flag.handle -= 1;
+	if (!info->flag.racing || limit_dir_in_racing_left(info, &data))
 	{
 		info->mbase.dir.x = info->mbase.dir.x * cos(info->mbase.rot_speed) \
 						- info->mbase.dir.y * sin(info->mbase.rot_speed);

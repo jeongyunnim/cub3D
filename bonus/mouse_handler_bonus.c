@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 20:14:28 by jeseo             #+#    #+#             */
-/*   Updated: 2023/05/07 16:39:06 by jeseo            ###   ########.fr       */
+/*   Updated: 2023/05/07 18:29:12 by jeseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	mouse_handler(int x, int y, t_info *info)
 {
 	static int	flag;
 
-	if (info->racing_flag == 1)
+	if (info->flag.racing == 1)
 		return (0);
 	if (y == 0)
 		y += 1;

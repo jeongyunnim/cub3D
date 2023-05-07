@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/06 21:06:03 by jeseo             #+#    #+#             */
-/*   Updated: 2023/05/07 16:36:19 by jeseo            ###   ########.fr       */
+/*   Updated: 2023/05/07 18:37:51 by jeseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	draw_notice(t_info *info, t_img *xpm)
 			color = *((unsigned int *)(xpm->addr) + \
 			((int)(y * (360.0 / SCREEN_H))) * 640 + \
 			(int)(x * (640.0 / SCREEN_W)));
-			draw_in_image(&info->screen_notice, x, y, color);
+			draw_in_image(&info->screen.notice, x, y, color);
 			x++;
 		}
 		y++;
@@ -45,7 +45,7 @@ int	init_notice_img(t_info *info)
 	&xpm.bits_per_pixel, &xpm.line_length, &xpm.endian);
 	if (xpm.addr == NULL)
 		return (ERROR);
-	if (init_img(&info->screen_notice, info->mlx, SCREEN_W, SCREEN_H) == ERROR)
+	if (init_img(&info->screen.notice, info->mlx, SCREEN_W, SCREEN_H) == ERROR)
 		return (ERROR);
 	draw_notice(info, &xpm);
 	mlx_destroy_image(info->mlx, xpm.img);

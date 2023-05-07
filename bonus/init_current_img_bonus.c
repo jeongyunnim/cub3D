@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 15:03:27 by jeseo             #+#    #+#             */
-/*   Updated: 2023/05/07 15:43:06 by jeseo            ###   ########.fr       */
+/*   Updated: 2023/05/07 18:38:19 by jeseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	init_current_img(t_info *info)
 	int	circle;
 
 	circle = info->block_size / 4;
-	if (init_img(&info->current, info->mlx, info->block_size / 2, \
+	if (init_img(&info->screen.current, info->mlx, info->block_size / 2, \
 				info->block_size / 2) == ERROR)
 		return (ERROR);
 	y = 0;
@@ -29,9 +29,9 @@ int	init_current_img(t_info *info)
 		while (x < info->block_size / 2)
 		{
 			if (circle >= sqrtf(powf(circle - x, 2) + powf(circle - y, 2)))
-				draw_in_image(&info->current, x, y, 0xfa5252);
+				draw_in_image(&info->screen.current, x, y, 0xfa5252);
 			else
-				draw_in_image(&info->current, x, y, 0xff000000);
+				draw_in_image(&info->screen.current, x, y, 0xff000000);
 			x++;
 		}
 		y++;

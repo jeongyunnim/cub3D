@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 20:19:34 by jeseo             #+#    #+#             */
-/*   Updated: 2023/05/06 14:54:25 by jeseo            ###   ########.fr       */
+/*   Updated: 2023/05/07 18:33:52 by jeseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ void	fill_color(t_info *info, t_line *line, t_ray *ray, t_tex *tex)
 		else
 			tex->color = info->floor[0] << 16 \
 			| info->floor[1] << 8 | info->floor[2];
-		draw_in_image(&info->screen, tex->camera_x, col, tex->color);
+		draw_in_image(&info->screen.full, tex->camera_x, col, tex->color);
 		col++;
 	}
 }

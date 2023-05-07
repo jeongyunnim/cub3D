@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 17:02:15 by jeseo             #+#    #+#             */
-/*   Updated: 2023/05/01 21:02:17 by jeseo            ###   ########.fr       */
+/*   Updated: 2023/05/07 18:41:38 by jeseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -196,11 +196,13 @@ int			check_closed_map(t_info *info);
 int			map_parse(t_info *info, int fd, char *first_line);
 
 /* map_parse_utils.c */
-int	check_valid_value_idx(t_map_info *map, char *line, int i, int *flag);
-int	check_map_one_line(char *line, t_map_info *map);
-int	check_all_line(t_map_info *map_info, t_map_list *temp);
-void	define_map_size(t_info *info, t_map_info *map_info, t_map_list *temp);
-void	free_map_list(t_map_list *target);
+int			check_valid_value_idx(t_map_info *map, \
+								char *line, int i, int *flag);
+int			check_map_one_line(char *line, t_map_info *map);
+int			check_all_line(t_map_info *map_info, t_map_list *temp);
+void		define_map_size(t_info *info, t_map_info *map_info, \
+							t_map_list *temp);
+void		free_map_list(t_map_list *target);
 
 /* map_list_util.c */
 t_map_list	*lstnew_map_line(char *one_line);

@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 21:33:26 by suhkim            #+#    #+#             */
-/*   Updated: 2023/04/26 19:30:09 by jeseo            ###   ########.fr       */
+/*   Updated: 2023/05/07 18:37:20 by jeseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ int	type_parse(t_info *info, int fd)
 		if (enough_arg_check_vaild(info, type_temp, line) == ERROR)
 			return (ERROR);
 		free_two_dimension_array(type_temp);
-		if (TYPE_S == info->flag)
+		if (TYPE_S == info->flag.type)
 			break ;
 	}
 	if (overlap_check(info) == ERROR)
