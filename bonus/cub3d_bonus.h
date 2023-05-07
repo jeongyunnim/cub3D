@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 17:02:15 by jeseo             #+#    #+#             */
-/*   Updated: 2023/05/07 18:46:12 by jeseo            ###   ########.fr       */
+/*   Updated: 2023/05/07 18:50:44 by jeseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,12 @@ typedef enum e_side
 	D_SIDE,
 	B_SIDE
 }	t_side;
+
+typedef enum e_end_status
+{
+	SUCCESS = 1,
+	FAILURE
+}	t_end_status
 
 typedef enum e_type
 {

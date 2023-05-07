@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 20:43:52 by jeseo             #+#    #+#             */
-/*   Updated: 2023/05/07 18:31:52 by jeseo            ###   ########.fr       */
+/*   Updated: 2023/05/07 18:51:25 by jeseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	input_update(t_info *info)
 	if (info->flag.racing == 0 && info->map[info->mbase.map.y][info->mbase.map.x] == 'B')
 		init_racing_mode(info);
 	if (info->flag.racing && info->map[info->mbase.map.y][info->mbase.map.x] == 'G')
-		info->flag.end = 1; // enum 추가하기 clear or failure
+		info->flag.end = SUCCESS;
 	draw_map(info);
 	return (0);
 }
