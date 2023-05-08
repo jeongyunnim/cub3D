@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 17:02:15 by jeseo             #+#    #+#             */
-/*   Updated: 2023/05/07 18:50:38 by jeseo            ###   ########.fr       */
+/*   Updated: 2023/05/08 20:32:59 by jeseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,9 +143,7 @@ typedef struct s_texture
 typedef struct s_update_data
 {
 	double	old_dir_x;
-	double	old_dir_y;
 	double	old_plane_x;
-	double	old_plane_y;
 	double	side_walk_x;
 	double	side_walk_y;
 }	t_update_data;

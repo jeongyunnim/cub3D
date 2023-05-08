@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 20:43:52 by jeseo             #+#    #+#             */
-/*   Updated: 2023/04/26 16:57:42 by suhkim           ###   ########.fr       */
+/*   Updated: 2023/05/08 20:32:51 by jeseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,7 @@ int	input_update(t_info *info)
 	t_update_data	data;
 
 	data.old_dir_x = info->mbase.dir.x;
-	data.old_dir_y = info->mbase.dir.y;
 	data.old_plane_x = info->mbase.plane.x;
-	data.old_plane_y = info->mbase.plane.y;
 	if (info->input[INPUT_W] == 1)
 		input_w(info);
 	if (info->input[INPUT_S] == 1)
