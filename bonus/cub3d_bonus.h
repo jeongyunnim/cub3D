@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 17:02:15 by jeseo             #+#    #+#             */
-/*   Updated: 2023/05/08 18:44:44 by jeseo            ###   ########.fr       */
+/*   Updated: 2023/05/08 20:10:16 by suhkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -273,6 +273,7 @@ double		dda(t_info *info, t_mbase mbase, t_ray *ray);
 int			valid_map(t_info *info);
 
 /* key_handler.c */
+void		set_inputs(int *target1, int *target2, int value1, int value2);
 int			key_handler(int key_code, t_info *info);
 int			key_handler_press(int key_code, t_info *info);
 int			key_handler_release(int key_code, t_info *info);

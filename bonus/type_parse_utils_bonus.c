@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 01:02:36 by suhkim            #+#    #+#             */
-/*   Updated: 2023/05/08 19:09:25 by jeseo            ###   ########.fr       */
+/*   Updated: 2023/05/08 20:13:14 by suhkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,8 @@ int	error_flag_check(t_info *info, char **rgb, char **type)
 		info->flag.type |= FLOOR;
 		error_flag = rgb_valid_check(rgb, info->floor);
 	}
-	else if (ft_strncmp(type[0], "C", 2) == 0 && (CEILING & info->flag.type) == 0)
+	else if (ft_strncmp(type[0], "C", 2) == 0 \
+			&& (CEILING & info->flag.type) == 0)
 	{
 		info->flag.type |= CEILING;
 		error_flag = rgb_valid_check(rgb, info->ceiling);
@@ -110,7 +111,8 @@ int	type_init(t_info *info, char **type)
 		info->flag.type |= NORTH;
 		info->north = ft_strdup(type[1]);
 	}
-	else if (ft_strncmp(type[0], "SO", 3) == 0 && (SOUTH & info->flag.type) == 0)
+	else if (ft_strncmp(type[0], "SO", 3) == 0 \
+			&& (SOUTH & info->flag.type) == 0)
 	{
 		info->flag.type |= SOUTH;
 		info->south = ft_strdup(type[1]);
