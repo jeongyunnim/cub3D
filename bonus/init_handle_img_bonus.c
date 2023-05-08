@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 16:09:03 by jeseo             #+#    #+#             */
-/*   Updated: 2023/05/07 20:22:15 by jeseo            ###   ########.fr       */
+/*   Updated: 2023/05/08 20:18:46 by jeseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int	init_handle_img(t_info *info)
 	size = SCREEN_W / 6 * 5;
 	while (i < 5)
 	{
-		if (init_img(&info->handle[i], info->mlx, size, size) == ERROR)
+		if (init_new_img(&info->handle[i], info->mlx, size, size) == ERROR)
 			return (ERROR);
 		draw_handle(info, &xpm[i], size, i);
 		mlx_destroy_image(info->mlx, xpm[i].img);

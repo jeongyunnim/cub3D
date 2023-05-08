@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 21:51:09 by jeseo             #+#    #+#             */
-/*   Updated: 2023/05/07 18:33:02 by jeseo            ###   ########.fr       */
+/*   Updated: 2023/05/08 20:21:10 by jeseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,8 @@ int	init_info(t_info *info)
 	info->win_mlx = mlx_new_window(info->mlx, SCREEN_W, SCREEN_H, "cub3d");
 	if (info->win_mlx == NULL)
 		return (put_error("Error\nmlx_new_window() error\n"));
-	if (init_img(&info->screen.full, info->mlx, SCREEN_W, SCREEN_H) == ERROR)
+	if (init_new_img(&info->screen.full, \
+		info->mlx, SCREEN_W, SCREEN_H) == ERROR)
 		return (ERROR);
 	return (0);
 }

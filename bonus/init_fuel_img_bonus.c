@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 20:24:18 by jeseo             #+#    #+#             */
-/*   Updated: 2023/05/08 19:07:10 by jeseo            ###   ########.fr       */
+/*   Updated: 2023/05/08 20:21:46 by jeseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,12 +73,13 @@ int	init_fuel_img(t_info *info)
 	fuel_size = SCREEN_H / 18;
 	if (init_xpm_img(info, &xpm, "asset/fuel.xpm") == ERROR)
 		return (ERROR);
-	if (init_img(&info->screen.fuel, info->mlx, fuel_size, fuel_size) == ERROR)
+	if (init_new_img(&info->screen.fuel, \
+		info->mlx, fuel_size, fuel_size) == ERROR)
 		return (ERROR);
 	bar_w = (SCREEN_W - 10 * (int)(64.0 / fuel_size)) - \
 			(SCREEN_W / 10 * 8 + fuel_size);
 	bar_h = 43 * (int)(64.0 / fuel_size);
-	if (init_img(&info->screen.fuel_bar, info->mlx, bar_w, bar_h) == ERROR)
+	if (init_new_img(&info->screen.fuel_bar, info->mlx, bar_w, bar_h) == ERROR)
 		return (ERROR);
 	draw_fuel(info, &xpm);
 	draw_fuel_bar(info);

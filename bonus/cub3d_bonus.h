@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 17:02:15 by jeseo             #+#    #+#             */
-/*   Updated: 2023/05/08 20:10:16 by suhkim           ###   ########.fr       */
+/*   Updated: 2023/05/08 20:23:39 by jeseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -301,8 +301,9 @@ int			put_error(char *str);
 
 /* init_img.c */
 int			init_textures(t_info *info);
-int			init_img(t_img *img, void *mlx, int width, int height);
+int			init_new_img(t_img *img, void *mlx, int width, int height);
 int			init_xpm_img(t_info *info, t_img *img, char *file);
+int			init_imgs(t_info *info);
 
 /* destroy_handler.c */
 int			destroy_handler(void);
