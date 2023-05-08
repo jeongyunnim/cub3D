@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 17:02:15 by jeseo             #+#    #+#             */
-/*   Updated: 2023/05/08 20:32:59 by jeseo            ###   ########.fr       */
+/*   Updated: 2023/05/08 21:48:32 by jeseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -250,7 +250,8 @@ int			print_image(t_info *info);
 int			main_loop(t_info *info);
 
 /* put_error.c */
-int			put_error(char *str);
+int			put_error(t_info *info, char *str);
+int			exit_put_error(t_info *info, char *str);
 
 /* init_img.c */
 int			init_img(t_info *info);
@@ -258,5 +259,8 @@ int			get_img_address(t_info *info);
 
 /* destroy_handler.c */
 int			destroy_handler(void);
+
+/* free_info.c */
+void		free_info(t_info *info);
 
 #endif

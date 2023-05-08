@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 21:05:30 by jeseo             #+#    #+#             */
-/*   Updated: 2023/04/24 01:11:30 by suhkim           ###   ########.fr       */
+/*   Updated: 2023/05/08 21:29:34 by jeseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,6 @@ int	valid_map(t_info *info)
 		i++;
 	}
 	if (flag != 1)
-	{
-		ft_putstr_fd("Error\nPlayer location is invalid\n", 2);
-		return (ERROR);
-	}
+		return (put_error(info, "Error\nPlayer location is invalid\n"));
 	return (0);
 }

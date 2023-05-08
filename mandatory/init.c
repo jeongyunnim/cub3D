@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 21:51:09 by jeseo             #+#    #+#             */
-/*   Updated: 2023/05/08 20:29:46 by jeseo            ###   ########.fr       */
+/*   Updated: 2023/05/08 21:24:50 by jeseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,17 +85,17 @@ int	init_info(t_info *info)
 	ft_memset(info, 0, sizeof(t_info));
 	info->mlx = mlx_init();
 	if (info->mlx == NULL)
-		return (put_error("Error\nmlx_init() error\n"));
+		return (put_error(info, "Error\nmlx_init() error\n"));
 	info->win_mlx = mlx_new_window(info->mlx, SCREEN_W, SCREEN_H, "cub3d");
 	if (info->win_mlx == NULL)
-		return (put_error("Error\nmlx_new_window() error\n"));
+		return (put_error(info, "Error\nmlx_new_window() error\n"));
 	info->screen.img = mlx_new_image(info->mlx, SCREEN_W, SCREEN_H);
 	if (info->screen.img == NULL)
-		return (put_error("Error\nmlx_new_image() error\n"));
+		return (put_error(info, "Error\nmlx_new_image() error\n"));
 	info->screen.addr = mlx_get_data_addr(info->screen.img, \
 			&info->screen.bits_per_pixel, &info->screen.line_length, \
 			&info->screen.endian);
 	if (info->screen.addr == NULL)
-		return (put_error("Error\nmlx_get_data_addr() error\n"));
+		return (put_error(info, "Error\nmlx_get_data_addr() error\n"));
 	return (0);
 }
