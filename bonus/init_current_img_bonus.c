@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 15:03:27 by jeseo             #+#    #+#             */
-/*   Updated: 2023/05/08 20:19:30 by jeseo            ###   ########.fr       */
+/*   Updated: 2023/05/08 22:01:05 by jeseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	init_current_img(t_info *info)
 	int	circle;
 
 	circle = info->block_size / 4;
-	if (init_new_img(&info->screen.current, info->mlx, info->block_size / 2, \
+	if (init_new_img(info, &info->screen.current, info->block_size / 2, \
 				info->block_size / 2) == ERROR)
 		return (ERROR);
 	y = 0;

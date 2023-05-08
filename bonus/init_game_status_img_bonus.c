@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 16:33:34 by jeseo             #+#    #+#             */
-/*   Updated: 2023/05/08 20:19:34 by jeseo            ###   ########.fr       */
+/*   Updated: 2023/05/08 22:02:12 by jeseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,14 +40,14 @@ int	init_game_status_img(t_info *info)
 
 	if (init_xpm_img(info, &xpm, "asset/game_clear.xpm") == ERROR)
 		return (ERROR);
-	if (init_new_img(&info->screen.game_clear, info->mlx, \
+	if (init_new_img(info, &info->screen.game_clear, \
 		SCREEN_W, SCREEN_H) == ERROR)
 		return (ERROR);
 	draw_game_status(&xpm, &info->screen.game_clear);
 	mlx_destroy_image(info->mlx, xpm.img);
 	if (init_xpm_img(info, &xpm, "asset/game_over.xpm") == ERROR)
 		return (ERROR);
-	if (init_new_img(&info->screen.game_over, info->mlx, \
+	if (init_new_img(info, &info->screen.game_over, \
 		SCREEN_W, SCREEN_H) == ERROR)
 		return (ERROR);
 	draw_game_status(&xpm, &info->screen.game_over);

@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 17:02:15 by jeseo             #+#    #+#             */
-/*   Updated: 2023/05/08 20:23:39 by jeseo            ###   ########.fr       */
+/*   Updated: 2023/05/08 22:03:19 by jeseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -212,32 +212,32 @@ typedef struct s_info
 	int			map_height;
 }				t_info;
 
-/*split_is_function.c */
+/*split_is_function */
 char		**split_is_function(const char *s, int (*f)(int));
 
-/* parse.c */
+/* parse */
 int			parse(t_info *info, int fd);
 
-/* type_parse.c */
+/* type_parse */
 int			type_parse(t_info *info, int fd);
 
-/* type_parse_utils.c */
+/* type_parse_utils */
 int			rgb_valid_check(char **rgb, int target[3]);
 int			error_flag_check(t_info *info, char **rgb, char **type);
 void		free_two_dimension_array(char **arr);
 int			init_rgb(t_info *info, char **type);
 int			type_init(t_info *info, char **type);
 
-/* check_argument.c */
+/* check_argument */
 int			check_argument(int argc, char *argument);
 
-/* check_closed_map.c */
+/* check_closed_map */
 int			check_closed_map(t_info *info);
 
-/* map_parse.c */
+/* map_parse */
 int			map_parse(t_info *info, int fd, char *first_line);
 
-/* map_parse_utils.c */
+/* map_parse_utils */
 int			check_valid_value_idx(t_map_info *map, char *line, \
 									int i, int *flag);
 int			check_map_one_line(char *line, t_map_info *map);
@@ -246,83 +246,84 @@ void		define_map_size(t_info *info, t_map_info *map_info, \
 							t_map_list *temp);
 void		free_map_list(t_map_list *target);
 
-/* map_list_util.c */
+/* map_list_util */
 t_map_list	*lstnew_map_line(char *one_line);
 t_map_list	*pop_map_line_head(t_map_list **head);
 void		add_map_line_tail(t_map_list *head, t_map_list *new);
 
-/* draw_map.c */
+/* draw_map */
 int			draw_map(t_info *info);
 
-/* draw_one_line.c */
+/* draw_one_line */
 int			draw_one_line(t_info *info, t_mbase *mbase, t_ray *ray, int i);
 
-/* init.c */
+/* init */
 void		init_map_base(t_info *info, t_mbase *mbase);
 int			init_info(t_info *info);
 void		init_dir(t_mbase *mbase, double x, double y);
 void		init_plane(t_dpos *plane, double x, double y);
 
-/* cal_perp_dist.c */
+/* cal_perp_dist */
 void		cal_perp_dist(t_info *info, t_mbase *mbase, t_ray *ray, double c);
 
-/* dda.c */
+/* dda */
 double		dda(t_info *info, t_mbase mbase, t_ray *ray);
 
-/* valid_map.c */
+/* valid_map */
 int			valid_map(t_info *info);
 
-/* key_handler.c */
+/* key_handler */
 void		set_inputs(int *target1, int *target2, int value1, int value2);
 int			key_handler(int key_code, t_info *info);
 int			key_handler_press(int key_code, t_info *info);
 int			key_handler_release(int key_code, t_info *info);
 int			input_update(t_info *info);
 
-/* input_wasd.c */
+/* input_wasd */
 void		input_w(t_info *info);
 void		input_s(t_info *info);
 void		input_a(t_info *info, t_update_data *data);
 void		input_d(t_info *info, t_update_data *data);
 
-/* input_right_left.c */
+/* input_right_left */
 void		input_right(t_info *info, t_update_data data);
 void		input_left(t_info *info, t_update_data data);
 
-/* draw_in_image.c */
+/* draw_in_image */
 void		draw_in_image(t_img *img, int x, int y, int color);
 
-/* print_image.c */
+/* print_image */
 int			print_image(t_info *info);
 int			main_loop(t_info *info);
 
-/* put_error.c */
-int			put_error(char *str);
+/* put_error */
+int			put_error(t_info *info, char *str);
+int			exit_put_error(t_info *info, char *str);
 
-/* init_img.c */
+/* init_img */
 int			init_textures(t_info *info);
-int			init_new_img(t_img *img, void *mlx, int width, int height);
+int			init_new_img(t_info *info, t_img *img, int width, int height);
 int			init_xpm_img(t_info *info, t_img *img, char *file);
 int			init_imgs(t_info *info);
 
-/* destroy_handler.c */
+/* destroy_handler */
 int			destroy_handler(void);
 
-/* mouse_handler_bonus.c */
+/* mouse_handler */
 int			mouse_handler(int x, int y, t_info *info);
 
-/* draw_mini_map.c */
+/* draw_mini_map */
 void		draw_mini_map(t_info *info);
 
-/* init_handle_img_bonus.c */
+/* init_handle_img */
 int			init_handle_img(t_info *info);
 
-/* door.c */
+/* door */
 int			is_around_door(t_info *info);
 int			is_around_locked_d(t_info *info, double x, double y, \
 		double margin);
 
-/* door_update.c */
+/* door_update */
 void		door_update(t_info *info, double x, double y);
 
 /* init_racing_mode */
@@ -340,5 +341,8 @@ void		draw_fuel_bar(t_info *info);
 
 /* init_game_status_img */
 int			init_game_status_img(t_info *info);
+
+/* free_info */
+void		free_info(t_info *info);
 
 #endif

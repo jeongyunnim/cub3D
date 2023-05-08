@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 04:35:17 by jeseo             #+#    #+#             */
-/*   Updated: 2023/05/08 20:26:26 by jeseo            ###   ########.fr       */
+/*   Updated: 2023/05/08 22:00:30 by jeseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,16 +51,16 @@ int	init_textures(t_info *info)
 	return (0);
 }
 
-int	init_new_img(t_img *img, void *mlx, int width, int height)
+int	init_new_img(t_info *info, t_img *img, int width, int height)
 {
-	img->img = mlx_new_image(mlx, width, height);
+	img->img = mlx_new_image(info->mlx, width, height);
 	if (img->img == NULL)
-		return (put_error("Error\nmlx_new_image() error\n"));
+		return (ERROR);
 	img->addr = mlx_get_data_addr(img->img, \
 			&img->bits_per_pixel, &img->line_length, \
 			&img->endian);
 	if (img->addr == NULL)
-		return (put_error("Error\nmlx_get_data_addr() error\n"));
+		return (put_error(info, "Error\nmlx_get_data_addr() error\n"));
 	return (0);
 }
 
@@ -69,8 +69,8 @@ int	init_imgs(t_info *info)
 	init_map_base(info, &info->mbase);
 	info->block_size = SCREEN_H / 50;
 	if (init_textures(info) == ERROR)
-		return (put_error("Error\nTexture file error\n"));
-	if (init_new_img(&info->screen.mini_map, info->mlx, info->block_size * 16, \
+		return (put_error(info, "Error\nTexture file error\n"));
+	if (init_new_img(info, &info->screen.mini_map, info->block_size * 16, \
 					info->block_size * 9) == ERROR)
 		return (ERROR);
 	if (init_handle_img(info) == ERROR || init_notice_img(info) == ERROR \

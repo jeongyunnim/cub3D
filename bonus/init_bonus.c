@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 21:51:09 by jeseo             #+#    #+#             */
-/*   Updated: 2023/05/08 20:21:10 by jeseo            ###   ########.fr       */
+/*   Updated: 2023/05/08 22:00:52 by jeseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,12 +88,11 @@ int	init_info(t_info *info)
 	ft_memset(info, 0, sizeof(t_info));
 	info->mlx = mlx_init();
 	if (info->mlx == NULL)
-		return (put_error("Error\nmlx_init() error\n"));
+		return (put_error(info, "Error\nmlx_init() error\n"));
 	info->win_mlx = mlx_new_window(info->mlx, SCREEN_W, SCREEN_H, "cub3d");
 	if (info->win_mlx == NULL)
-		return (put_error("Error\nmlx_new_window() error\n"));
-	if (init_new_img(&info->screen.full, \
-		info->mlx, SCREEN_W, SCREEN_H) == ERROR)
+		return (put_error(info, "Error\nmlx_new_window() error\n"));
+	if (init_new_img(info, &info->screen.full, SCREEN_W, SCREEN_H) == ERROR)
 		return (ERROR);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/06 21:06:03 by jeseo             #+#    #+#             */
-/*   Updated: 2023/05/08 20:22:01 by jeseo            ###   ########.fr       */
+/*   Updated: 2023/05/08 22:02:47 by jeseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,7 @@ int	init_notice_img(t_info *info)
 
 	if (init_xpm_img(info, &xpm, "asset/notice.xpm") == ERROR)
 		return (ERROR);
-	if (init_new_img(&info->screen.notice, \
-				info->mlx, SCREEN_W, SCREEN_H) == ERROR)
+	if (init_new_img(info, &info->screen.notice, SCREEN_W, SCREEN_H) == ERROR)
 		return (ERROR);
 	draw_notice(info, &xpm);
 	mlx_destroy_image(info->mlx, xpm.img);
