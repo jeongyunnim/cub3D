@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 17:04:21 by jeseo             #+#    #+#             */
-/*   Updated: 2023/05/08 20:02:08 by jeseo            ###   ########.fr       */
+/*   Updated: 2023/05/08 20:14:56 by jeseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ int	define_handle_index(t_info	*info)
 		handle_index = 3;
 	else
 		handle_index = 4;
+	return (handle_index);
 }
 
 void	racing_mode_print(t_info *info)
