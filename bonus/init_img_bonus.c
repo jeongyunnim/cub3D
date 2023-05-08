@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 04:35:17 by jeseo             #+#    #+#             */
-/*   Updated: 2023/05/07 20:29:59 by jeseo            ###   ########.fr       */
+/*   Updated: 2023/05/08 18:21:40 by jeseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ int	init_textures(t_info *info)
 		return (ERROR);
 	if (init_xpm_img(info, &info->textures[B_SIDE], \
 						"asset/illusion.xpm") == ERROR)
+		return (ERROR);
+	if (init_xpm_img(info, &info->textures[G_SIDE], "asset/goal.xpm") == ERROR)
 		return (ERROR);
 	if (init_handle_img(info) == ERROR)
 		return (ERROR);

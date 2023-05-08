@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 17:02:15 by jeseo             #+#    #+#             */
-/*   Updated: 2023/05/07 22:02:57 by jeseo            ###   ########.fr       */
+/*   Updated: 2023/05/08 18:44:44 by jeseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@
 # include "../libft/libft.h"
 # include "../mlx/mlx.h"
 
-// 960 540 || 1920 1080
+// 960 540 || 1920 1080 FULL HD
 
 # define ERROR -1
-# define SCREEN_W 1920 // FULL HD
+# define SCREEN_W 1920
 # define SCREEN_H 1080
 # define TEX_W 64
 # define TEX_H 64
@@ -36,7 +36,8 @@ typedef enum e_side
 	E_SIDE,
 	W_SIDE,
 	D_SIDE,
-	B_SIDE
+	B_SIDE,
+	G_SIDE
 }	t_side;
 
 typedef enum e_end_status
@@ -134,6 +135,7 @@ typedef struct s_ray
 	int		side;
 	int		door_hit;
 	int		button_hit;
+	int		goal_hit;
 }	t_ray;
 
 typedef struct s_line
@@ -170,12 +172,15 @@ typedef struct s_flag
 	int	racing;
 	int	notice;
 	int	end;
+	int	wait;
 }	t_flag;
 
 typedef struct s_screen
 {
 	t_img	full;
 	t_img	notice;
+	t_img	game_clear;
+	t_img	game_over;
 	t_img	mini_map;
 	t_img	current;
 	t_img	fuel;
@@ -186,7 +191,7 @@ typedef struct s_info
 {
 	t_mbase		mbase;
 	t_screen	screen;
-	t_img		textures[6];
+	t_img		textures[7];
 	t_img		handle[5];
 	t_flag		flag;
 	t_ipos		racing_init;
@@ -276,8 +281,8 @@ int			input_update(t_info *info);
 /* input_wasd.c */
 void		input_w(t_info *info);
 void		input_s(t_info *info);
-void		input_a(t_info *info, t_update_data data);
-void		input_d(t_info *info, t_update_data data);
+void		input_a(t_info *info, t_update_data *data);
+void		input_d(t_info *info, t_update_data *data);
 
 /* input_right_left.c */
 void		input_right(t_info *info, t_update_data data);
@@ -330,5 +335,8 @@ int			init_current_img(t_info *info);
 /* init_fuel_img */
 int			init_fuel_img(t_info *info);
 void		draw_fuel_bar(t_info *info);
+
+/* init_game_status_img */
+int			init_game_status_img(t_info *info);
 
 #endif

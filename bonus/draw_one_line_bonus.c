@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 20:19:34 by jeseo             #+#    #+#             */
-/*   Updated: 2023/05/07 18:33:52 by jeseo            ###   ########.fr       */
+/*   Updated: 2023/05/08 19:12:39 by jeseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,8 @@ void	get_tex_color(t_info *info, t_tex *tex, t_ray *ray)
 		texture_index = D_SIDE;
 	else if (ray->button_hit)
 		texture_index = B_SIDE;
+	else if (ray->goal_hit)
+		texture_index = G_SIDE;
 	else
 	{
 		if (ray->side == 0 && ray->step.x == -1)
@@ -104,7 +106,7 @@ int	draw_one_line(t_info *info, t_mbase *mbase, t_ray *ray, int i)
 	t_line	line;
 	t_tex	tex;
 
-	line.wall_height = SCREEN_H / ray->perp_dist;
+	line.wall_height = (SCREEN_H * 2) / ray->perp_dist;
 	line.bottom = (SCREEN_H / 2) - (line.wall_height / 2);
 	if (line.bottom < 0)
 		line.bottom = 0;
