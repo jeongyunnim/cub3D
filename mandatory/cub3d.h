@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 17:02:15 by jeseo             #+#    #+#             */
-/*   Updated: 2023/05/08 21:48:32 by jeseo            ###   ########.fr       */
+/*   Updated: 2023/05/10 17:24:54 by jeseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,8 @@ typedef enum e_key
 
 typedef enum e_input
 {
-	INPUT_LEFT,
-	INPUT_RIGHT,
+	INPUT_L,
+	INPUT_R,
 	INPUT_W,
 	INPUT_S,
 	INPUT_A,

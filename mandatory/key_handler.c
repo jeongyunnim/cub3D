@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 20:43:52 by jeseo             #+#    #+#             */
-/*   Updated: 2023/05/08 20:32:51 by jeseo            ###   ########.fr       */
+/*   Updated: 2023/05/10 17:24:55 by jeseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ int	input_update(t_info *info)
 		input_a(info, data);
 	if (info->input[INPUT_D] == 1)
 		input_d(info, data);
-	if (info->input[INPUT_RIGHT] == 1)
+	if (info->input[INPUT_R] == 1)
 		input_right(info, data);
-	if (info->input[INPUT_LEFT] == 1)
+	if (info->input[INPUT_L] == 1)
 		input_left(info, data);
 	info->mbase.map.x = (int)info->mbase.pos.x;
 	info->mbase.map.y = (int)info->mbase.pos.y;
@@ -51,13 +51,13 @@ int	key_handler_press(int key_code, t_info *info)
 		info->input[INPUT_D] = 1;
 	else if (key_code == KEY_RIGHT)
 	{
-		info->input[INPUT_LEFT] = 0;
-		info->input[INPUT_RIGHT] = 1;
+		info->input[INPUT_L] = 0;
+		info->input[INPUT_R] = 1;
 	}
 	else if (key_code == KEY_LEFT)
 	{
-		info->input[INPUT_RIGHT] = 0;
-		info->input[INPUT_LEFT] = 1;
+		info->input[INPUT_R] = 0;
+		info->input[INPUT_L] = 1;
 	}
 	return (0);
 }
@@ -75,8 +75,8 @@ int	key_handler_release(int key_code, t_info *info)
 	else if (key_code == KEY_D)
 		info->input[INPUT_D] = 0;
 	else if (key_code == KEY_RIGHT)
-		info->input[INPUT_RIGHT] = 0;
+		info->input[INPUT_R] = 0;
 	else if (key_code == KEY_LEFT)
-		info->input[INPUT_LEFT] = 0;
+		info->input[INPUT_L] = 0;
 	return (0);
 }

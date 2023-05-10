@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 17:02:15 by jeseo             #+#    #+#             */
-/*   Updated: 2023/05/08 22:03:19 by jeseo            ###   ########.fr       */
+/*   Updated: 2023/05/10 17:23:47 by jeseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 # define SCREEN_H 1080
 # define TEX_W 64
 # define TEX_H 64
-# define FUEL 6000
+# define FUEL 2500
 
 typedef enum e_side
 {
@@ -71,8 +71,8 @@ typedef enum e_key
 
 typedef enum e_input
 {
-	INPUT_LEFT,
-	INPUT_RIGHT,
+	INPUT_L,
+	INPUT_R,
 	INPUT_W,
 	INPUT_S,
 	INPUT_A,

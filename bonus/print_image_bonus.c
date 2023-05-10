@@ -6,7 +6,7 @@
 /*   By: jeseo <jeseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 17:04:21 by jeseo             #+#    #+#             */
-/*   Updated: 2023/05/08 20:14:56 by jeseo            ###   ########.fr       */
+/*   Updated: 2023/05/10 17:16:52 by jeseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,13 +98,13 @@ int	main_loop(t_info *info)
 		fuel++;
 		info->fuel = fuel;
 	}
-	if (fuel >= FUEL)
+	if (info->flag.end == 0 && fuel >= FUEL)
 		info->flag.end = FAILURE;
 	if (info->flag.end)
 	{
 		if (!info->flag.wait && info->flag.end == SUCCESS)
 			printf("goal!! dist: %f, remain fule: %d\n", \
-					info->mbase.pos.x - info->racing_start, 6000 - fuel);
+					info->mbase.pos.x - info->racing_start, FUEL - fuel);
 		else if (!info->flag.wait)
 			printf("try again fule is empty dist: %f\n", \
 					info->mbase.pos.x - info->racing_start);
